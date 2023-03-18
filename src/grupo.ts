@@ -6,7 +6,7 @@ import { Ruta } from "./ruta";
  * Clase Grupo que alberga los distintos
  * usuarios que se unen para realizar rutas
  * en conjunto
- * @param _ID ID único del grupo
+  * @param _ID ID único del grupo
   * @param _nombre Nombre del grupo
   * @param _participantes  IDs de los miembros del grupo
   * @param _estadisticasEntrenamiento Cantidad de km y desnivel total acumulados de manera grupal en la semana, mes y año
