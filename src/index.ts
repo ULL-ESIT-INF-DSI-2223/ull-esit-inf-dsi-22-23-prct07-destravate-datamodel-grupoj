@@ -9,7 +9,7 @@ let usuario1 = new Usuario(1, 'Andrés', 'Correr', [2, 3], [[1]], [1, 2, 'abril'
 let usuario2 : Usuario = new Usuario(2, 'Laura', 'Bicicleta', [6, 7], [[2]], [1, 2, 'abril', 2], [1, 2], [1, 2], [['perrear', 10]]);
 let usuario3 : Usuario = new Usuario(3, 'Laura', 'Bicicleta', [6, 7], [[2]], [1, 2, 'abril', 2], [1, 2], [1, 2], [['perrear', 10]]);
 let usuario4 : Usuario = new Usuario(4, 'Laura', 'Bicicleta', [6, 7], [[2]], [1, 2, 'abril', 2], [1, 2], [1, 2], [['perrear', 10]]);
-let usuariosColeccion = new JsonUsuarioColeccion([usuario3, usuario4, usuario2, usuario1]);
+let jsonUsuariosColeccion = new JsonUsuarioColeccion([]);
 
 enum Commands {
   Usuarios = "Usuarios",
@@ -36,7 +36,7 @@ async function insertarUsuarioPrompt () {
     type: "input",
     name: "addID",
     message: "Introducir ID: ",
-  },
+  },  
   {
     type: "input",
     name: "addNombre",
@@ -52,12 +52,12 @@ async function insertarUsuarioPrompt () {
     name: "addAmigosApp",
     message: "Introducir los amigos de la aplicación: ",
   },
-  {
+  /*{
     type: "input",
     name: "addGrupoAmigos",
     message: "Introducir el grupo de amigos: ",
   },
-  /*{
+  {
     type: "input",
     name: "addEntrenamiento",
     message: "Introducir el entrenamiento: ",
@@ -89,12 +89,13 @@ async function insertarUsuarioPrompt () {
   retosActivos = respuestas["addRetosActivos"].map(Number);
   historicoRutas = respuestas["addHistoricoRutas"];*/
 
-  
-  usuariosColeccion.addUsuario(id, nombre, actividades, amigosapp, [[0]], [0, 0, '', 0], [0], [0], [['', 0]])
-}  
-
+  jsonUsuariosColeccion.addUsuario(id, nombre, actividades, amigosapp, [[0]], [0, 0, '', 0], [0], [0], [['', 0]])
+  promptUsuarios();
+}
+ 
 function promptUsuarios() {
   console.clear();
+  jsonUsuariosColeccion.mostrarUsuarios()  
 
   inquirer.prompt({
     type: "list",

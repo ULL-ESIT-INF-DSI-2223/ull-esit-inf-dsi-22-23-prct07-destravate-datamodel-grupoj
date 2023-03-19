@@ -7,15 +7,15 @@ import * as FileSync from "lowdb/adapters/FileSync";
 
 type schemaUsuarios = {
   usuario: { 
-    id: number; 
-    nombre: string;
-    actividades: Actividad; 
-    amigosApp: number[]; 
-    grupoAmigos: Coleccion;
-    entramiento: EstadisticasEntrenamiento;
-    rutasFavoritas: number[];
-    retosActivos: number[];
-    historicoRutas: HistoricoRuta[];
+    _ID: number; 
+    _nombre: string;
+    _actividades: Actividad; 
+    _amigosApp: number[]; 
+    _grupoAmigos: Coleccion;
+    _entrenamiento: EstadisticasEntrenamiento;
+    _rutasFavoritas: number[];
+    _retosActivos: number[];
+    _historicoRutas: HistoricoRuta[];
   }[];
 };
 
@@ -30,7 +30,7 @@ export class JsonUsuarioColeccion extends UsuarioColeccion {
     if (this.database.has("usuario").value())  {
       let dbItems = this.database.get("usuario").value();
       dbItems.forEach(item => {
-        this._usuarios.push(new Usuario(item.id, item.nombre, item.actividades, item.amigosApp, item.grupoAmigos, item.entramiento, item.rutasFavoritas, item.retosActivos, item.historicoRutas));
+        this._usuarios.push(new Usuario(item._ID, item._nombre, item._actividades, item._amigosApp, item._grupoAmigos, item._entrenamiento, item._rutasFavoritas, item._retosActivos, item._historicoRutas));
       })
     } 
     else {
@@ -55,6 +55,6 @@ export class JsonUsuarioColeccion extends UsuarioColeccion {
       this.storeTasks();
   }*/
   private storeTasks() {
-    this.database.set("tasks", [...this._usuarios.values()]).write();
+    this.database.set("usuario", [...this._usuarios.values()]).write();
   }
 }
