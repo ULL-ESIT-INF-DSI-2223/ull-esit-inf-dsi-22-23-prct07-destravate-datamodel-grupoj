@@ -2,18 +2,52 @@ import 'mocha';
 import { expect } from "chai";
 import { Grupo } from "../src/grupo";
 import { Usuario } from "../src/usuario";
+import { Ruta } from '../src/ruta';
 
 describe('Clase Grupo Tests', () => {
   it('Constructor', () => {
-    expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', Bicicleta, [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', Bicicleta, [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [new Ruta(3)], [['10-05-23', 3]])).to.be.eql("Hola Mundo");
+    expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)])).not.to.be.eql(null);
   })
-  it('Prueba', () => {
-    expect(holaMundo("Hola Mundo")).to.be.eql("Hola Mundo");
+  it('get ID', () => {
+    expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)]).ID).to.be.equal(1);
   })
-  it('Prueba', () => {
-    expect(holaMundo("Hola Mundo")).to.be.eql("Hola Mundo");
+  it('get Nombre', () => {
+    expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)]).nombre).to.be.equal('Expertos');
   })
-  it('Prueba', () => {
-    expect(holaMundo("Hola Mundo")).to.be.eql("Hola Mundo");
+  it('get Participantes', () => {
+    expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)]).participantes).to.be.eql([1, 2]);
+  })
+  it('get Estadísticas de entrenamiento', () => {
+    expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)]).estadisticasEntrenamiento).to.be.eql([45, 23, 'Junio', 2023]);
+  })
+  it('get Clasificación de Usuarios', () => {
+    expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)]).clasificacion).to.be.eql([new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])]);
+  })
+  it('get Ruta Favorita', () => {
+    expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)]).rutasFavoritas).to.be.eql([new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)]);
+  })
+  it('get Histórico de rutas', () => {
+    expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)]).historicoRutas).to.be.eql([new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)]);
+  })
+  it('set ID', () => {
+    expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)]).ID = 6).to.be.equal(6);
+  })
+  it('set Nombre', () => {
+    expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)]).nombre = 'Travesías').to.be.equal('Travesías');
+  })
+  it('set Participantes', () => {
+    expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)]).participantes = [8,3,4]).to.be.eql([8,3,4]);
+  })
+  it('set Estadísticas de entrenamiento', () => {
+    expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)]).estadisticasEntrenamiento = [21, 2, 'Mayo', 2020]).to.be.eql([21, 2, 'Mayo', 2020]);
+  })
+  it('set Clasificación de Usuarios', () => {
+    expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)]).clasificacion = [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]])]).to.be.eql([new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]])]);
+  })
+  it('set Ruta Favorita', () => {
+    expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)]).rutasFavoritas = [new Ruta(2, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Correr', 4)]).to.be.eql([new Ruta(2, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Correr', 4)]);
+  })
+  it('set Histórico de rutas', () => {
+    expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)], [new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)]).historicoRutas = [new Ruta(2, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Correr', 4)]).to.be.eql([new Ruta(2, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Correr', 4)]);
   })
 })

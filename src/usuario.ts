@@ -1,8 +1,8 @@
 import { Actividad } from "./ruta";
 import { EstadisticasEntrenamiento } from "./grupo";
 
-type HistoricoRuta = [string, number];
-type Coleccion = [number][];
+export type HistoricoRuta = [string, number];
+export type Coleccion = [number][];
 
 /**
  * Clase Usuario que alberga los distintos 
@@ -51,6 +51,18 @@ export class Usuario {
     this._rutasFavoritas = rutasFavoritas;
     this._retosActivos = retosActivos;
     this._historicoRutas = historicoRutas;
+  }
+
+  mostrarUsuario () : void {
+    console.log(`ID: ${this._ID}`);
+    console.log(`Nombre: ${this._nombre}`);
+    console.log(`Actividades: ${this._actividades}`);
+    console.log(`Amigos de la app: ${this._amigosApp}`);
+    console.log(`Grupo de Amigos: ${this._grupoAmigos}`);
+    console.log(`Entrenamiento: ${this._entrenamiento}`);
+    console.log(`Rutas favoritas: ${this._rutasFavoritas}`);
+    console.log(`Retos activos: ${this._retosActivos}`);
+    console.log(`Histórico rutas: ${this._historicoRutas}`);
   }
 
   /**

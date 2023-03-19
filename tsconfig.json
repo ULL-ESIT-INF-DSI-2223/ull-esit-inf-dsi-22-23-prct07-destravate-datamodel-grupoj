@@ -10,7 +10,8 @@
     "declaration": true,
     "rootDir": "./src",
     "outDir": "./dist",
-
+    
+    "skipLibCheck": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
     "noImplicitReturns": true

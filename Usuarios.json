@@ -1,0 +1,140 @@
+{
+  "usuario": [
+    {
+      "_ID": 3,
+      "_nombre": "Laura",
+      "_actividades": "Bicicleta",
+      "_amigosApp": [
+        6,
+        7
+      ],
+      "_grupoAmigos": [
+        [
+          2
+        ]
+      ],
+      "_entrenamiento": [
+        1,
+        2,
+        "abril",
+        2
+      ],
+      "_rutasFavoritas": [
+        1,
+        2
+      ],
+      "_retosActivos": [
+        1,
+        2
+      ],
+      "_historicoRutas": [
+        [
+          "perrear",
+          10
+        ]
+      ]
+    },
+    {
+      "_ID": 4,
+      "_nombre": "Laura",
+      "_actividades": "Bicicleta",
+      "_amigosApp": [
+        6,
+        7
+      ],
+      "_grupoAmigos": [
+        [
+          2
+        ]
+      ],
+      "_entrenamiento": [
+        1,
+        2,
+        "abril",
+        2
+      ],
+      "_rutasFavoritas": [
+        1,
+        2
+      ],
+      "_retosActivos": [
+        1,
+        2
+      ],
+      "_historicoRutas": [
+        [
+          "perrear",
+          10
+        ]
+      ]
+    },
+    {
+      "_ID": 2,
+      "_nombre": "Laura",
+      "_actividades": "Bicicleta",
+      "_amigosApp": [
+        6,
+        7
+      ],
+      "_grupoAmigos": [
+        [
+          2
+        ]
+      ],
+      "_entrenamiento": [
+        1,
+        2,
+        "abril",
+        2
+      ],
+      "_rutasFavoritas": [
+        1,
+        2
+      ],
+      "_retosActivos": [
+        1,
+        2
+      ],
+      "_historicoRutas": [
+        [
+          "perrear",
+          10
+        ]
+      ]
+    },
+    {
+      "_ID": 1,
+      "_nombre": "Andrés",
+      "_actividades": "Correr",
+      "_amigosApp": [
+        2,
+        3
+      ],
+      "_grupoAmigos": [
+        [
+          1
+        ]
+      ],
+      "_entrenamiento": [
+        1,
+        2,
+        "abril",
+        2
+      ],
+      "_rutasFavoritas": [
+        1,
+        2
+      ],
+      "_retosActivos": [
+        1,
+        2
+      ],
+      "_historicoRutas": [
+        [
+          "hola",
+          2
+        ]
+      ]
+    }
+  ]
+}
