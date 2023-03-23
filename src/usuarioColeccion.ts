@@ -5,15 +5,23 @@ import { Actividad } from "./ruta";
 /**
  * Clase UsuarioColeccion que alberga
  * @param _usuarios Colección de usuarios
+ * @param _ultID 
  */
 export class UsuarioColeccion {
   protected _usuarios: Usuario[];
+  protected _ultID: number;
   /**
    * Constructor de la clase UsuarioColeccion
    * @param usuarios Colección de usuarios
    */
-  constructor( usuarios: Usuario[]) {
+  constructor(usuarios: Usuario[]) {
     this._usuarios = usuarios;
+    if (usuarios.length != 0) {
+      this._ultID = usuarios[usuarios.length - 1].ID;
+    }
+    else {
+      this._ultID = 0;
+    }
   }
 
   mostrarUsuarios () : void { 
@@ -24,10 +32,10 @@ export class UsuarioColeccion {
     });
   }
 
-  insertarUsuario(ID: number, nombre: string, actividades: Actividad, amigosApp: number[],
+  insertarUsuario(nombre: string, actividades: Actividad, amigosApp: number[],
                   grupoAmigos: Coleccion, entrenamiento: EstadisticasEntrenamiento, rutasFavoritas: number[],
                   retosActivos: number[], historicoRutas: HistoricoRuta[]) {
-    this._usuarios.push(new Usuario(ID, nombre, actividades, amigosApp, grupoAmigos, entrenamiento, rutasFavoritas, retosActivos, historicoRutas));
+    this._usuarios.push(new Usuario(++this._ultID, nombre, actividades, amigosApp, grupoAmigos, entrenamiento, rutasFavoritas, retosActivos, historicoRutas));
   }
 
   borrarUsuario () {

@@ -1,5 +1,5 @@
 type LetraCoordenada = 'N' | 'S' | 'E' | 'O';
-type Coordenada = [number, number, number, LetraCoordenada];
+export type Coordenada = [number, number, number, LetraCoordenada];
 export type Actividad = 'Correr' | 'Bicicleta';
 
 /**

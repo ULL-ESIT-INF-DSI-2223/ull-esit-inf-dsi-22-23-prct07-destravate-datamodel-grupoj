@@ -31,6 +31,7 @@ export class JsonUsuarioColeccion extends UsuarioColeccion {
       let dbItems = this.database.get("usuario").value();
       dbItems.forEach(item => {
         this._usuarios.push(new Usuario(item._ID, item._nombre, item._actividades, item._amigosApp, item._grupoAmigos, item._entrenamiento, item._rutasFavoritas, item._retosActivos, item._historicoRutas));
+        this._ultID = item._ID;
       })
     } 
     else {
@@ -39,11 +40,11 @@ export class JsonUsuarioColeccion extends UsuarioColeccion {
     }
   }
 
-  addUsuario(ID: number, nombre: string, actividades: Actividad, amigosApp: number[],
+  addUsuario(nombre: string, actividades: Actividad, amigosApp: number[],
              grupoAmigos: Coleccion, entrenamiento: EstadisticasEntrenamiento, rutasFavoritas: number[],
              retosActivos: number[], historicoRutas: HistoricoRuta[]) {
 
-    super.insertarUsuario(ID, nombre, actividades, amigosApp, grupoAmigos, entrenamiento, rutasFavoritas, retosActivos, historicoRutas);
+    super.insertarUsuario(nombre, actividades, amigosApp, grupoAmigos, entrenamiento, rutasFavoritas, retosActivos, historicoRutas);
     this.storeTasks();
   }
   /*markComplete(id: number, complete: boolean): void {

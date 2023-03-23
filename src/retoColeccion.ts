@@ -1,11 +1,13 @@
 import { Reto } from "./reto";
+import { Actividad, Ruta } from "./ruta";
+import { Usuario } from "./usuario";
 
 /**
  * Clase RetoColeccion que alberga
  * @param _retos Colección de retos
  */
 export class RetoColeccion {
-  private _retos: Reto[];
+  protected _retos: Reto[];
 
   /**
    * Constructor de la clase RetoColeccion
@@ -15,4 +17,7 @@ export class RetoColeccion {
     this._retos = retos;
   }
 
+  insertarReto(id : number, nombre : string, rutas : Ruta[], tipoActividad : Actividad, usuarios : Usuario[]) {
+    this._retos.push(new Reto(id, nombre, rutas, tipoActividad, usuarios))
+  }
 }

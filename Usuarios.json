@@ -1,11 +1,13 @@
 {
   "usuario": [
     {
-      "_ID": 15,
-      "_nombre": "ivan",
+      "_ID": 1,
+      "_nombre": "Ivan",
       "_actividades": "Correr",
       "_amigosApp": [
-        1
+        1,
+        2,
+        3
       ],
       "_grupoAmigos": [
         [
@@ -13,109 +15,20 @@
         ]
       ],
       "_entrenamiento": [
-        0,
-        0,
-        "",
-        0
+        15,
+        23,
+        "Agosto",
+        2023
       ],
       "_rutasFavoritas": [
-        0
+        1,
+        2,
+        3
       ],
       "_retosActivos": [
-        0
-      ],
-      "_historicoRutas": [
-        [
-          "",
-          0
-        ]
-      ]
-    },
-    {
-      "_ID": 16,
-      "_nombre": "andres",
-      "_actividades": "Correr",
-      "_amigosApp": [
-        2
-      ],
-      "_grupoAmigos": [
-        [
-          0
-        ]
-      ],
-      "_entrenamiento": [
-        0,
-        0,
-        "",
-        0
-      ],
-      "_rutasFavoritas": [
-        0
-      ],
-      "_retosActivos": [
-        0
-      ],
-      "_historicoRutas": [
-        [
-          "",
-          0
-        ]
-      ]
-    },
-    {
-      "_ID": 17,
-      "_nombre": "laura",
-      "_actividades": "Correr",
-      "_amigosApp": [
-        5
-      ],
-      "_grupoAmigos": [
-        [
-          0
-        ]
-      ],
-      "_entrenamiento": [
-        0,
-        0,
-        "",
-        0
-      ],
-      "_rutasFavoritas": [
-        0
-      ],
-      "_retosActivos": [
-        0
-      ],
-      "_historicoRutas": [
-        [
-          "",
-          0
-        ]
-      ]
-    },
-    {
-      "_ID": 18,
-      "_nombre": "pepe",
-      "_actividades": "Correr",
-      "_amigosApp": [
-        8
-      ],
-      "_grupoAmigos": [
-        [
-          0
-        ]
-      ],
-      "_entrenamiento": [
-        0,
-        0,
-        "",
-        0
-      ],
-      "_rutasFavoritas": [
-        0
-      ],
-      "_retosActivos": [
-        0
+        4,
+        5,
+        6
       ],
       "_historicoRutas": [
         [

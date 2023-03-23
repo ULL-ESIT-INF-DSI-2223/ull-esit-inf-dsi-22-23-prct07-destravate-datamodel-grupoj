@@ -1,11 +1,11 @@
-import { Ruta } from "./ruta";
+import { Actividad, Coordenada, Ruta } from "./ruta";
 
 /**
  * Clase RutaColeccion que alberga
  * @param _rutas Colección de rutas
  */
 export class RutaColeccion {
-  private _rutas: Ruta[];
+  protected _rutas: Ruta[];
   /**
    * Constructor de la clase RutaColeccion
    * @param rutas Colección de rutas
@@ -14,4 +14,10 @@ export class RutaColeccion {
     this._rutas = rutas;
   }
   
+  insertarRuta(ID: number, nombre: string, geolocalizacionInicio: Coordenada, geolocalizacionFinal: Coordenada, longitud: number, 
+    desnivelMedio: number, usuariosRealizaron: number[], tipoActividad: Actividad, calificacionMedia: number) {
+
+    this._rutas.push(new Ruta(ID, nombre, geolocalizacionInicio, geolocalizacionFinal, longitud, 
+      desnivelMedio, usuariosRealizaron, tipoActividad, calificacionMedia));
+  }
 }

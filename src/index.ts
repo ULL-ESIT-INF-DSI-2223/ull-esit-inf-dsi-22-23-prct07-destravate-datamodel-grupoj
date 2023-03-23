@@ -2,7 +2,7 @@ import * as inquirer from 'inquirer';
 import { UsuarioColeccion } from "./usuarioColeccion";
 import { JsonUsuarioColeccion } from "./jsonUsuarioColeccion";
 import { Usuario, HistoricoRuta, Coleccion } from './usuario';
-import { Actividad } from './ruta';
+import { Actividad, Ruta } from './ruta';
 import { EstadisticasEntrenamiento } from './grupo';
 
 let usuario1 = new Usuario(1, 'Andrés', 'Correr', [2, 3], [[1]], [1, 2, 'abril', 2], [1, 2], [1, 2], [['hola', 2]]);
@@ -21,7 +21,6 @@ enum Commands {
 
 async function insertarUsuarioPrompt () {
   console.clear();
-  let id: number = 0;
   let nombre: string = "";
   let actividades: Actividad;
   let amigosapp: number[];
@@ -31,12 +30,7 @@ async function insertarUsuarioPrompt () {
   let retosActivos: number[];
   let historicoRutas: HistoricoRuta[];
   
-  let respuestas = await inquirer.prompt([
-  {
-    type: "input",
-    name: "addID",
-    message: "Introducir ID: ",
-  },  
+  let respuestas = await inquirer.prompt([  
   {
     type: "input",
     name: "addNombre",
@@ -45,51 +39,58 @@ async function insertarUsuarioPrompt () {
   {
     type: "input",
     name: "addActividades",
-    message: "Introducir la actividad: ",
+    message: "Introducir la actividad (Correr o Bicicleta): ",
   },
   {
     type: "input",
     name: "addAmigosApp",
-    message: "Introducir los amigos de la aplicación: ",
+    message: "Introducir los amigos de la aplicación (1, 2, 3): ",
   },
   /*{
     type: "input",
     name: "addGrupoAmigos",
-    message: "Introducir el grupo de amigos: ",
-  },
+    message: "Introducir el grupo de amigos ([1], [2, 3]): ",
+  },*/
   {
     type: "input",
     name: "addEntrenamiento",
-    message: "Introducir el entrenamiento: ",
+    message: "Introducir el entrenamiento (km, desnivel, mes, año): ",
   },
   {
     type: "input",
     name: "addRutasFavoritas",
-    message: "Introducir las rutas favoritas: ",
+    message: "Introducir las rutas favoritas (1, 2, 3): ",
   },
   {
     type: "input",
     name: "addRetosActivos",
-    message: "Introducir los retos activos: ",
+    message: "Introducir los retos activos (1, 2, 3): ",
   },
-  {
+  /*{
     type: "input",
     name: "addHistoricoRutas",
-    message: "Introducir el histórico de las rutas: ",
-  },*/
+    message: "Introducir el histórico de las rutas (1/02/2023, 2): ",
+  }*/
   ]);
   
-  id = Number(respuestas["addID"]);
   nombre = respuestas["addNombre"];
   actividades = respuestas["addActividades"];
   amigosapp = respuestas["addAmigosApp"].split(',').map(Number);
-  grupoAmigos = respuestas["addGrupoAmigos"];  
-  /*entrenamiento = respuestas["addEntrenamiento"];
-  rutasFavoritas = respuestas["addRutasFavoritas"].map(Number);
-  retosActivos = respuestas["addRetosActivos"].map(Number);
-  historicoRutas = respuestas["addHistoricoRutas"];*/
+  //grupoAmigos = respuestas["addGrupoAmigos"].split(']');  // [1], [2, 3]
+  entrenamiento = respuestas["addEntrenamiento"].split(', ');
+  entrenamiento[0] = Number(entrenamiento[0]);
+  entrenamiento[1] = Number(entrenamiento[1]);
+  entrenamiento[3] = Number(entrenamiento[3]);
+  rutasFavoritas = respuestas["addRutasFavoritas"].split(',').map(Number);
+  retosActivos = respuestas["addRetosActivos"].split(',').map(Number);
+  //historicoRutas = respuestas["addHistoricoRutas"].split(', ');
 
-  jsonUsuariosColeccion.addUsuario(id, nombre, actividades, amigosapp, [[0]], [0, 0, '', 0], [0], [0], [['', 0]])
+  if (actividades == "Bicicleta" || actividades == "Correr") {
+    jsonUsuariosColeccion.addUsuario(nombre, actividades, amigosapp, [[0]], entrenamiento, rutasFavoritas, retosActivos, [['', 0]]);
+  }
+  else {
+    console.log("Usuario NO creado, datos incorrectos");
+  }
   promptUsuarios();
 }
  
@@ -115,3 +116,66 @@ function promptUsuarios() {
 }
 
 promptUsuarios();
+
+
+/*
+async function insertarGrupoPrompt () {
+  console.clear();
+  let ID : number;
+  let nombre : string;
+  let participantes : number[];
+  let estadisticasEntrenamiento : EstadisticasEntrenamiento;
+  let clasificacion : Usuario[];
+  let rutasFavoritas : Ruta[];
+  let historicoRutas : Ruta[];
+  
+  let respuestas = await inquirer.prompt([  
+  {
+    type: "input",
+    name: "addID",
+    message: "Introducir ID: ",
+  },
+  {
+    type: "input",
+    name: "addNombre",
+    message: "Introducir Nombre: ",
+  },
+  {
+    type: "input",
+    name: "addParticipantes",
+    message: "Introducir los participantes: ",
+  },
+  {
+    type: "input",
+    name: "addEstadisticasEntrenamiento",
+    message: "Introducir las estadísticas de entrenamiento: ",
+  },
+  
+  {
+    type: "input",
+    name: "addClasificacion",
+    message: "Introducir la clasificación: ",
+  },
+  {
+    type: "input",
+    name: "addRutasFavoritas",
+    message: "Introducir rutas favoritas: ",
+  },
+  {
+    type: "input",
+    name: "addHistoricoRutas",
+    message: "Introducir el historico de rutas: ",
+  },
+  ]);
+  
+  ID = respuestas["addID"];
+  nombre = respuestas["addNombre"];
+  participantes = respuestas["addParticipantes"].split(',').map(Number);
+  estadisticasEntrenamiento = respuestas["addEstadisticasEntrenamiento"];  
+  clasificacion = respuestas["addClasificacion"]; 
+  rutasFavoritas = respuestas["addRutasFavoritas"]; 
+  historicoRutas = respuestas["addHistoricoRutas"]; 
+
+  jsonGruposColeccion.addGrupo(nombre, actividades, amigosapp, [[0]], [0, 0, '', 0], [0], [0], [['', 0]])
+  promptUsuarios();
+}*/
