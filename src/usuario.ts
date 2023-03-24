@@ -2,7 +2,7 @@ import { Actividad } from "./ruta";
 import { EstadisticasEntrenamiento } from "./grupo";
 
 export type HistoricoRuta = [string, number];
-export type Coleccion = [number][];
+export type Coleccion = number[][];
 
 /**
  * Clase Usuario que alberga los distintos 

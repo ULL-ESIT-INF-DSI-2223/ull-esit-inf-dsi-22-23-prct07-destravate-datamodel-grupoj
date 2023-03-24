@@ -47,14 +47,19 @@ export class JsonUsuarioColeccion extends UsuarioColeccion {
     super.insertarUsuario(nombre, actividades, amigosApp, grupoAmigos, entrenamiento, rutasFavoritas, retosActivos, historicoRutas);
     this.storeTasks();
   }
-  /*markComplete(id: number, complete: boolean): void {
-      super.markComplete(id, complete);
-      this.storeTasks();
+  
+  removeUsuario(ID: number): boolean {
+    let borro: boolean = super.borrarUsuario(ID);
+    this.storeTasks();
+    return borro;
   }
-  removeComplete(): void {
-      super.removeComplete();
-      this.storeTasks();
-  }*/
+
+  modifyUsuario(ID: number, atributoModificar: string, nuevoAtributo: string): boolean {
+    let modifico: boolean = super.modificarUsuario(ID, atributoModificar, nuevoAtributo);
+    this.storeTasks();
+    return modifico;
+  }
+
   private storeTasks() {
     this.database.set("usuario", [...this._usuarios.values()]).write();
   }

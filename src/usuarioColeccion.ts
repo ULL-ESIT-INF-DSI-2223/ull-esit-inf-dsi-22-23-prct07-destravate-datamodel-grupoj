@@ -2,6 +2,17 @@ import { Usuario, HistoricoRuta, Coleccion } from "./usuario";
 import { EstadisticasEntrenamiento } from "./grupo";
 import { Actividad } from "./ruta";
 
+export enum AtributosUsuario {
+  Nombre = 'Nombre',
+  Actividad = 'Actividad (Correr o Bicicleta)',
+  AmigosApp = 'Amigos APP (1, 2, 3)',
+  GrupoAmigos = 'Grupo de Amigos ([1], [2, 3])',
+  Entrenamiento = 'Entrenamiento (km, desnivel, mes, año)',
+  RutasFavoritas = 'Rutas Favoritas (1, 2, 3)',
+  RetosActivos = 'Retos Activos (1, 2, 3)',
+  HistoricoRutas = 'Historico de Rutas ([02-03-22, 3], [03-05-23, 1])'
+}
+
 /**
  * Clase UsuarioColeccion que alberga
  * @param _usuarios Colección de usuarios
@@ -32,15 +43,56 @@ export class UsuarioColeccion {
     });
   }
 
-  insertarUsuario(nombre: string, actividades: Actividad, amigosApp: number[],
-                  grupoAmigos: Coleccion, entrenamiento: EstadisticasEntrenamiento, rutasFavoritas: number[],
-                  retosActivos: number[], historicoRutas: HistoricoRuta[]) {
+  insertarUsuario(nombre: string, actividades: Actividad, amigosApp: number[], grupoAmigos: Coleccion, entrenamiento: EstadisticasEntrenamiento, 
+                  rutasFavoritas: number[], retosActivos: number[], historicoRutas: HistoricoRuta[]) {
+
     this._usuarios.push(new Usuario(++this._ultID, nombre, actividades, amigosApp, grupoAmigos, entrenamiento, rutasFavoritas, retosActivos, historicoRutas));
   }
 
-  borrarUsuario () {
+  borrarUsuario (ID: number) : boolean {
+    let flag: boolean = false;
+    this._usuarios.forEach((usuario, index) => {
+      if (usuario.ID == ID) {
+        this._usuarios.splice(index, 1);
+        flag = true;
+      }
+    })
 
+    return flag;
   }
 
+  modificarUsuario (ID: number, atributoModificar: string, nuevoAtributo: string) : boolean {
+    let flag: boolean = false;
+    this._usuarios.forEach((usuario, index) => {
+      if (usuario.ID == ID) {
+        switch (atributoModificar) {
+          case AtributosUsuario.Nombre:
+            this._usuarios[index].nombre = nuevoAtributo;
+            break;
 
+          /*case AtributosUsuario.Actividad:
+            let aux: Actividad = nuevoAtributo;
+            this._usuarios[index].actividades = aux;
+            break;*/
+
+          case AtributosUsuario.AmigosApp:
+            this._usuarios[index].amigosApp = nuevoAtributo.split(',').map(Number);
+            break;
+          
+          case AtributosUsuario.GrupoAmigos:
+            let grupoAmigosAux: Coleccion = [];
+            let grupoAmigosStr: string[] = nuevoAtributo.replaceAll('[', '').replaceAll(' ', '').replaceAll('],', '|').replaceAll(']', '').split('|');
+            grupoAmigosStr.forEach(grupo => {
+              grupoAmigosAux.push(grupo.split(',').map(Number));
+            })
+            this._usuarios[index].grupoAmigos = grupoAmigosAux;
+            break;
+  
+        }
+        flag = true;
+      }
+    })
+
+    return flag;
+  }
 }
