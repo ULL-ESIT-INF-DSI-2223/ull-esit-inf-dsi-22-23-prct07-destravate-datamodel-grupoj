@@ -70,10 +70,14 @@ export class UsuarioColeccion {
             this._usuarios[index].nombre = nuevoAtributo;
             break;
 
-          /*case AtributosUsuario.Actividad:
-            let aux: Actividad = nuevoAtributo;
-            this._usuarios[index].actividades = aux;
-            break;*/
+          case AtributosUsuario.Actividad:
+            if (nuevoAtributo == 'Correr') {
+              this._usuarios[index].actividades = 'Correr';
+            }
+            else if (nuevoAtributo == 'Bicicleta') {
+              this._usuarios[index].actividades = 'Bicicleta';
+            }       
+            break;
 
           case AtributosUsuario.AmigosApp:
             this._usuarios[index].amigosApp = nuevoAtributo.split(',').map(Number);
@@ -86,6 +90,33 @@ export class UsuarioColeccion {
               grupoAmigosAux.push(grupo.split(',').map(Number));
             })
             this._usuarios[index].grupoAmigos = grupoAmigosAux;
+            break;
+          
+          case AtributosUsuario.Entrenamiento:
+            let entrenamientoAux: EstadisticasEntrenamiento;
+            let entrenamientoStr: string[] = nuevoAtributo.split(', ');
+            this._usuarios[index].entrenamiento[0] = Number(entrenamientoStr[0]);
+            this._usuarios[index].entrenamiento[1] = Number(entrenamientoStr[1]);
+            this._usuarios[index].entrenamiento[2] = entrenamientoStr[2];
+            this._usuarios[index].entrenamiento[3] = Number(entrenamientoStr[3]);
+            break;
+
+          case AtributosUsuario.RutasFavoritas:
+            this._usuarios[index].rutasFavoritas = nuevoAtributo.split(',').map(Number);
+            break;
+
+          case AtributosUsuario.RetosActivos:
+            this._usuarios[index].retosActivos = nuevoAtributo.split(',').map(Number);
+            break;
+
+          case AtributosUsuario.HistoricoRutas:
+            let historicoRutasStr: string[] = nuevoAtributo.replaceAll('[', '').replaceAll(' ', '').replaceAll('],', '|').replaceAll(']', '').split('|');
+            let historicoRutasAux: HistoricoRuta[] = [];
+            historicoRutasStr.forEach(historico => {
+              let aux: string[] = (historico.split(','));
+              historicoRutasAux.push([aux[0], Number(aux[1])]);
+            })
+            this._usuarios[index].historicoRutas = historicoRutasAux;
             break;
   
         }

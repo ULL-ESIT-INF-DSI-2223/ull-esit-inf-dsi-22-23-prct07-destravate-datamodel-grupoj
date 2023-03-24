@@ -46,42 +46,43 @@
     {
       "_ID": 2,
       "_nombre": "Pepe",
-      "_actividades": "Bicicleta",
+      "_actividades": "Correr",
       "_amigosApp": [
-        2,
-        1
+        1,
+        4,
+        5
       ],
       "_grupoAmigos": [
         [
-          1
-        ],
-        [
           2,
           3
+        ],
+        [
+          1
         ]
       ],
       "_entrenamiento": [
-        18,
-        569,
-        "Febrero",
-        2023
+        2,
+        512,
+        "Mayo",
+        2021
       ],
       "_rutasFavoritas": [
-        2,
-        7
+        1,
+        4
       ],
       "_retosActivos": [
-        1,
-        2
+        3,
+        5
       ],
       "_historicoRutas": [
         [
-          "02-03-22",
-          3
+          "01-12-21",
+          4
         ],
         [
-          "03-05-23",
-          1
+          "21-11-22",
+          2
         ]
       ]
     }
