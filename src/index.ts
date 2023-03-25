@@ -8,6 +8,7 @@ import { Actividad, Ruta } from './rutas/ruta';
 import { EstadisticasEntrenamiento } from './grupos/grupo';
 import { promptUsuarios } from './usuarios/usuarioPrompt';
 import { promptGrupos } from './grupos/grupoPrompt';
+import { promptRutas } from './rutas/rutaPrompt';
 import { promptRetos } from './retos/retoPrompt';
 
 export let jsonUsuariosColeccion = new JsonUsuarioColeccion([]);
@@ -46,6 +47,9 @@ export function promptPrincipal(mensaje = "") {
         break;
       case Commands.Grupos:
         promptGrupos();
+        break;
+      case Commands.Rutas:
+        promptRutas();
         break;
       case Commands.Retos:
         promptRetos();

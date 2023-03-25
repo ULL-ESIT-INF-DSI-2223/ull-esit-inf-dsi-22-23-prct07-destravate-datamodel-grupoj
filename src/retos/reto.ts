@@ -27,7 +27,7 @@ export class Reto {
   * @param kilometrosTotales Km totales a realizar (como la suma de los kms de las rutas que lo engloban)
   * @param usuarios Usuarios que están realizando el reto
   */
-  constructor(id : number, nombre : string, rutas : Ruta[], tipoActividad : Actividad, usuarios : Usuario[]) {
+  constructor(id: number, nombre: string, rutas: Ruta[], tipoActividad: Actividad, usuarios: Usuario[]) {
     this._ID = id;
     this._nombre = nombre;
     this._rutas = rutas;

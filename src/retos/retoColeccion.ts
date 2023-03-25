@@ -13,6 +13,7 @@ export enum AtributosReto {
 /**
  * Clase RetoColeccion que alberga
  * @param _retos Colección de retos
+ * @param _ultID Ultimo ID usado
  */
 export class RetoColeccion {
   protected _retos: Reto[];
@@ -65,6 +66,10 @@ export class RetoColeccion {
             let rutasIds = nuevoAtributo.split(',').map(Number);
             let rutas: Ruta[] = jsonRutasColeccion.buscarRutas(rutasIds);
             this._retos[index].rutas = rutas;
+            this._retos[index].kilometrosTotales = 0;
+            rutas.forEach(ruta => {
+              this._retos[index].kilometrosTotales += ruta.longitud;
+            })
             break;
 
           case AtributosReto.Actividad:

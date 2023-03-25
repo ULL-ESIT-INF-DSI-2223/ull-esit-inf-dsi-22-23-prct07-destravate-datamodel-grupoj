@@ -29,6 +29,7 @@ export class JsonRutaColeccion extends RutaColeccion {
       let dbItems = this.database.get("ruta").value();
       dbItems.forEach(item => {
         this._rutas.push(new Ruta(item._ID, item._nombre, item._geolocalizacionInicio, item._geolocalizacionFinal, item._longitud, item._desnivelMedio, item._usuariosRealizaron, item._tipoActividad, item._calificacionMedia))
+        this._ultID = item._ID;
       })
     } else {
       this.database.set("ruta", coleccionRuta).write();
@@ -36,22 +37,24 @@ export class JsonRutaColeccion extends RutaColeccion {
     }
   }
 
-  addRuta(ID: number, nombre: string, geolocalizacionInicio: Coordenada, geolocalizacionFinal: Coordenada, longitud: number, 
-    desnivelMedio: number, usuariosRealizaron: number[], tipoActividad: Actividad, calificacionMedia: number) {
+  addRuta(nombre: string, geolocalizacionInicio: Coordenada, geolocalizacionFinal: Coordenada, longitud: number, 
+          desnivelMedio: number, usuariosRealizaron: number[], tipoActividad: Actividad, calificacionMedia: number) {
       
-      super.insertarRuta(ID, nombre, geolocalizacionInicio, geolocalizacionFinal, longitud, 
-        desnivelMedio, usuariosRealizaron, tipoActividad, calificacionMedia);
-        this.storeTasks();
+    super.insertarRuta(nombre, geolocalizacionInicio, geolocalizacionFinal, longitud, desnivelMedio, usuariosRealizaron, tipoActividad, calificacionMedia);
+    this.storeTasks();
   }
 
-  /*markComplete(id: number, complete: boolean): void {
-      super.markComplete(id, complete);
-      this.storeTasks();
+  removeRuta(ID: number): boolean {
+    let borro: boolean = super.borrarRuta(ID);
+    this.storeTasks();
+    return borro;
   }
-  removeComplete(): void {
-      super.removeComplete();
-      this.storeTasks();
-  }*/
+
+  modifyRuta(ID: number, atributoModificar: string, nuevoAtributo: string): boolean {
+    let modifico: boolean = super.modificarRuta(ID, atributoModificar, nuevoAtributo);
+    this.storeTasks();
+    return modifico;
+  }
 
   private storeTasks() {
     this.database.set("ruta", [...this._rutas.values()]).write();
