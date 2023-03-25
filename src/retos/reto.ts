@@ -24,7 +24,6 @@ export class Reto {
   * @param nombre Nombre del reto
   * @param rutas Rutas que forman parte del reto
   * @param tipoActividad Tipo de actividad del reto: bicicleta o correr
-  * @param kilometrosTotales Km totales a realizar (como la suma de los kms de las rutas que lo engloban)
   * @param usuarios Usuarios que están realizando el reto
   */
   constructor(id: number, nombre: string, rutas: Ruta[], tipoActividad: Actividad, usuarios: Usuario[]) {

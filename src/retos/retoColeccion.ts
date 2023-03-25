@@ -33,6 +33,13 @@ export class RetoColeccion {
     }
   }
 
+  /**
+   * Método para insertar un reto a la colección
+   * @param nombre Nombre del reto
+   * @param rutas Rutas que forman parte del reto
+   * @param tipoActividad Tipo de actividad del reto: bicicleta o correr
+   * @param usuarios Usuarios que están realizando el reto
+   */
   insertarReto(nombre: string, rutasIds: number[], tipoActividad: Actividad, usuariosIds: number[]) {
     let rutas: Ruta[] = jsonRutasColeccion.buscarRutas(rutasIds);
     let usuarios: Usuario[] = jsonUsuariosColeccion.buscarUsuarios(usuariosIds);
@@ -40,6 +47,11 @@ export class RetoColeccion {
     this._retos.push(new Reto(++this._ultID, nombre, rutas, tipoActividad, usuarios))
   }
 
+  /**
+   * Método para eliminar un reto de la colección
+   * @param ID ID unico de cada reto
+   * @returns un valor logico si se pudo elimnar el reto o no
+   */
   borrarReto(ID: number) : boolean {
     let flag: boolean = false;
 
@@ -53,6 +65,13 @@ export class RetoColeccion {
     return flag;
   }
 
+  /**
+   * Método para modificar un atributo de un reto de la colección
+   * @param ID ID único del reto
+   * @param atributoModificar Atributo a modificar
+   * @param nuevoAtributo Valor del nuevo atributo
+   * @returns un valor logico si se pudo modificar el atributo o no
+   */
   modificarReto(ID: number, atributoModificar: string, nuevoAtributo: string) : boolean {
     let flag: boolean = false;
     this._retos.forEach((reto, index) => {
@@ -93,5 +112,4 @@ export class RetoColeccion {
 
     return flag;
   }
-
 }

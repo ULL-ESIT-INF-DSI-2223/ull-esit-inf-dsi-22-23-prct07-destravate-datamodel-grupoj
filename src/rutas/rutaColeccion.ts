@@ -34,12 +34,28 @@ export class RutaColeccion {
     }
   }
   
+  /**
+   * Método para insertar una ruta a la colección
+   * @param nombre Nombre de la ruta
+   * @param geolocalizacionInicio Geolocalización del inicio (coordenadas)
+   * @param geolocalizacionFinal Geolocalización del final de la ruta (coordenadas)
+   * @param longitud Longitud de la ruta en kilometros
+   * @param desnivelMedio Desnivel medio de la ruta
+   * @param usuariosRealizaron Usuarios que han realizado la ruta (IDs)
+   * @param tipoActividad Tipo de actividad: bicicleta o correr
+   * @param calificacionMedia Calificación media de la ruta
+   */
   insertarRuta(nombre: string, geolocalizacionInicio: Coordenada, geolocalizacionFinal: Coordenada, longitud: number, 
                desnivelMedio: number, usuariosRealizaron: number[], tipoActividad: Actividad, calificacionMedia: number) {
 
     this._rutas.push(new Ruta(++this._ultID, nombre, geolocalizacionInicio, geolocalizacionFinal, longitud, desnivelMedio, usuariosRealizaron, tipoActividad, calificacionMedia));
   }
 
+  /**
+   * Método para eliminar una ruta de la colección
+   * @param ID ID unico de cada ruta
+   * @returns un valor logico si se pudo elimnar la ruta o no
+   */
   borrarRuta(ID: number) : boolean {
     let flag: boolean = false;
 
@@ -53,6 +69,13 @@ export class RutaColeccion {
     return flag;
   }
 
+  /**
+   * Método para modificar un atributo de una ruta de la colección
+   * @param ID ID único de la ruta
+   * @param atributoModificar Atributo a modificar
+   * @param nuevoAtributo Valor del nuevo atributo
+   * @returns un valor logico si se pudo modificar el atributo o no
+   */
   modificarRuta(ID: number, atributoModificar: string, nuevoAtributo: string) : boolean {
     let flag: boolean = false;
     this._rutas.forEach((ruta, index) => {
@@ -120,6 +143,11 @@ export class RutaColeccion {
     return flag;
   }
 
+  /**
+   * Método para retornar las Rutas correspondientes a una colección de IDs
+   * @param usuariosIds Ids de las rutas a buscar
+   * @returns un array de Rutas que coinciden con los IDs introducidos
+   */
   buscarRutas(rutasIds: number[]) : Ruta[] {
     let rutas: Ruta[] = [];
 

@@ -43,12 +43,28 @@ export class UsuarioColeccion {
     });
   }
 
+  /**
+   * Método para insertar un usuario a la colección
+   * @param nombre Nombre propio de usuario
+   * @param actividades Tipo de actividad: correr o bicicleta
+   * @param amigosApp Colleción de IDs de usuarios con los que se interacciona
+   * @param grupoAmigos  Diferentes colecciones de IDs de usuarios con los que suele realizar rutas
+   * @param entrenamiento Cantidad de km y desnivel total acumulados en la semana, mes y año
+   * @param rutasFavoritas Colección de IDs de las rutas que el usuario ha realizado con mayor frecuencia
+   * @param retosActivos Colección de IDs de los retos que el usuario está realizando actualmente
+   * @param historicoRutas Colección del historial de rutas realizadas 
+   */
   insertarUsuario(nombre: string, actividades: Actividad, amigosApp: number[], grupoAmigos: Coleccion, entrenamiento: EstadisticasEntrenamiento, 
                   rutasFavoritas: number[], retosActivos: number[], historicoRutas: HistoricoRuta[]) {
 
     this._usuarios.push(new Usuario(++this._ultID, nombre, actividades, amigosApp, grupoAmigos, entrenamiento, rutasFavoritas, retosActivos, historicoRutas));
   }
 
+  /**
+   * Método para eliminar un usuario de la colección
+   * @param ID ID unico de cada usuario
+   * @returns un valor logico si se pudo elimnar el usuario o no
+   */
   borrarUsuario(ID: number) : boolean {
     let flag: boolean = false;
     this._usuarios.forEach((usuario, index) => {
@@ -61,6 +77,13 @@ export class UsuarioColeccion {
     return flag;
   }
 
+  /**
+   * Método para modificar un atributo de un usuario de la colección
+   * @param ID ID único del usuario
+   * @param atributoModificar Atributo a modificar
+   * @param nuevoAtributo Valor del nuevo atributo
+   * @returns un valor logico si se pudo modificar el atributo o no
+   */
   modificarUsuario(ID: number, atributoModificar: string, nuevoAtributo: string) : boolean {
     let flag: boolean = false;
     this._usuarios.forEach((usuario, index) => {
@@ -126,6 +149,11 @@ export class UsuarioColeccion {
     return flag;
   }
 
+  /**
+   * Método para retornar los Usuarios correspondientes a una colección de IDs
+   * @param usuariosIds Ids de los usuarios a buscar
+   * @returns un array de Usuarios que coinciden con los IDs introducidos
+   */
   buscarUsuarios(usuariosIds: number[]) : Usuario[] {
     let usuarios: Usuario[] = [];
 
