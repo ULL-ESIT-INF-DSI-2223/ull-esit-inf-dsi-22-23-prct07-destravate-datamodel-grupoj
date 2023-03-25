@@ -1,6 +1,6 @@
 import { Usuario, HistoricoRuta, Coleccion } from "./usuario";
-import { EstadisticasEntrenamiento } from "./grupo";
-import { Actividad } from "./ruta";
+import { EstadisticasEntrenamiento } from "../grupos/grupo";
+import { Actividad } from "../rutas/ruta";
 
 export enum AtributosUsuario {
   Nombre = 'Nombre',

@@ -1,6 +1,6 @@
 import { Reto } from "./reto";
-import { Actividad, Ruta } from "./ruta";
-import { Usuario } from "./usuario";
+import { Actividad, Ruta } from "../rutas/ruta";
+import { Usuario } from "../usuarios/usuario";
 
 /**
  * Clase RetoColeccion que alberga

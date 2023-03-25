@@ -1,5 +1,5 @@
-import { Actividad, Ruta } from "./ruta";
-import { Usuario, Coleccion, HistoricoRuta} from "./usuario";
+import { Actividad, Ruta } from "../rutas/ruta";
+import { Usuario, Coleccion, HistoricoRuta} from "../usuarios/usuario";
 import { Grupo, EstadisticasEntrenamiento } from "./grupo";
 
 /**
