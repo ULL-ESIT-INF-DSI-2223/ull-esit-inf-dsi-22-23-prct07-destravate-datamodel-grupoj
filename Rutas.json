@@ -25,27 +25,26 @@
     },
     {
       "_ID": 2,
-      "_nombre": "La caldereta",
+      "_nombre": "Los valcanes",
       "_geolocalizacionInicio": [
-        15,
+        18,
         16,
         20,
-        "E"
+        "N"
       ],
       "_geolocalizacionFinal": [
-        18,
-        22,
-        56,
+        17,
+        15,
+        26,
         "S"
       ],
-      "_longitud": 25,
-      "_desnivelMedio": 256,
+      "_longitud": 24,
+      "_desnivelMedio": 125,
       "_usuariosRealizaron": [
-        1,
         2
       ],
       "_tipoActividad": "Bicicleta",
-      "_calificacionMedia": 9
+      "_calificacionMedia": 7
     }
   ]
 }

@@ -30,7 +30,16 @@ export class RutaColeccion {
   }
 
   borrarRuta(ID: number) : boolean {
-    return false;
+    let flag: boolean = false;
+
+    this._rutas.forEach((ruta, index) => {
+      if (ruta.ID == ID) {
+        this._rutas.splice(index, 1);
+        flag = true;
+      }
+    })
+
+    return flag;
   }
 
   modificarRuta(ID: number, atributoModificar: string, nuevoAtributo: string) : boolean {

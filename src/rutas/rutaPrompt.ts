@@ -85,23 +85,23 @@ async function insertarRutaPrompt() {
   }
 }
 
-/*async function eliminarRetoPrompt () {
+async function eliminarRutaPrompt () {
   console.clear();
   let respuestas = await inquirer.prompt([  
   {
     type: "input",
     name: "removeID",
-    message: "Introducir ID del reto a eliminar: ",
+    message: "Introducir ID de la ruta a eliminar: ",
   }
   ]);
 
-  if (jsonRetosColeccion.removeReto(Number(respuestas["removeID"]))) {
-    promptPrincipal("Reto eliminado");
+  if (jsonRutasColeccion.removeRuta(Number(respuestas["removeID"]))) {
+    promptPrincipal("Ruta eliminada");
   }
   else {
-    promptPrincipal("Reto NO eliminado, datos incorrectos");
+    promptPrincipal("Ruta NO eliminada, datos incorrectos");
   }
-}*/
+}
 
 /*async function modificarRetoPrompt() {
   console.clear();
@@ -154,7 +154,7 @@ export function promptRutas() {
         break;
       
       case CommandsEach.Eliminar:
-        //eliminarRetoPrompt();
+        eliminarRutaPrompt();
         break;
 
       case CommandsEach.Atras:
