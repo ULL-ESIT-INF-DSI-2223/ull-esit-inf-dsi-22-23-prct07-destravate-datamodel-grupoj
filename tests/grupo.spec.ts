@@ -1,8 +1,8 @@
 import 'mocha';
 import { expect } from "chai";
-import { Grupo } from "../src/grupo";
-import { Usuario } from "../src/usuario";
-import { Ruta } from '../src/ruta';
+import { Grupo } from "../src/grupos/grupo";
+import { Usuario } from "../src/usuarios/usuario";
+import { Ruta } from '../src/rutas/ruta';
 
 describe('Clase Grupo Tests', () => {
   it('Constructor', () => {

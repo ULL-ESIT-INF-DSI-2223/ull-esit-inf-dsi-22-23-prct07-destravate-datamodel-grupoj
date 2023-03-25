@@ -1,7 +1,7 @@
 import 'mocha';
 import { expect } from "chai";
-import { Usuario } from "../src/usuario";
-import { Ruta } from '../src/ruta';
+import { Usuario } from "../src/usuarios/usuario";
+import { Ruta } from '../src/rutas/ruta';
 
 describe('Clase Ruta Tests', () => {
     it('Constructor', () => {

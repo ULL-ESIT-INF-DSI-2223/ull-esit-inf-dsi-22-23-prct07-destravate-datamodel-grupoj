@@ -1,7 +1,6 @@
 import 'mocha';
 import { expect } from "chai";
-import { Usuario } from "../src/usuario";
-import {Coleccion} from "../src/usuario";
+import { Usuario, Coleccion } from "../src/usuarios/usuario";
 
 describe('Clase Usuario Tests', () => {
     it('Constructor', () => {
