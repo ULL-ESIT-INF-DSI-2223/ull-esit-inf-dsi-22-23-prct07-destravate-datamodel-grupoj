@@ -43,6 +43,16 @@ export class Grupo {
     this._historicoRutas = historicoRutas;
   }
 
+  mostrarGrupo () : void {
+    console.log(`ID: ${this._ID}`);
+    console.log(`Nombre: ${this._nombre}`);
+    console.log(`Participantes: ${this._participantes}`);
+    console.log(`Estadisticas de entrenamiento: ${this._estadisticasEntrenamiento}`);
+    console.log(`Clasificación: ${this._clasificacion}`);
+    console.log(`Rutas favoritas: ${this._rutasFavoritas}`);
+    console.log(`Histórico rutas: ${this._historicoRutas}`);
+  }
+
   /**
   * Getter del atributo _ID
   * @return atributo _ID 
