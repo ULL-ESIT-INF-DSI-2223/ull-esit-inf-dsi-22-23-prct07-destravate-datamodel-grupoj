@@ -1,5 +1,5 @@
 import * as inquirer from 'inquirer';
-//import { AtributosRuta } from "./rutaColeccion";
+import { AtributosRuta } from "./rutaColeccion";
 import { JsonRutaColeccion } from "./jsonRutaColeccion";
 import { Usuario, HistoricoRuta, Coleccion } from '../usuarios/usuario';
 import { Actividad, Ruta, Coordenada } from '../rutas/ruta';
@@ -103,7 +103,7 @@ async function eliminarRutaPrompt () {
   }
 }
 
-/*async function modificarRetoPrompt() {
+async function modificarRutaPrompt() {
   console.clear();
   let respuestaID = await inquirer.prompt([  
   {
@@ -116,7 +116,7 @@ async function eliminarRutaPrompt () {
     type: "list",
     name: "element",
     message: "¿Qué atributo quieres modificar?: ",
-    choices: Object.values(AtributosReto),
+    choices: Object.values(AtributosRuta),
   })
   let respuestaModificar = await inquirer.prompt([  
     {
@@ -126,13 +126,13 @@ async function eliminarRutaPrompt () {
     }
   ]);
 
-  if (jsonRetosColeccion.modifyReto(Number(respuestaID["modifyID"]), respuestaElemento["element"], respuestaModificar["modifyElement"])) {
+  if (jsonRutasColeccion.modifyRuta(Number(respuestaID["modifyID"]), respuestaElemento["element"], respuestaModificar["modifyElement"])) {
     promptPrincipal("Reto modificado");
   }
   else {
     promptPrincipal("Reto NO modificado, datos incorrectos");
   }
-}*/
+}
 
 export function promptRutas() {
   console.clear();
@@ -150,7 +150,7 @@ export function promptRutas() {
         break;
 
       case CommandsEach.Modificar:
-        //modificarRetoPrompt();
+        modificarRutaPrompt();
         break;
       
       case CommandsEach.Eliminar:

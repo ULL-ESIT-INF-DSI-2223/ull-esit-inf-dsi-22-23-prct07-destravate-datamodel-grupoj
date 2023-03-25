@@ -2,26 +2,27 @@
   "ruta": [
     {
       "_ID": 1,
-      "_nombre": "Los volcanes",
+      "_nombre": "Volcanes",
       "_geolocalizacionInicio": [
-        12,
-        15,
-        22,
-        "N"
-      ],
-      "_geolocalizacionFinal": [
-        14,
-        25,
-        65,
+        16,
+        17,
+        18,
         "S"
       ],
-      "_longitud": 15,
-      "_desnivelMedio": 26,
-      "_usuariosRealizaron": [
-        1
+      "_geolocalizacionFinal": [
+        22,
+        15,
+        45,
+        "E"
       ],
-      "_tipoActividad": "Correr",
-      "_calificacionMedia": 8
+      "_longitud": 20,
+      "_desnivelMedio": 256,
+      "_usuariosRealizaron": [
+        1,
+        2
+      ],
+      "_tipoActividad": "Bicicleta",
+      "_calificacionMedia": 9
     },
     {
       "_ID": 2,

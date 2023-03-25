@@ -93,7 +93,6 @@ export class UsuarioColeccion {
             break;
           
           case AtributosUsuario.Entrenamiento:
-            let entrenamientoAux: EstadisticasEntrenamiento;
             let entrenamientoStr: string[] = nuevoAtributo.split(', ');
             this._usuarios[index].entrenamiento[0] = Number(entrenamientoStr[0]);
             this._usuarios[index].entrenamiento[1] = Number(entrenamientoStr[1]);
