@@ -189,7 +189,7 @@ export class RutaColeccion {
             });
             break;
         }
-      break;
+        break;
         
       case AtributosOrdenacionRuta.Usuarios:
         switch (orientacion) {
@@ -201,7 +201,7 @@ export class RutaColeccion {
             this._rutas.sort((a, b) => a.usuariosRealizaron[0] - b.usuariosRealizaron[0]); // Orden descendente
             break;
           }
-      break;
+        break;
         
       case AtributosOrdenacionRuta.Longitud:
         switch (orientacion) {
@@ -213,19 +213,35 @@ export class RutaColeccion {
             this._rutas.sort((a, b) => a.longitud - b.longitud); // Orden descendente
             break;
         }
-      break;
+        break;
 
       case AtributosOrdenacionRuta.Calificacion:
         switch (orientacion) {
           case AtributosOrdenacionOrientacion.Ascendente:
-            this._rutas.sort((a, b) => b.longitud - a.longitud); // Orden ascendente
+            this._rutas.sort((a, b) => b.calificacionMedia - a.calificacionMedia); // Orden ascendente
             break;
             
           case AtributosOrdenacionOrientacion.Descendente:
-            this._rutas.sort((a, b) => a.longitud - b.longitud); // Orden descendente
+            this._rutas.sort((a, b) => a.calificacionMedia - b.calificacionMedia); // Orden descendente
             break;
         }
-      break;
+        break;
+
+      case AtributosOrdenacionRuta.Actividad:
+        switch (orientacion) {
+          case AtributosOrdenacionOrientacion.Ascendente:
+            this._rutas.sort((a, b) => {
+              return b.tipoActividad.localeCompare(a.tipoActividad);
+            });
+            break;
+            
+          case AtributosOrdenacionOrientacion.Descendente:
+            this._rutas.sort((a, b) => {
+              return a.tipoActividad.localeCompare(b.tipoActividad);
+            });
+            break;
+        }
+        break;
   
     }
     this._rutas.forEach(ruta => {

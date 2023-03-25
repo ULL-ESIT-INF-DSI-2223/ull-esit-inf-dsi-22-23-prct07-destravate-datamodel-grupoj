@@ -4,7 +4,7 @@ import { JsonRutaColeccion } from "./jsonRutaColeccion";
 import { Usuario, HistoricoRuta, Coleccion } from '../usuarios/usuario';
 import { Actividad, Ruta, Coordenada } from '../rutas/ruta';
 import { EstadisticasEntrenamiento } from '../grupos/grupo';
-import { promptPrincipal, CommandsEach, jsonRutasColeccion } from '../index';
+import { promptPrincipal, CommandsEach, jsonRutasColeccion, AtributosMostrar, AtributosOrdenacionOrientacion } from '../index';
 
 /**
  * Enumerado de los distintos Atributos
@@ -158,6 +158,39 @@ async function modificarRutaPrompt() {
   }
 }
 
+
+/**
+ * Prompt para mostrar determinado elemento Usuario
+ */
+async function mostrarRutaPrompt () {
+  console.clear();
+
+  let respuestaOrdenacion = await inquirer.prompt({
+    type: "list",
+    name: "ordenacion",
+    message: "¿Cómo deseas que se te muestren los datos?: ",
+    choices: Object.values(AtributosOrdenacionRuta),
+  })
+
+  let respuestaOrdenacionOrientacion = await inquirer.prompt({
+    type: "list",
+    name: "orientacion",
+    message: "¿Orden ascendente o descendente?: ",
+    choices: Object.values(AtributosOrdenacionOrientacion),
+  })
+
+  if (!jsonRutasColeccion.showRuta(respuestaOrdenacion["ordenacion"], respuestaOrdenacionOrientacion["orientacion"])) {
+    promptPrincipal("NO se han podido mostrar los datos");
+  }
+  let espera = await inquirer.prompt({
+    type: "list",
+    name: "volver",
+    message: "",
+    choices: Object.values(AtributosMostrar),
+  });
+  promptPrincipal();
+}
+
 /**
  * Prompt principal de Rutas
  */
@@ -172,6 +205,10 @@ export function promptRutas() {
     choices: Object.values(CommandsEach),
   }).then(answers => {
     switch (answers["command"]) {
+      case CommandsEach.Mostrar:
+        mostrarRutaPrompt();
+        break;
+
       case CommandsEach.Insertar:
         insertarRutaPrompt();
         break;

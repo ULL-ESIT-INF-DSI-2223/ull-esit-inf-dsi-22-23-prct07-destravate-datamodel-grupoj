@@ -40,6 +40,47 @@
           1
         ]
       ]
+    },
+    {
+      "_ID": 2,
+      "_nombre": "Dario",
+      "_actividades": "Correr",
+      "_amigosApp": [
+        1,
+        2
+      ],
+      "_grupoAmigos": [
+        [
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "_entrenamiento": [
+        15,
+        258,
+        "Enero",
+        2023
+      ],
+      "_rutasFavoritas": [
+        2,
+        4
+      ],
+      "_retosActivos": [
+        3
+      ],
+      "_historicoRutas": [
+        [
+          "02-03-22",
+          3
+        ],
+        [
+          "03-05-23",
+          1
+        ]
+      ]
     }
   ]
 }

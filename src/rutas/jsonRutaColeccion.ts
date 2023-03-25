@@ -96,9 +96,9 @@ export class JsonRutaColeccion extends RutaColeccion {
   * @returns un valor logico si se pudo mostrar correctamente la información por pantalla
   */
   showRuta(ordenacion: string, orientacion: string): boolean {
-    //let muestro: boolean = super.mostrarRutas(ordenacion, orientacion);
+    let muestro: boolean = super.mostrarRuta(ordenacion, orientacion);
     this.storeTasks();
-    //return muestro;
+    return muestro;
     return false;
   }
 
