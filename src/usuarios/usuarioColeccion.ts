@@ -35,13 +35,13 @@ export class UsuarioColeccion {
     }
   }
 
-  mostrarUsuarios () : void { 
+  /*mostrarUsuarios () : void { 
     //this._usuarios.sort((a, b) => a.ID - b.ID);    
     this._usuarios.forEach(usuario => {
       usuario.mostrarUsuario();
       console.log('\n');
     });
-  }
+  }*/
 
   /**
    * Método para insertar un usuario a la colección
