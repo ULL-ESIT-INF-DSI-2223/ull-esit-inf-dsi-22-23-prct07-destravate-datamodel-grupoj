@@ -1,11 +1,18 @@
 import * as inquirer from 'inquirer';
 import { UsuarioColeccion, AtributosUsuario } from "./usuarios/usuarioColeccion";
 import { JsonUsuarioColeccion } from "./usuarios/jsonUsuarioColeccion";
+import { JsonRetoColeccion } from "./retos/jsonRetoColeccion";
+import { JsonRutaColeccion } from "./rutas/jsonRutaColeccion";
 import { Usuario, HistoricoRuta, Coleccion } from './usuarios/usuario';
 import { Actividad, Ruta } from './rutas/ruta';
 import { EstadisticasEntrenamiento } from './grupos/grupo';
 import { promptUsuarios } from './usuarios/usuarioPrompt';
 import { promptGrupos } from './grupos/grupoPrompt';
+import { promptRetos } from './retos/retoPrompt';
+
+export let jsonUsuariosColeccion = new JsonUsuarioColeccion([]);
+export let jsonRutasColeccion = new JsonRutaColeccion([]);
+export let jsonRetosColeccion = new JsonRetoColeccion([]);
 
 enum Commands {
   Usuarios = "Usuarios",
@@ -38,7 +45,10 @@ export function promptPrincipal(mensaje = "") {
         promptUsuarios();
         break;
       case Commands.Grupos:
-        promptGrupos;
+        promptGrupos();
+        break;
+      case Commands.Retos:
+        promptRetos();
         break;
     }
   })

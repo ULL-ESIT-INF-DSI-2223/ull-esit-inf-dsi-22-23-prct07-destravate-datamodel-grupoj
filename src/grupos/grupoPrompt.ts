@@ -19,11 +19,6 @@ async function insertarGrupoPrompt () {
   let respuestas = await inquirer.prompt([  
   {
     type: "input",
-    name: "addID",
-    message: "Introducir ID: ",
-  },
-  {
-    type: "input",
     name: "addNombre",
     message: "Introducir Nombre: ",
   },
@@ -55,17 +50,20 @@ async function insertarGrupoPrompt () {
   },
   ]);
   
-  ID = respuestas["addID"];
   nombre = respuestas["addNombre"];
   participantes = respuestas["addParticipantes"].split(',').map(Number);
   estadisticasEntrenamiento = respuestas["addEstadisticasEntrenamiento"].split(', ');  
   clasificacion = respuestas["addClasificacion"]; 
   rutasFavoritas = respuestas["addRutasFavoritas"].split(',').map(Number);
-  historicoRutas = respuestas["addHistoricoRutas"].replaceAll('[', '').replaceAll(' ', '').replaceAll('],', '|').replaceAll(']', '').split('|');
   estadisticasEntrenamiento[0] = Number(estadisticasEntrenamiento[0]);
   estadisticasEntrenamiento[1] = Number(estadisticasEntrenamiento[1]);
   estadisticasEntrenamiento[3] = Number(estadisticasEntrenamiento[3]);  
 
+  let historicoRutasStr: string[] = respuestas["addHistoricoRutas"].replaceAll('[', '').replaceAll(' ', '').replaceAll('],', '|').replaceAll(']', '').split('|');
+  historicoRutasStr.forEach(historico => {
+    let aux: string[] = (historico.split(','));
+    // historicoRutas.push([aux[0], Number(aux[1])]);
+  })
   //jsonGruposColeccion.addGrupo(nombre, participantes, estadisticasEntrenamiento, clasificacion, rutasFavoritas, historicoRutas);
   promptGrupos();
 }

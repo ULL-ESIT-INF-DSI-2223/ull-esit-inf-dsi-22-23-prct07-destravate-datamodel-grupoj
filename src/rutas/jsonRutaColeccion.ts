@@ -12,7 +12,7 @@ type schemaRutas = {
     _longitud: number;
     _desnivelMedio: number;
     _usuariosRealizaron: number[];
-     _tipoActividad: Actividad;
+    _tipoActividad: Actividad;
     _calificacionMedia: number;
   }[];
 }

@@ -28,6 +28,7 @@ export class JsonRetoColeccion extends RetoColeccion {
       let dbItems = this.database.get("reto").value();
       dbItems.forEach(item => {
         this._retos.push(new Reto(item._ID, item._nombre, item._rutas, item._tipoActividad, item._usuarios))
+        this._ultID = item._ID;
       })
     } else {
       this.database.set("reto", coleccionReto).write();
@@ -35,19 +36,22 @@ export class JsonRetoColeccion extends RetoColeccion {
     }
   }
 
-  addReto(id : number, nombre : string, rutas : Ruta[], tipoActividad : Actividad, usuarios : Usuario[]) {
-    super.insertarReto(id, nombre, rutas, tipoActividad, usuarios);
+  addReto(nombre: string, rutas: number[], tipoActividad: Actividad, usuarios: number[]) {
+    super.insertarReto(nombre, rutas, tipoActividad, usuarios);
     this.storeTasks();
   }
 
-  /*markComplete(id: number, complete: boolean): void {
-      super.markComplete(id, complete);
-      this.storeTasks();
+  removeReto(ID: number): boolean {
+    let borro: boolean = super.borrarReto(ID);
+    this.storeTasks();
+    return borro;
   }
-  removeComplete(): void {
-      super.removeComplete();
-      this.storeTasks();
-  }*/
+
+  modifyReto(ID: number, atributoModificar: string, nuevoAtributo: string): boolean {
+    let modifico: boolean = super.modificarReto(ID, atributoModificar, nuevoAtributo);
+    this.storeTasks();
+    return modifico;
+  }
 
   private storeTasks() {
     this.database.set("reto", [...this._retos.values()]).write();

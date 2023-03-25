@@ -4,9 +4,7 @@ import { JsonUsuarioColeccion } from "./jsonUsuarioColeccion";
 import { Usuario, HistoricoRuta, Coleccion } from './usuario';
 import { Actividad, Ruta } from '../rutas/ruta';
 import { EstadisticasEntrenamiento } from '../grupos/grupo';
-import { promptPrincipal, CommandsEach } from '../index';
-
-let jsonUsuariosColeccion = new JsonUsuarioColeccion([]);
+import { promptPrincipal, CommandsEach, jsonUsuariosColeccion } from '../index';
 
 async function insertarUsuarioPrompt () {
   console.clear();

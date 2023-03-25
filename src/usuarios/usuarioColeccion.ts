@@ -49,7 +49,7 @@ export class UsuarioColeccion {
     this._usuarios.push(new Usuario(++this._ultID, nombre, actividades, amigosApp, grupoAmigos, entrenamiento, rutasFavoritas, retosActivos, historicoRutas));
   }
 
-  borrarUsuario (ID: number) : boolean {
+  borrarUsuario(ID: number) : boolean {
     let flag: boolean = false;
     this._usuarios.forEach((usuario, index) => {
       if (usuario.ID == ID) {
@@ -61,7 +61,7 @@ export class UsuarioColeccion {
     return flag;
   }
 
-  modificarUsuario (ID: number, atributoModificar: string, nuevoAtributo: string) : boolean {
+  modificarUsuario(ID: number, atributoModificar: string, nuevoAtributo: string) : boolean {
     let flag: boolean = false;
     this._usuarios.forEach((usuario, index) => {
       if (usuario.ID == ID) {
@@ -125,5 +125,19 @@ export class UsuarioColeccion {
     })
 
     return flag;
+  }
+
+  buscarUsuarios(usuariosIds: number[]) : Usuario[] {
+    let usuarios: Usuario[] = [];
+
+    this._usuarios.forEach(usuario => {
+      usuariosIds.forEach(usuarioId => {
+        if(usuario.ID ==  usuarioId) {
+          usuarios.push(usuario);
+        }
+      })
+    })
+
+    return usuarios;
   }
 }

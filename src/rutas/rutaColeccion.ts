@@ -20,4 +20,18 @@ export class RutaColeccion {
     this._rutas.push(new Ruta(ID, nombre, geolocalizacionInicio, geolocalizacionFinal, longitud, 
       desnivelMedio, usuariosRealizaron, tipoActividad, calificacionMedia));
   }
+
+  buscarRutas(rutasIds: number[]) : Ruta[] {
+    let rutas: Ruta[] = [];
+
+    this._rutas.forEach(ruta => {
+      rutasIds.forEach(rutaId => {
+        if(ruta.ID ==  rutaId) {
+          rutas.push(ruta);
+        }
+      })
+    })
+
+    return rutas;
+  }
 }

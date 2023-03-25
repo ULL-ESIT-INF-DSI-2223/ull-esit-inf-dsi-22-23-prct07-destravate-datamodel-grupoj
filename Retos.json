@@ -1,0 +1,125 @@
+{
+  "reto": [
+    {
+      "_ID": 1,
+      "_nombre": "Teide",
+      "_rutas": [],
+      "_tipoActividad": "Correr",
+      "_kilometrosTotales": 0,
+      "_usuarios": [
+        {
+          "_ID": 1,
+          "_nombre": "Ivan",
+          "_actividades": "Bicicleta",
+          "_amigosApp": [
+            1,
+            5
+          ],
+          "_grupoAmigos": [
+            [
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "_entrenamiento": [
+            15,
+            256,
+            "Enero",
+            2021
+          ],
+          "_rutasFavoritas": [
+            5
+          ],
+          "_retosActivos": [
+            4,
+            5
+          ],
+          "_historicoRutas": [
+            [
+              "02-03-22",
+              3
+            ],
+            [
+              "03-05-23",
+              1
+            ]
+          ]
+        },
+        {
+          "_ID": 3,
+          "_nombre": "Laura",
+          "_actividades": "Correr",
+          "_amigosApp": [
+            2
+          ],
+          "_grupoAmigos": [
+            [
+              0
+            ]
+          ],
+          "_entrenamiento": [
+            15,
+            258,
+            "Mayo",
+            2020
+          ],
+          "_rutasFavoritas": [
+            5
+          ],
+          "_retosActivos": [
+            0
+          ],
+          "_historicoRutas": [
+            [
+              "",
+              null
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "_ID": 2,
+      "_nombre": "Sur",
+      "_rutas": [],
+      "_tipoActividad": "Bicicleta",
+      "_kilometrosTotales": 0,
+      "_usuarios": [
+        {
+          "_ID": 3,
+          "_nombre": "Laura",
+          "_actividades": "Correr",
+          "_amigosApp": [
+            2
+          ],
+          "_grupoAmigos": [
+            [
+              0
+            ]
+          ],
+          "_entrenamiento": [
+            15,
+            258,
+            "Mayo",
+            2020
+          ],
+          "_rutasFavoritas": [
+            5
+          ],
+          "_retosActivos": [
+            0
+          ],
+          "_historicoRutas": [
+            [
+              "",
+              null
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
