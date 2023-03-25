@@ -2,9 +2,9 @@
   "reto": [
     {
       "_ID": 1,
-      "_nombre": "Teide",
+      "_nombre": "Subida al Teide",
       "_rutas": [],
-      "_tipoActividad": "Correr",
+      "_tipoActividad": "Bicicleta",
       "_kilometrosTotales": 0,
       "_usuarios": [
         {
@@ -49,22 +49,22 @@
           ]
         },
         {
-          "_ID": 3,
-          "_nombre": "Laura",
-          "_actividades": "Correr",
+          "_ID": 2,
+          "_nombre": "Pedro",
+          "_actividades": "Bicicleta",
           "_amigosApp": [
-            2
+            5
           ],
           "_grupoAmigos": [
             [
-              0
+              1
             ]
           ],
           "_entrenamiento": [
             15,
-            258,
-            "Mayo",
-            2020
+            26,
+            "Febrero",
+            2023
           ],
           "_rutasFavoritas": [
             5
@@ -74,48 +74,8 @@
           ],
           "_historicoRutas": [
             [
-              "",
-              null
-            ]
-          ]
-        }
-      ]
-    },
-    {
-      "_ID": 2,
-      "_nombre": "Sur",
-      "_rutas": [],
-      "_tipoActividad": "Bicicleta",
-      "_kilometrosTotales": 0,
-      "_usuarios": [
-        {
-          "_ID": 3,
-          "_nombre": "Laura",
-          "_actividades": "Correr",
-          "_amigosApp": [
-            2
-          ],
-          "_grupoAmigos": [
-            [
-              0
-            ]
-          ],
-          "_entrenamiento": [
-            15,
-            258,
-            "Mayo",
-            2020
-          ],
-          "_rutasFavoritas": [
-            5
-          ],
-          "_retosActivos": [
-            0
-          ],
-          "_historicoRutas": [
-            [
-              "",
-              null
+              "02-03-22",
+              3
             ]
           ]
         }

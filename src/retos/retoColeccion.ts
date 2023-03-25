@@ -3,6 +3,13 @@ import { Actividad, Ruta } from "../rutas/ruta";
 import { Usuario } from "../usuarios/usuario";
 import { jsonRutasColeccion, jsonUsuariosColeccion } from "../index"
 
+export enum AtributosReto {
+  Nombre = 'Nombre',
+  Rutas = 'IDs de las rutas (1, 2, 3)',
+  Actividad = 'Actividad (Correr o Bicicleta)',
+  Usuarios = 'IDs de los usuarios (1, 2, 3)'
+}
+
 /**
  * Clase RetoColeccion que alberga
  * @param _retos Colección de retos
@@ -33,11 +40,53 @@ export class RetoColeccion {
   }
 
   borrarReto(ID: number) : boolean {
-    return false;
+    let flag: boolean = false;
+
+    this._retos.forEach((reto, index) => {
+      if (reto.ID == ID) {
+        this._retos.splice(index, 1);
+        flag = true;
+      }
+    })
+
+    return flag;
   }
 
   modificarReto(ID: number, atributoModificar: string, nuevoAtributo: string) : boolean {
-    return false;
+    let flag: boolean = false;
+    this._retos.forEach((reto, index) => {
+      if (reto.ID == ID) {
+        switch (atributoModificar) {
+          case AtributosReto.Nombre:
+            this._retos[index].nombre = nuevoAtributo;
+            break;
+
+          case AtributosReto.Rutas:
+            let rutasIds = nuevoAtributo.split(',').map(Number);
+            let rutas: Ruta[] = jsonRutasColeccion.buscarRutas(rutasIds);
+            this._retos[index].rutas = rutas;
+            break;
+
+          case AtributosReto.Actividad:
+            if (nuevoAtributo == 'Correr') {
+              this._retos[index].tipoActividad = 'Correr';
+            }
+            else if (nuevoAtributo == 'Bicicleta') {
+              this._retos[index].tipoActividad = 'Bicicleta';
+            }       
+            break;
+
+          case AtributosReto.Usuarios:
+            let usuariosIds = nuevoAtributo.split(',').map(Number);
+            let usuarios: Usuario[] = jsonUsuariosColeccion.buscarUsuarios(usuariosIds);
+            this._retos[index].usuarios = usuarios;
+            break;
+        }
+        flag = true;
+      }
+    })
+
+    return flag;
   }
 
 }

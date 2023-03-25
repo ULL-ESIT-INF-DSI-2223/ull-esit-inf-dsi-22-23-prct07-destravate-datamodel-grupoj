@@ -1,5 +1,5 @@
 import * as inquirer from 'inquirer';
-import { UsuarioColeccion, AtributosUsuario } from "../usuarios/usuarioColeccion";
+import { AtributosReto } from "./retoColeccion";
 import { JsonRetoColeccion } from "./jsonRetoColeccion";
 import { Usuario, HistoricoRuta, Coleccion } from '../usuarios/usuario';
 import { Actividad, Ruta } from '../rutas/ruta';
@@ -51,38 +51,38 @@ async function insertarRetoPrompt() {
   }
 }
 
-/*async function eliminarUsuarioPrompt () {
+async function eliminarRetoPrompt () {
   console.clear();
   let respuestas = await inquirer.prompt([  
   {
     type: "input",
     name: "removeID",
-    message: "Introducir ID del usuario a eliminar: ",
+    message: "Introducir ID del reto a eliminar: ",
   }
   ]);
 
-  if (jsonUsuariosColeccion.removeUsuario(Number(respuestas["removeID"]))) {
-    promptPrincipal("Usuario eliminado");
+  if (jsonRetosColeccion.removeReto(Number(respuestas["removeID"]))) {
+    promptPrincipal("Reto eliminado");
   }
   else {
-    promptPrincipal("Usuario NO eliminado, datos incorrectos");
+    promptPrincipal("Reto NO eliminado, datos incorrectos");
   }
-}*/
+}
 
-/*async function modificarUsuarioPrompt () {
+async function modificarRetoPrompt() {
   console.clear();
   let respuestaID = await inquirer.prompt([  
   {
     type: "input",
     name: "modifyID",
-    message: "Introducir ID del usuario a modificar: ",
+    message: "Introducir ID del reto a modificar: ",
   }
   ]);
   let respuestaElemento = await inquirer.prompt({
     type: "list",
     name: "element",
     message: "¿Qué atributo quieres modificar?: ",
-    choices: Object.values(AtributosUsuario),
+    choices: Object.values(AtributosReto),
   })
   let respuestaModificar = await inquirer.prompt([  
     {
@@ -92,13 +92,13 @@ async function insertarRetoPrompt() {
     }
   ]);
 
-  if (jsonUsuariosColeccion.modifyUsuario(Number(respuestaID["modifyID"]), respuestaElemento["element"], respuestaModificar["modifyElement"])) {
-    promptPrincipal("Usuario modificado");
+  if (jsonRetosColeccion.modifyReto(Number(respuestaID["modifyID"]), respuestaElemento["element"], respuestaModificar["modifyElement"])) {
+    promptPrincipal("Reto modificado");
   }
   else {
-    promptPrincipal("Usuario NO modificado, datos incorrectos");
+    promptPrincipal("Reto NO modificado, datos incorrectos");
   }
-}*/
+}
 
 export function promptRetos() {
   console.clear();
@@ -116,11 +116,11 @@ export function promptRetos() {
         break;
 
       case CommandsEach.Modificar:
-        //modificarUsuarioPrompt();
+        modificarRetoPrompt();
         break;
       
       case CommandsEach.Eliminar:
-        //eliminarUsuarioPrompt();
+        eliminarRetoPrompt();
         break;
 
       case CommandsEach.Atras:
