@@ -1,0 +1,78 @@
+{
+  "grupo": [
+    {
+      "_ID": 3,
+      "_nombre": "el grupo",
+      "_participantes": [
+        1
+      ],
+      "_estadisticasEntrenamiento": [
+        5,
+        23,
+        "marzo",
+        2020
+      ],
+      "_clasificacion": "1",
+      "_rutasFavoritas": [
+        2
+      ],
+      "_historicoRutas": []
+    },
+    {
+      "_ID": 2,
+      "_nombre": "grupazoooo",
+      "_participantes": [
+        1,
+        5
+      ],
+      "_estadisticasEntrenamiento": [
+        98,
+        28,
+        "enero",
+        2023
+      ],
+      "_clasificacion": "1",
+      "_rutasFavoritas": [
+        2
+      ],
+      "_historicoRutas": []
+    },
+    {
+      "_ID": 1,
+      "_nombre": "uma",
+      "_participantes": [
+        3,
+        4
+      ],
+      "_estadisticasEntrenamiento": [
+        12,
+        3,
+        "Junio",
+        4054
+      ],
+      "_clasificacion": "1",
+      "_rutasFavoritas": [
+        1
+      ],
+      "_historicoRutas": []
+    },
+    {
+      "_ID": 4,
+      "_nombre": "z-grupo",
+      "_participantes": [
+        2
+      ],
+      "_estadisticasEntrenamiento": [
+        2,
+        3,
+        "enero",
+        2022
+      ],
+      "_clasificacion": "2",
+      "_rutasFavoritas": [
+        3
+      ],
+      "_historicoRutas": []
+    }
+  ]
+}

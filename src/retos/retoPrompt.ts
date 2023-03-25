@@ -6,6 +6,9 @@ import { Actividad, Ruta } from '../rutas/ruta';
 import { EstadisticasEntrenamiento } from '../grupos/grupo';
 import { promptPrincipal, CommandsEach, jsonRetosColeccion } from '../index';
 
+/**
+ * Prompt para insertar elemento Reto
+ */ 
 async function insertarRetoPrompt() {
   console.clear();
   let nombre: string = "";
@@ -51,6 +54,9 @@ async function insertarRetoPrompt() {
   }
 }
 
+/**
+ * Prompt para eliminar determinado elemento Reto
+ */
 async function eliminarRetoPrompt () {
   console.clear();
   let respuestas = await inquirer.prompt([  
@@ -69,6 +75,9 @@ async function eliminarRetoPrompt () {
   }
 }
 
+/**
+ * Prompt para modificar determinado elemento Reto
+ */
 async function modificarRetoPrompt() {
   console.clear();
   let respuestaID = await inquirer.prompt([  
@@ -100,6 +109,9 @@ async function modificarRetoPrompt() {
   }
 }
 
+/**
+ * Prompt principal de Retos
+ */
 export function promptRetos() {
   console.clear();
   //jsonUsuariosColeccion.mostrarUsuarios()  

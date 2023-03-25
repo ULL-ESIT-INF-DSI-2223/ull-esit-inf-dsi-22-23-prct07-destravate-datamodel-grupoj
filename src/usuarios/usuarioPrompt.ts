@@ -1,20 +1,33 @@
 import * as inquirer from 'inquirer';
-import { UsuarioColeccion, AtributosUsuario } from "./usuarioColeccion";
-import { JsonUsuarioColeccion } from "./jsonUsuarioColeccion";
-import { Usuario, HistoricoRuta, Coleccion } from './usuario';
-import { Actividad, Ruta } from '../rutas/ruta';
+import { AtributosUsuario } from "./usuarioColeccion";
+import { HistoricoRuta, Coleccion } from './usuario';
+import { Actividad} from '../rutas/ruta';
 import { EstadisticasEntrenamiento } from '../grupos/grupo';
-import { promptPrincipal, CommandsEach, jsonUsuariosColeccion } from '../index';
+import { promptPrincipal, CommandsEach, jsonUsuariosColeccion, AtributosOrdenacionOrientacion, AtributosMostrar } from '../index';
 
-async function insertarUsuarioPrompt () {
+/**
+ * Enumerado de los distintos Atributos
+ * de ordenación de un usuario
+ * @param nombre del usuario
+ * @param kms del usuario
+ */
+export enum AtributosOrdenacionUsuario {
+  Nombre = 'Alfabéticamente por nombre del usuario',
+  Kms = 'Por cantidad de kms, en función de la semana actual, mes o año',
+}
+
+/**
+ * Prompt para insertar elemento Usuario
+ */
+export async function insertarUsuarioPrompt () {
   console.clear();
   let nombre: string = "";
   let actividades: Actividad;
-  let amigosapp: number[];
+  let amigosapp: number[] = [];
   let grupoAmigos: Coleccion = [];
   let entrenamiento: EstadisticasEntrenamiento;
-  let rutasFavoritas: number[];
-  let retosActivos: number[];
+  let rutasFavoritas: number[] = [];
+  let retosActivos: number[] = [];
   let historicoRutas: HistoricoRuta[] = [];
   
   let respuestas = await inquirer.prompt([  
@@ -63,7 +76,8 @@ async function insertarUsuarioPrompt () {
   nombre = respuestas["addNombre"];
   actividades = respuestas["addActividades"];
   amigosapp = respuestas["addAmigosApp"].split(',').map(Number);
-  let grupoAmigosStr: string[] = respuestas["addGrupoAmigos"].replaceAll('[', '').replaceAll(' ', '').replaceAll('],', '|').replaceAll(']', '').split('|');
+  let auxi: string = respuestas["addGrupoAmigos"]
+  let grupoAmigosStr: string[] = auxi.replaceAll('[', '').replaceAll(' ', '').replaceAll('],', '|').replaceAll(']', '').split('|');
   grupoAmigosStr.forEach(grupo => {
     grupoAmigos.push(grupo.split(',').map(Number));
   })
@@ -73,7 +87,8 @@ async function insertarUsuarioPrompt () {
   entrenamiento[3] = Number(entrenamiento[3]);
   rutasFavoritas = respuestas["addRutasFavoritas"].split(',').map(Number);
   retosActivos = respuestas["addRetosActivos"].split(',').map(Number);
-  let historicoRutasStr: string[] = respuestas["addHistoricoRutas"].replaceAll('[', '').replaceAll(' ', '').replaceAll('],', '|').replaceAll(']', '').split('|');
+  let aux: string = respuestas["addHistoricoRutas"];
+  let historicoRutasStr: string[] = aux.replaceAll('[', '').replaceAll(' ', '').replaceAll('],', '|').replaceAll(']', '').split('|');
   historicoRutasStr.forEach(historico => {
     let aux: string[] = (historico.split(','));
     historicoRutas.push([aux[0], Number(aux[1])]);
@@ -88,6 +103,9 @@ async function insertarUsuarioPrompt () {
   }
 }
 
+/**
+ * Prompt para eliminar determinado elemento Usuario
+ */
 async function eliminarUsuarioPrompt () {
   console.clear();
   let respuestas = await inquirer.prompt([  
@@ -106,6 +124,9 @@ async function eliminarUsuarioPrompt () {
   }
 }
 
+/**
+ * Prompt para modificar determinado elemento Usuario
+ */
 async function modificarUsuarioPrompt () {
   console.clear();
   let respuestaID = await inquirer.prompt([  
@@ -137,6 +158,41 @@ async function modificarUsuarioPrompt () {
   }
 }
 
+/**
+ * Prompt para mostrar determinado elemento Usuario
+ */
+async function mostrarUsuarioPrompt () {
+  console.clear();
+
+  let respuestaOrdenacion = await inquirer.prompt({
+    type: "list",
+    name: "ordenacion",
+    message: "¿Cómo deseas que se te muestren los datos?: ",
+    choices: Object.values(AtributosOrdenacionUsuario),
+  })
+
+  let respuestaOrdenacionOrientacion = await inquirer.prompt({
+    type: "list",
+    name: "orientacion",
+    message: "¿Orden ascendente o descendente?: ",
+    choices: Object.values(AtributosOrdenacionOrientacion),
+  })
+
+  if (!jsonUsuariosColeccion.showUsuario(respuestaOrdenacion["ordenacion"], respuestaOrdenacionOrientacion["orientacion"])) {
+    promptPrincipal("NO se han podido mostrar los datos");
+  }
+  let espera = await inquirer.prompt({
+    type: "list",
+    name: "volver",
+    message: "",
+    choices: Object.values(AtributosMostrar),
+  });
+  promptPrincipal();
+}
+
+/**
+ * Prompt principal de Usuarios
+ */
 export function promptUsuarios() {
   console.clear();
   //jsonUsuariosColeccion.mostrarUsuarios()  
@@ -148,6 +204,10 @@ export function promptUsuarios() {
     choices: Object.values(CommandsEach),
   }).then(answers => {
     switch (answers["command"]) {
+      case CommandsEach.Mostrar:
+        mostrarUsuarioPrompt();
+        break;
+
       case CommandsEach.Insertar:
         insertarUsuarioPrompt();
         break;

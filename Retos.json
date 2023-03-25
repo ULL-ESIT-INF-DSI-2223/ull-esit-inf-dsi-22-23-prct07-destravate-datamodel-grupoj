@@ -29,7 +29,7 @@
         }
       ],
       "_tipoActividad": "Bicicleta",
-      "_kilometrosTotales": 15,
+      "_kilometrosTotales": null,
       "_usuarios": [
         {
           "_ID": 1,
@@ -107,7 +107,7 @@
     },
     {
       "_ID": 2,
-      "_nombre": "Vuelta al Teide",
+      "_nombre": "Vueltita al Teidecito",
       "_rutas": [
         {
           "_ID": 1,
@@ -158,7 +158,7 @@
         }
       ],
       "_tipoActividad": "Bicicleta",
-      "_kilometrosTotales": 40,
+      "_kilometrosTotales": null,
       "_usuarios": []
     }
   ]

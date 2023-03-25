@@ -90,6 +90,19 @@ export class JsonRutaColeccion extends RutaColeccion {
   }
 
   /**
+  * Método para mostrar una serie de atributos de una ruta de la colección
+  * @param ordenacion opción de ordenación
+  * @param orientacion opción de orientación
+  * @returns un valor logico si se pudo mostrar correctamente la información por pantalla
+  */
+  showRuta(ordenacion: string, orientacion: string): boolean {
+    //let muestro: boolean = super.mostrarRutas(ordenacion, orientacion);
+    this.storeTasks();
+    //return muestro;
+    return false;
+  }
+
+  /**
    * Método privado para actualizar los valores del fichero JSON, con los de la colección
    */
   private storeTasks() {

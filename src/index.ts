@@ -3,6 +3,7 @@ import { UsuarioColeccion, AtributosUsuario } from "./usuarios/usuarioColeccion"
 import { JsonUsuarioColeccion } from "./usuarios/jsonUsuarioColeccion";
 import { JsonRetoColeccion } from "./retos/jsonRetoColeccion";
 import { JsonRutaColeccion } from "./rutas/jsonRutaColeccion";
+import { JsonGrupoColeccion } from './grupos/jsonGrupoColeccion';
 import { Usuario, HistoricoRuta, Coleccion } from './usuarios/usuario';
 import { Actividad, Ruta } from './rutas/ruta';
 import { EstadisticasEntrenamiento } from './grupos/grupo';
@@ -14,6 +15,7 @@ import { promptRetos } from './retos/retoPrompt';
 export let jsonUsuariosColeccion = new JsonUsuarioColeccion([]);
 export let jsonRutasColeccion = new JsonRutaColeccion([]);
 export let jsonRetosColeccion = new JsonRetoColeccion([]);
+export let jsonGruposColeccion = new JsonGrupoColeccion([]);
 
 enum Commands {
   Usuarios = "Usuarios",
@@ -24,10 +26,20 @@ enum Commands {
 }
 
 export enum CommandsEach {
+  Mostrar = "Mostrar",
   Insertar = "Insertar",
   Modificar = "Modificar",
   Eliminar = "Eliminar", 
   Atras = "Atras"
+}
+
+export enum AtributosMostrar {
+  Volver = 'Volver al menú'
+}
+
+export enum AtributosOrdenacionOrientacion {
+  Ascendente = 'Ordenación ascendente',
+  Descendente = 'Ordenación descendente'
 }
 
 export function promptPrincipal(mensaje = "") {

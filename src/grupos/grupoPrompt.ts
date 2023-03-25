@@ -1,20 +1,35 @@
 import * as inquirer from 'inquirer';
-import { UsuarioColeccion, AtributosUsuario } from "../usuarios/usuarioColeccion";
 import { JsonUsuarioColeccion } from "../usuarios/jsonUsuarioColeccion";
 import { Usuario, HistoricoRuta, Coleccion } from '../usuarios/usuario';
 import { Actividad, Ruta } from '../rutas/ruta';
 import { EstadisticasEntrenamiento } from './grupo';
-import { promptPrincipal, CommandsEach } from '../index';
+import { promptPrincipal, CommandsEach, jsonGruposColeccion, AtributosOrdenacionOrientacion, AtributosMostrar} from '../index';
+import { AtributosGrupo } from './grupoColeccion';
 
+/**
+ * Enumerado de los distintos Atributos
+ * de ordenación de un grupo
+ * @param nombre del grupo
+ * @param kms del grupo
+ * @param miembros del grupo
+ */
+export enum AtributosOrdenacionGrupo {
+  Nombre = 'Alfabéticamente por nombre del grupo',
+  Kms = 'Por cantidad de kms realizados conjuntamente, en función de la semana actual, mes o año',
+  Miembros = 'Por cantidad de miembros que lo componen'
+}
+
+/**
+ * Prompt para insertar elemento Grupo
+ */
 async function insertarGrupoPrompt () {
   console.clear();
-  let ID : number;
   let nombre : string;
   let participantes : number[];
   let estadisticasEntrenamiento : EstadisticasEntrenamiento;
   let clasificacion : Usuario[];
-  let rutasFavoritas : Ruta[];
-  let historicoRutas : Ruta[];
+  let rutasFavoritas : number[];
+  let historicoRutas : HistoricoRuta[] = [];
   
   let respuestas = await inquirer.prompt([  
   {
@@ -25,29 +40,29 @@ async function insertarGrupoPrompt () {
   {
     type: "input",
     name: "addParticipantes",
-    message: "Introducir los participantes: ",
+    message: "Introducir los participantes (1, 2, 3): ",
   },
   {
     type: "input",
     name: "addEstadisticasEntrenamiento",
-    message: "Introducir las estadísticas de entrenamiento: ",
+    message: "Introducir las estadísticas de entrenamiento (km, desnivel, mes, año): ",
   },
   
   {
     type: "input",
     name: "addClasificacion",
-    message: "Introducir la clasificación: ",
+    message: "Introducir la clasificación (1, 2, 3): ",
   },
   {
     type: "input",
     name: "addRutasFavoritas",
-    message: "Introducir rutas favoritas: ",
+    message: "Introducir rutas favoritas (1, 2, 3): ",
   },
-  {
+  /*{
     type: "input",
     name: "addHistoricoRutas",
-    message: "Introducir el historico de rutas: ",
-  },
+    message: "Introducir el historico de rutas ([02-03-22, 3], [03-05-23, 1]): ",
+  },*/
   ]);
   
   nombre = respuestas["addNombre"];
@@ -59,17 +74,20 @@ async function insertarGrupoPrompt () {
   estadisticasEntrenamiento[1] = Number(estadisticasEntrenamiento[1]);
   estadisticasEntrenamiento[3] = Number(estadisticasEntrenamiento[3]);  
 
-  let historicoRutasStr: string[] = respuestas["addHistoricoRutas"].replaceAll('[', '').replaceAll(' ', '').replaceAll('],', '|').replaceAll(']', '').split('|');
+  /*let historicoRutasStr: string[] = respuestas["addHistoricoRutas"].replaceAll('[', '').replaceAll(' ', '').replaceAll('],', '|').replaceAll(']', '').split('|');
   historicoRutasStr.forEach(historico => {
     let aux: string[] = (historico.split(','));
     // historicoRutas.push([aux[0], Number(aux[1])]);
-  })
-  //jsonGruposColeccion.addGrupo(nombre, participantes, estadisticasEntrenamiento, clasificacion, rutasFavoritas, historicoRutas);
+  })*/
+  jsonGruposColeccion.addGrupo(nombre, participantes, estadisticasEntrenamiento, clasificacion, rutasFavoritas, historicoRutas);
+  promptPrincipal("Grupo creado"); 
   promptGrupos();
 }
 
 
-
+/**
+ * Prompt para eliminar determinado elemento Grupo
+ */
 async function eliminarGrupoPrompt () {
   console.clear();
   let respuestas = await inquirer.prompt([  
@@ -80,14 +98,17 @@ async function eliminarGrupoPrompt () {
   }
   ]);
 
-  /*if (jsonUsuariosColeccion.removeGrupo(Number(respuestas["removeID"]))) {
+  if (jsonGruposColeccion.removeGrupo(Number(respuestas["removeID"]))) {
     promptPrincipal("Grupo eliminado");
   }
   else {
     promptPrincipal("Grupo NO eliminado, datos incorrectos");
-  }*/
+  }
 }
 
+/**
+ * Prompt para modificar determinado elemento Grupo
+ */
 async function modificarGrupoPrompt () {
   console.clear();
   let respuestaID = await inquirer.prompt([  
@@ -101,7 +122,7 @@ async function modificarGrupoPrompt () {
     type: "list",
     name: "element",
     message: "¿Qué atributo quieres modificar?: ",
-    choices: Object.values(AtributosUsuario),
+    choices: Object.values(AtributosGrupo),
   })
   let respuestaModificar = await inquirer.prompt([  
     {
@@ -111,17 +132,53 @@ async function modificarGrupoPrompt () {
     }
   ]);
 
-  /*if (jsonGrupoColeccion.modifyUsuario(Number(respuestaID["modifyID"]), respuestaElemento["element"], respuestaModificar["modifyElement"])) {
+  if (jsonGruposColeccion.modifyGrupo(Number(respuestaID["modifyID"]), respuestaElemento["element"], respuestaModificar["modifyElement"])) {
     promptPrincipal("Grupo modificado");
   }
   else {
     promptPrincipal("Grupo NO modificado, datos incorrectos");
-  }*/
+  }
 }
 
+
+
+/**
+ * Prompt para mostrar determinado elemento Grupo
+ */
+async function mostrarGrupoPrompt () {
+  console.clear();
+
+  let respuestaOrdenacion = await inquirer.prompt({
+    type: "list",
+    name: "ordenacion",
+    message: "¿Cómo deseas que se te muestren los datos?: ",
+    choices: Object.values(AtributosOrdenacionGrupo),
+  })
+
+  let respuestaOrdenacionOrientacion = await inquirer.prompt({
+    type: "list",
+    name: "orientacion",
+    message: "¿Orden ascendente o descendente?: ",
+    choices: Object.values(AtributosOrdenacionOrientacion),
+  })
+
+  if (!jsonGruposColeccion.showGrupo(respuestaOrdenacion["ordenacion"], respuestaOrdenacionOrientacion["orientacion"])) {
+    promptPrincipal("NO se han podido mostrar los datos");
+  }
+  let espera = await inquirer.prompt({
+    type: "list",
+    name: "volver",
+    message: "",
+    choices: Object.values(AtributosMostrar),
+  });
+  promptPrincipal();
+}
+
+/**
+ * Prompt principal de Grupo
+ */
 export function promptGrupos() {
   console.clear();
-  //jsonGrupoColeccion.mostrarUsuarios()  
 
   inquirer.prompt({
     type: "list",
@@ -144,6 +201,10 @@ export function promptGrupos() {
 
       case CommandsEach.Atras:
         promptPrincipal();
+        break;
+      
+      case CommandsEach.Mostrar:
+        mostrarGrupoPrompt();
         break;
     }
   })

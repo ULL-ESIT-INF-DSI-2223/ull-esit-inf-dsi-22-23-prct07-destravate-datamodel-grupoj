@@ -94,6 +94,17 @@ export class JsonUsuarioColeccion extends UsuarioColeccion {
   }
 
   /**
+  * Método para mostrar una serie de atributos de un usuario de la colección
+  * @param ordenacion opción de ordenación
+  * @param orientacion opción de orientación
+  * @returns un valor logico si se pudo mostrar correctamente la información por pantalla
+  */
+  showUsuario(ordenacion: string, orientacion: string): boolean {
+    let muestro: boolean = super.mostrarUsuarios(ordenacion, orientacion);
+    this.storeTasks();
+    return muestro;
+  }
+  /**
    * Método privado para actualizar los valores del fichero JSON, con los de la colección
    */
   private storeTasks() {

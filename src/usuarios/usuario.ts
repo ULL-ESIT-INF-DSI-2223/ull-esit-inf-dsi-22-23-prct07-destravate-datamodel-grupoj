@@ -53,7 +53,7 @@ export class Usuario {
     this._historicoRutas = historicoRutas;
   }
 
-  /*mostrarUsuario () : void {
+  mostrarUsuario () : void {
     console.log(`ID: ${this._ID}`);
     console.log(`Nombre: ${this._nombre}`);
     console.log(`Actividades: ${this._actividades}`);
@@ -63,7 +63,7 @@ export class Usuario {
     console.log(`Rutas favoritas: ${this._rutasFavoritas}`);
     console.log(`Retos activos: ${this._retosActivos}`);
     console.log(`Histórico rutas: ${this._historicoRutas}`);
-  }*/
+  }
 
   /**
    * Getter del atributo _ID

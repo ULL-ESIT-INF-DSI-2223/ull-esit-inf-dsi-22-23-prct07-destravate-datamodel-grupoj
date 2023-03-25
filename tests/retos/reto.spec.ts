@@ -1,8 +1,8 @@
 import 'mocha';
 import { expect } from "chai";
-import { Usuario } from "../src/usuarios/usuario";
-import { Ruta } from '../src/rutas/ruta';
-import { Reto } from '../src/retos/reto';
+import { Usuario } from "../../src/usuarios/usuario";
+import { Ruta } from '../../src/rutas/ruta';
+import { Reto } from '../../src/retos/reto';
 
 describe('Clase Reto Tests', () => {
   it('Constructor', () => {

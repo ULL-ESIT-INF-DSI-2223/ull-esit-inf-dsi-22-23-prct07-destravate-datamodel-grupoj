@@ -1,4 +1,6 @@
 import { Actividad, Coordenada, Ruta } from "./ruta";
+import { AtributosOrdenacionRuta } from "./rutaPrompt";
+import { AtributosOrdenacionOrientacion } from "..";
 
 export enum AtributosRuta {
   Nombre = 'Nombre',
@@ -8,8 +10,10 @@ export enum AtributosRuta {
   DesnivelMedio = 'Desnivel medio de la ruta (15)',
   Usuarios = 'IDs de los usuarios que han realizado la ruta (1, 2, 3)',
   Actividad = 'Actividad (Correr o Bicicleta)',
-  CalificacionMedia = 'Calificaion media de la ruta (8)'
+  CalificacionMedia = 'Calificacion media de la ruta (8)'
 }
+
+
 
 /**
  * Clase RutaColeccion que alberga
@@ -161,4 +165,75 @@ export class RutaColeccion {
 
     return rutas;
   }
+
+    /**
+  * Método para mostrar una serie de atributos de una ruta de la colección
+  * @param ordenacion opción de ordenación
+  * @param orientacion opción de orientación
+  * @returns un valor logico si se pudo mostrar correctamente la información por pantalla
+  */
+  mostrarRuta(ordenacion: string, orientacion : string) : boolean {
+
+    switch (ordenacion) {
+      case AtributosOrdenacionRuta.Nombre:
+        switch (orientacion) {
+          case AtributosOrdenacionOrientacion.Ascendente:
+            this._rutas.sort((a, b) => {
+            return b.nombre.localeCompare(a.nombre);
+          });
+          break;
+            
+          case AtributosOrdenacionOrientacion.Descendente:
+            this._rutas.sort((a, b) => {
+              return a.nombre.localeCompare(b.nombre);
+            });
+            break;
+        }
+      break;
+        
+      case AtributosOrdenacionRuta.Usuarios:
+        switch (orientacion) {
+          case AtributosOrdenacionOrientacion.Ascendente: 
+            this._rutas.sort((a, b) => b.usuariosRealizaron[0] - a.usuariosRealizaron[0]); // Orden ascendente
+            break;
+            
+          case AtributosOrdenacionOrientacion.Descendente:
+            this._rutas.sort((a, b) => a.usuariosRealizaron[0] - b.usuariosRealizaron[0]); // Orden descendente
+            break;
+          }
+      break;
+        
+      case AtributosOrdenacionRuta.Longitud:
+        switch (orientacion) {
+          case AtributosOrdenacionOrientacion.Ascendente:
+            this._rutas.sort((a, b) => b.longitud - a.longitud); // Orden ascendente
+            break;
+            
+          case AtributosOrdenacionOrientacion.Descendente:
+            this._rutas.sort((a, b) => a.longitud - b.longitud); // Orden descendente
+            break;
+        }
+      break;
+
+      case AtributosOrdenacionRuta.Calificacion:
+        switch (orientacion) {
+          case AtributosOrdenacionOrientacion.Ascendente:
+            this._rutas.sort((a, b) => b.longitud - a.longitud); // Orden ascendente
+            break;
+            
+          case AtributosOrdenacionOrientacion.Descendente:
+            this._rutas.sort((a, b) => a.longitud - b.longitud); // Orden descendente
+            break;
+        }
+      break;
+  
+    }
+    this._rutas.forEach(ruta => {
+      ruta.mostrarRuta();
+      console.log('\n');
+    });
+  
+    return true;
+  }
 }
+

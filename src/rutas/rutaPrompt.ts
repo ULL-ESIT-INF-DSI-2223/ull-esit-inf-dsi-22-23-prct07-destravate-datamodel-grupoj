@@ -6,6 +6,24 @@ import { Actividad, Ruta, Coordenada } from '../rutas/ruta';
 import { EstadisticasEntrenamiento } from '../grupos/grupo';
 import { promptPrincipal, CommandsEach, jsonRutasColeccion } from '../index';
 
+/**
+ * Enumerado de los distintos Atributos
+ * de ordenación de un grupo
+ * @param nombre del grupo
+ * @param kms del grupo
+ * @param miembros del grupo
+ */
+export enum AtributosOrdenacionRuta {
+  Nombre = 'Alfabéticamente por nombre del grupo.',
+  Usuarios = 'Por cantidad de usuarios que realizan las rutas, ascendente y descendente.',
+  Longitud = 'Por longitud de la ruta, ascendente y descendente.',
+  Calificacion = 'Por la calificación media de la ruta, ascendente y descendente.',
+  Actividad = 'Por actividad: correr o ciclismo.'
+}
+
+/**
+ * Prompt para insertar elemento Ruta
+ */
 async function insertarRutaPrompt() {
   console.clear();
   let nombre: string = "";
@@ -85,6 +103,9 @@ async function insertarRutaPrompt() {
   }
 }
 
+/**
+ * Prompt para eliminar determinado elemento Ruta
+ */
 async function eliminarRutaPrompt () {
   console.clear();
   let respuestas = await inquirer.prompt([  
@@ -103,6 +124,9 @@ async function eliminarRutaPrompt () {
   }
 }
 
+/**
+ * Prompt para modificar determinado elemento Ruta
+ */
 async function modificarRutaPrompt() {
   console.clear();
   let respuestaID = await inquirer.prompt([  
@@ -134,6 +158,9 @@ async function modificarRutaPrompt() {
   }
 }
 
+/**
+ * Prompt principal de Rutas
+ */
 export function promptRutas() {
   console.clear();
   //jsonUsuariosColeccion.mostrarUsuarios()  

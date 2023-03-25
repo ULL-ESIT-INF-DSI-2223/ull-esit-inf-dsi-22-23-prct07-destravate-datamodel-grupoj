@@ -1,6 +1,26 @@
 import { Actividad, Ruta } from "../rutas/ruta";
 import { Usuario, Coleccion, HistoricoRuta} from "../usuarios/usuario";
 import { Grupo, EstadisticasEntrenamiento } from "./grupo";
+import { AtributosOrdenacionGrupo } from "./grupoPrompt";
+import { AtributosOrdenacionOrientacion } from "..";
+
+/**
+ * Enumerado de los distintos Atributos de un grupo
+ * @param nombre del grupo
+ * @param participantes del grupo
+ * @param entrentamiento del grupo
+ * @param clasificacion del grupo
+ * @param rutasFavoritas del grupo
+ * @param historicoRutas del grupo
+ */
+export enum AtributosGrupo {
+  Nombre = 'Nombre',
+  Participantes = 'Participantes (1, 2, 3)',
+  Entrenamiento = 'Entrenamiento (km, desnivel, mes, año)',
+  Clasificacion = 'Clasificación (1, 2, 3)',
+  RutasFavoritas = 'Rutas Favoritas (1, 2, 3)',
+  HistoricoRutas = 'Historico de Rutas ([02-03-22, 3], [03-05-23, 1])'
+}
 
 /**
  * Clase GrupoColeccion que alberga
@@ -24,19 +44,25 @@ export class GrupoColeccion {
     }
   }
 
-  insertarGrupo(ID : number, nombre : string, participantes : number[], estadisticasEntrenamiento : EstadisticasEntrenamiento,  
-    clasificacion : Usuario[], rutasFavoritas : Ruta[], historicoRutas : Ruta[]) {
+  /**
+   * Método para insertar un grupo a la colección
+   * @param nombre Nombre propio de grupo
+   * @param participantes IDs de los miembros del grupo
+   * @param estadisticasEntrenamiento Cantidad de km y desnivel total acumulados de manera grupal en la semana, mes y año
+   * @param clasificacion Ranking de los grupos que más entrenamientos han realizado históricamente dentro del grupo, es decir, ordenar los grupos por la cantidad de km totales o desnivel total que han acumulado
+   * @param rutasFavoritas  Rutas que los grupos del grupo han realizado con mayor frecuencia en sus salidas conjuntas
+   * @param historicoRutas todas las rutas que ha realizado el grupo en conjunto
+  */
+  insertarGrupo(nombre : string, participantes : number[], estadisticasEntrenamiento : EstadisticasEntrenamiento,  
+    clasificacion : Usuario[], rutasFavoritas : number[], historicoRutas : HistoricoRuta[]) {
     this._grupos.push(new Grupo(++this._ultID, nombre, participantes, estadisticasEntrenamiento, clasificacion, rutasFavoritas, historicoRutas));
   }
 
-  mostrarGrupos () : void { 
-    //this._grupos.sort((a, b) => a.ID - b.ID);    
-    this._grupos.forEach(grupo => {
-      grupo.mostrarGrupo();
-      console.log('\n');
-    });
-  }
-
+  /**
+   * Método para eliminar un grupo de la colección
+   * @param ID ID unico de cada grupo
+   * @returns un valor logico si se pudo elimnar el grupo o no
+   */
   borrarGrupo (ID: number) : boolean {
     let flag: boolean = false;
     this._grupos.forEach((grupo, index) => {
@@ -49,7 +75,14 @@ export class GrupoColeccion {
     return flag;
   }
 
-  /* modificarUsuario (ID: number, atributoModificar: string, nuevoAtributo: string) : boolean {
+  /**
+   * Método para modificar un atributo de un grupo de la colección
+   * @param ID ID único del frupo
+   * @param atributoModificar Atributo a modificar
+   * @param nuevoAtributo Valor del nuevo atributo
+   * @returns un valor logico si se pudo modificar el atributo o no
+   */
+  modificarGrupo(ID: number, atributoModificar: string, nuevoAtributo: string) : boolean {
     let flag: boolean = false;
     this._grupos.forEach((grupo, index) => {
       if (grupo.ID == ID) {
@@ -58,54 +91,31 @@ export class GrupoColeccion {
             this._grupos[index].nombre = nuevoAtributo;
             break;
 
-          case AtributosGrupo.Actividad:
-            if (nuevoAtributo == 'Correr') {
-              this._usuarios[index].actividades = 'Correr';
-            }
-            else if (nuevoAtributo == 'Bicicleta') {
-              this._usuarios[index].actividades = 'Bicicleta';
-            }       
+          case AtributosGrupo.Participantes:
+            this._grupos[index].participantes = nuevoAtributo.split(',').map(Number);
             break;
 
-          case AtributosUsuario.AmigosApp:
-            this._usuarios[index].amigosApp = nuevoAtributo.split(',').map(Number);
-            break;
-          
-          case AtributosUsuario.GrupoAmigos:
-            let grupoAmigosAux: Coleccion = [];
-            let grupoAmigosStr: string[] = nuevoAtributo.replaceAll('[', '').replaceAll(' ', '').replaceAll('],', '|').replaceAll(']', '').split('|');
-            grupoAmigosStr.forEach(grupo => {
-              grupoAmigosAux.push(grupo.split(',').map(Number));
-            })
-            this._usuarios[index].grupoAmigos = grupoAmigosAux;
-            break;
-          
-          case AtributosUsuario.Entrenamiento:
-            let entrenamientoAux: EstadisticasEntrenamiento;
+          case AtributosGrupo.Entrenamiento:
             let entrenamientoStr: string[] = nuevoAtributo.split(', ');
-            this._usuarios[index].entrenamiento[0] = Number(entrenamientoStr[0]);
-            this._usuarios[index].entrenamiento[1] = Number(entrenamientoStr[1]);
-            this._usuarios[index].entrenamiento[2] = entrenamientoStr[2];
-            this._usuarios[index].entrenamiento[3] = Number(entrenamientoStr[3]);
+            this._grupos[index].estadisticasEntrenamiento[0] = Number(entrenamientoStr[0]);
+            this._grupos[index].estadisticasEntrenamiento[1] = Number(entrenamientoStr[1]);
+            this._grupos[index].estadisticasEntrenamiento[2] = entrenamientoStr[2];
+            this._grupos[index].estadisticasEntrenamiento[3] = Number(entrenamientoStr[3]);
             break;
 
-          case AtributosUsuario.RutasFavoritas:
-            this._usuarios[index].rutasFavoritas = nuevoAtributo.split(',').map(Number);
+          case AtributosGrupo.RutasFavoritas:
+            this._grupos[index].rutasFavoritas = nuevoAtributo.split(',').map(Number);
             break;
 
-          case AtributosUsuario.RetosActivos:
-            this._usuarios[index].retosActivos = nuevoAtributo.split(',').map(Number);
-            break;
-
-          case AtributosUsuario.HistoricoRutas:
+          case AtributosGrupo.HistoricoRutas:
             let historicoRutasStr: string[] = nuevoAtributo.replaceAll('[', '').replaceAll(' ', '').replaceAll('],', '|').replaceAll(']', '').split('|');
             let historicoRutasAux: HistoricoRuta[] = [];
             historicoRutasStr.forEach(historico => {
               let aux: string[] = (historico.split(','));
               historicoRutasAux.push([aux[0], Number(aux[1])]);
             })
-            this._usuarios[index].historicoRutas = historicoRutasAux;
-            break;
+          this._grupos[index].historicoRutas = historicoRutasAux;
+          break;
   
         }
         flag = true;
@@ -113,5 +123,86 @@ export class GrupoColeccion {
     })
 
     return flag;
-  }*/
+  }
+
+  /**
+   * Método para retornar los Grupos correspondientes a una colección de IDs
+   * @param gruposIds Ids de los grupos a buscar
+   * @returns un array de Grupos que coinciden con los IDs introducidos
+   */
+  buscarGrupos(gruposIds: number[]) : Grupo[] {
+    let grupos: Grupo[] = [];
+
+    this._grupos.forEach(grupo => {
+      gruposIds.forEach(grupoId => {
+        if(grupo.ID ==  grupoId) {
+          grupos.push(grupo);
+        }
+      })
+    })
+
+    return grupos;
+  }
+
+
+  /**
+  * Método para mostrar una serie de atributos de un grupo de la colección
+  * @param ordenacion opción de ordenación
+  * @param orientacion opción de orientación
+  * @returns un valor logico si se pudo mostrar correctamente la información por pantalla
+  */
+  mostrarGrupos(ordenacion: string, orientacion : string) : boolean {
+
+    switch (ordenacion) {
+      case AtributosOrdenacionGrupo.Nombre:
+          switch (orientacion) {
+            case AtributosOrdenacionOrientacion.Ascendente:
+              this._grupos.sort((a, b) => {
+                return b.nombre.localeCompare(a.nombre);
+              });
+              break;
+          
+            case AtributosOrdenacionOrientacion.Descendente:
+              this._grupos.sort((a, b) => {
+                return a.nombre.localeCompare(b.nombre);
+              });
+              break;
+          }
+        break;
+      
+      case AtributosOrdenacionGrupo.Kms:
+        switch (orientacion) {
+          case AtributosOrdenacionOrientacion.Ascendente:
+            this._grupos.sort((a, b) => b.estadisticasEntrenamiento[0] - a.estadisticasEntrenamiento[0]); // Orden ascendente
+            break;
+          
+          case AtributosOrdenacionOrientacion.Descendente:
+            this._grupos.sort((a, b) => a.estadisticasEntrenamiento[0] - b.estadisticasEntrenamiento[0]); // Orden descendente
+            break;
+        }
+        break;
+      
+      case AtributosOrdenacionGrupo.Miembros:
+        switch (orientacion) {
+          case AtributosOrdenacionOrientacion.Ascendente:
+            this._grupos.sort((a, b) => b.participantes.length - a.participantes.length); // Orden ascendente
+            break;
+          
+          case AtributosOrdenacionOrientacion.Descendente:
+            this._grupos.sort((a, b) => a.participantes.length - b.participantes.length); // Orden descendente
+            break;
+        }
+        break;
+
+    }
+
+    this._grupos.forEach(grupo => {
+      grupo.mostrarGrupo();
+      console.log('\n');
+    });
+
+    return true;
+  }
+
+
 }

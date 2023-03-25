@@ -51,6 +51,20 @@ export class Ruta {
   }
 
   /**
+   * Muestra los atributos de ruta
+   */
+  mostrarRuta () : void {
+    console.log(`ID: ${this._ID}`);
+    console.log(`Nombre: ${this._nombre}`);
+    console.log(`geolocalizacionInicio: ${this._geolocalizacionInicio}`);
+    console.log(`Longitud: ${this._longitud}`);
+    console.log(`Desnivel Medio: ${this._desnivelMedio}`);
+    console.log(`Usuarios que la realizaron: ${this._usuariosRealizaron}`);
+    console.log(`Tipo de Actividad: ${this._tipoActividad}`);
+    console.log(`Calificación Media: ${this._calificacionMedia}`);
+  }
+
+  /**
    * Getter del atributo _ID
    * @return atributo _ID 
    */

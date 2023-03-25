@@ -1,26 +1,26 @@
 export type EstadisticasEntrenamiento = [number, number, string, number];
-import { Usuario } from "../usuarios/usuario";
+import { Usuario, HistoricoRuta } from "../usuarios/usuario";
 import { Ruta } from "../rutas/ruta";
 
 /**
  * Clase Grupo que alberga los distintos
- * usuarios que se unen para realizar rutas
- * en conjunto
+ * usuarios que se unen para formar un grupo
   * @param _ID ID único del grupo
   * @param _nombre Nombre del grupo
   * @param _participantes  IDs de los miembros del grupo
   * @param _estadisticasEntrenamiento Cantidad de km y desnivel total acumulados de manera grupal en la semana, mes y año
   * @param _clasificacion Ranking de los usuarios que más entrenamientos han realizado históricamente dentro del grupo, es decir, ordenar los usuarios por la cantidad de km totales o desnivel total que han acumulado
   * @param _rutasFavoritas  Rutas que los usuarios del grupo han realizado con mayor frecuencia en sus salidas conjuntas
- */
+  * @param _historicoRutas todas las rutas que ha realizado el grupo en conjunto
+*/
 export class Grupo {
   private _ID : number;
   private _nombre : string;
   private _participantes : number[];
   private _estadisticasEntrenamiento : EstadisticasEntrenamiento;
   private _clasificacion : Usuario[];
-  private _rutasFavoritas : Ruta[];
-  private _historicoRutas : Ruta[];
+  private _rutasFavoritas : number[];
+  private _historicoRutas : HistoricoRuta[];
 
   /**
   * Constructor de la clase GRrupo
@@ -33,7 +33,7 @@ export class Grupo {
   * @param historicoRutas todas las rutas que ha realizado el grupo en conjunto
   */
   constructor(ID : number, nombre : string, participantes : number[], estadisticasEntrenamiento : EstadisticasEntrenamiento,  
-              clasificacion : Usuario[], rutasFavoritas : Ruta[], historicoRutas : Ruta[]) {
+              clasificacion : Usuario[], rutasFavoritas : number[], historicoRutas : HistoricoRuta[]) {
     this._ID = ID;
     this._nombre = nombre;
     this._participantes = participantes;
@@ -43,14 +43,17 @@ export class Grupo {
     this._historicoRutas = historicoRutas;
   }
 
+  /**
+   * Muestra los atributos de grupo
+   */
   mostrarGrupo () : void {
     console.log(`ID: ${this._ID}`);
     console.log(`Nombre: ${this._nombre}`);
     console.log(`Participantes: ${this._participantes}`);
-    console.log(`Estadisticas de entrenamiento: ${this._estadisticasEntrenamiento}`);
+    console.log(`Estadísticas de Entrenamiento: ${this._estadisticasEntrenamiento}`);
     console.log(`Clasificación: ${this._clasificacion}`);
     console.log(`Rutas favoritas: ${this._rutasFavoritas}`);
-    console.log(`Histórico rutas: ${this._historicoRutas}`);
+    console.log(`Histórico de rutas: ${this.historicoRutas}`);
   }
 
   /**
@@ -147,7 +150,7 @@ export class Grupo {
   * Setter del atributo _rutasFavoritas
   * @param parametro _rutasFavoritas : Ruta[] 
   */
-  set rutasFavoritas (rutasFavoritas : Ruta[]) {
+  set rutasFavoritas (rutasFavoritas : number[]) {
     this._rutasFavoritas = rutasFavoritas;
   }
 
@@ -163,7 +166,7 @@ export class Grupo {
   * Setter del atributo _historicoRutas
   * @param parametro _historicoRutas : Ruta[] 
   */
-  set historicoRutas (historicoRutas : Ruta[]) {
+  set historicoRutas (historicoRutas : HistoricoRuta[]) {
     this._historicoRutas = historicoRutas;
   }
 }

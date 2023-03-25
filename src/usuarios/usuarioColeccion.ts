@@ -1,7 +1,20 @@
 import { Usuario, HistoricoRuta, Coleccion } from "./usuario";
 import { EstadisticasEntrenamiento } from "../grupos/grupo";
 import { Actividad } from "../rutas/ruta";
+import { AtributosOrdenacionUsuario } from "./usuarioPrompt";
+import { AtributosOrdenacionOrientacion } from "..";
 
+/**
+ * Enumerado de los distintos Atributos de un usuario
+ * @param nombre del usuario
+ * @param actividad del usuario
+ * @param amigosApp del usuario
+ * @param grupoAmigos del usuario
+ * @param entrenamiento del usuario
+ * @param rutasFavoritas del usuario
+ * @param retosActivos del usuario
+ * @param historicoRutas del usuario
+ */
 export enum AtributosUsuario {
   Nombre = 'Nombre',
   Actividad = 'Actividad (Correr o Bicicleta)',
@@ -157,6 +170,7 @@ export class UsuarioColeccion {
   buscarUsuarios(usuariosIds: number[]) : Usuario[] {
     let usuarios: Usuario[] = [];
 
+
     this._usuarios.forEach(usuario => {
       usuariosIds.forEach(usuarioId => {
         if(usuario.ID ==  usuarioId) {
@@ -167,4 +181,62 @@ export class UsuarioColeccion {
 
     return usuarios;
   }
-}
+
+  /**
+  * Método para mostrar una serie de atributos de un grupo de la colección
+  * @param ordenacion opción de ordenación
+  * @param orientacion opción de orientación
+  * @returns un valor logico si se pudo mostrar correctamente la información por pantalla
+  */
+  mostrarUsuarios(ordenacion: string, orientacion : string) : boolean {
+
+    switch (ordenacion) {
+      case AtributosOrdenacionUsuario.Nombre:
+        switch (orientacion) {
+          case AtributosOrdenacionOrientacion.Ascendente:
+            this._usuarios.sort((a, b) => {
+            return b.nombre.localeCompare(a.nombre);
+          });
+          break;
+            
+          case AtributosOrdenacionOrientacion.Descendente:
+            this._usuarios.sort((a, b) => {
+            return a.nombre.localeCompare(b.nombre);
+          });
+          break;
+        }
+      break;
+      
+      case AtributosOrdenacionUsuario.Kms:
+        switch (orientacion) {
+          case AtributosOrdenacionOrientacion.Ascendente:
+            this._usuarios.sort((a, b) => b.entrenamiento[0] - a.entrenamiento[0]); // Orden ascendente
+            break;
+          
+          case AtributosOrdenacionOrientacion.Descendente:
+            this._usuarios.sort((a, b) => a.entrenamiento[0] - b.entrenamiento[0]); // Orden descendente
+            break;
+        }
+        break;
+
+    }
+
+    this._usuarios.forEach(usuario => {
+      usuario.mostrarUsuario();
+      console.log('\n');
+    });
+
+    return true;
+  }
+
+
+  existeUsuario(id: number): boolean {
+    let result: boolean = false;
+    this._usuarios.forEach(usuario => {
+      if(usuario.ID === id) {
+        result = true;
+      }
+    });
+    return result;
+  }
+} 
