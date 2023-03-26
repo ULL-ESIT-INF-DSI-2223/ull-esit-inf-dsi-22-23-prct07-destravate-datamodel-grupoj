@@ -136,8 +136,9 @@ private storeTasks() {
 ```
 
 #### usuarioPrompt.ts
+Contiene una serie de funciones para trabajar con las distintas opciones posibles del prompt (empleando **inquirer**), relacionadas con los usuarios.
 
-
+En este fichero se encuentra el enumerado `AtributosOrdenacionUsuario` que consiste en las distintas opciones por las que se puede ordenar usuarios, por el nombre del Usuario o por los kilometros totales en función de la semana actual, mes o año; la función asíncrona `insertarUsuarioPrompt` que sirve para insertar un elemento Usuario; la función asíncrona `eliminarUsuarioPrompt` que sirve para eliminar un elemento Usuario; la función asíncrona `modificarUsuarioPrompt` que sirve para modificar un determinado elemento Usuario; la función asíncrona `insertarUsuarioPrompt` que sirve para insertar un elemento Usuario
 
 ### Grupos
 
@@ -168,27 +169,27 @@ Contiene la clase `GrupoColeccion` y sus atributos:
 
 El atributo `_ultID` se requiere debido a que los IDs de los grupos se asignan de forma automática y correlativa, es decir, se empieza por la ID número cero.
 
-Respecto a las funciones, `insertarGrupo` permite insertar un grupo a la colección de grupos de la clase; `devolverIndexGrupo` permite devolver la posición del vector en la que se encuentra un grupo con la ID introducida (`number`); `anadirUsuario` posibilita que un usuario sea añadido a un grupo concreto, recibiendo, por tanto, tanto la ID del usuario como la del grupo; `borrarGrupo` recibe la ID del grupo y procede a su eliminación en la colección; `modificarGrupo` permite modificar alguno de los parámetros del grupo, a elección del usuario que introduce cuál es el atributo a modificar y el nuevo atributo que desea establecer en sustitución; `buscarGrupos` es un método para retornar los Grupos correspondientes a una colección de IDs; `mostrarGrupos` muestra una serie de atributos de un grupo de la colección, teniendo en cuenta factores de ordenación, es decir, si se desea ordenar de manera ascendente o descendente; `existeGrupo` verifica a través de una ID si dicho grupo existe o no; y `buscarAdministrador` retornar el ID del administrador de un grupo, recibiendo la ID del mismo y retornando la ID del usuario administrado;
+Respecto a las funciones, `insertarGrupo` permite insertar un grupo a la colección de grupos de la clase; `devolverIndexGrupo` permite devolver la posición del vector en la que se encuentra un grupo con la ID introducida (`number`); `anadirUsuario` posibilita que un usuario sea añadido a un grupo concreto, recibiendo, por tanto, tanto la ID del usuario como la del grupo; `borrarGrupo` recibe la ID del grupo y procede a su eliminación en la colección; `modificarGrupo` permite modificar alguno de los parámetros del grupo, a elección del usuario que introduce cuál es el atributo a modificar y el nuevo atributo que desea establecer en sustitución; `buscarGrupos` es un método para retornar los Grupos correspondientes a una colección de IDs; `mostrarGrupos` muestra una serie de atributos de un grupo de la colección, teniendo en cuenta factores de ordenación, es decir, si se desea ordenar de manera ascendente o descendente; `existeGrupo` verifica a través de una ID si dicho grupo existe o no; y `buscarAdministrador` retornar el ID del administrador de un grupo, recibiendo la ID del mismo y retornando la ID del usuario administrado.
+
+#### jsonGrupoColeccion.ts
+
+Este fichero posee la clase que interactúa con el fichero JSON, `JsonGrupoColeccion`. Esta clase sirve para guardar la información de los grupos. A su vez, también se encuentra el esquema de la Base de Datos para Grupo (`lowdb`):
+
+```typescript
+
+```
+
+
 
 #### grupoPrompt.ts
 
 Contiene una serie de funciones para trabajar con las distintas opciones posibles del prompt (empleando **inquirer**), relacionadas con los grupos.
 
-Dichas funciones son las siguientes: `insertarGrupoPrompt` solicita los datos uno a uno para insertar un grupo, es decir, añadirlo a la clase `GrupoColeccion`; `eliminarGrupoPrompt` solicita el ID del grupo a eliminar y procede a su eliminación
+Dichas funciones son las siguientes: `insertarGrupoPrompt` solicita los datos uno a uno para insertar un grupo, es decir, añadirlo a la clase `GrupoColeccion`; `eliminarGrupoPrompt` solicita el ID del grupo a eliminar y procede a su eliminación; `modificarGrupoPrompt` para modificar un determinado elemento, que es indicado por el usuario; `mostrarGrupoPrompt` para mostrar los grupos según unos criterios de ordenación introducido en las opciones; Por último, `promptGrupos`, que se encarga de gestionar todas las posibilidades dentro de grupos, es decir, las funciones anteriomente comentadas que permiten modificar, 
 
 Se hace uso de funciones de la clase `JsonGrupoColeccion` para llevar a cabo las tareas como eliminar, incluir o mostrar usuarios. 
 
 Las funciones que reciben como parámetro la ID del administrador del grupo lo hacen para garantizar que es el propietario de dicho grupo, en caso de que no lo sea no podría realizar cambios. Algunas funciones para finalizar su ejecucción llaman a la función prompt principal, es decir, al menú inicial. 
-
-lowdb, archivos json. para ello extendemos de grupo collection tenemos un constructor que coge todos los elementos y los va guardando en json, en caso de que esté vacío crea uno nuevo...
-  
-#### jsonGrupoColeccion.ts
-
-Este fichero posee la clase que interactúa con el fichero JSON, `JsonUsuarioColeccion`. Esta clase sirve para guardar la información de los USuarios. A su vez, también se encuentra el esquema de la Base de Datos para Usuario:
-
-```typescript
-
-```
 
 
 ### Rutas
@@ -225,7 +226,7 @@ En esta clase tambien definimos un método para retornar las Rutas correspondien
 
 
 #### jsonRutaColeccion.ts
-Este fichero posee la clase que interactúa con el fichero JSON, `JsonRutaColeccion`. Esta clase sirve para guardar la información de las Rutas. A su vez, también se encuentra el esquema de la Base de Datos para Ruta:
+Este fichero posee la clase que interactúa con el fichero JSON, `JsonRutaColeccion`. Esta clase sirve para guardar la información de las Rutas. A su vez, también se encuentra el esquema de la Base de Datos para Ruta (`lowdb`):
 ```typescript
 type schemaRutas = {
   ruta: {
@@ -288,6 +289,20 @@ private storeTasks() {
   this.database.set("usuario", [...this._usuarios.values()]).write();
 }
 ```
+
+#### jsonRutaColeccion.ts
+Contiene una serie de funciones para trabajar con las distintas opciones posibles del prompt (empleando **inquirer**), relacionadas con las Rutas.
+
+Dichas funciones son las siguientes: 
+- `insertarRutaPrompt()` solicita los datos uno a uno para insertar una ruta, es decir, añadirla a la clase `RutaColeccion`.
+- `eliminarRutaPrompt()` solicita el ID de la Ruta a eliminar y procede a su eliminación llamando al método de la clase.
+- `modificarRutaPrompt()` solicita el ID de la Ruta a modificar, el atributo a modificar y el nuevo valor, y procede a modificarlo llamando al método de la clase.
+- `mostrarRutaPrompt()` muestra una lista de opciones de atributos para la ordenación y vizualización, y tras el usuario elegir una, junto a la opcion de ascendente o descendente, llama a la método de la clase encargado de mostrar las Rutas.
+
+Se hace uso de funciones de la clase `JsonRutaColeccion` para llevar a cabo las tareas como eliminar, incluir o mostrar usuarios. 
+
+Las funciones que reciben como parámetro la ID del administrador del grupo lo hacen para garantizar que es el propietario de dicho grupo, en caso de que no lo sea no podría realizar cambios. Algunas funciones para finalizar su ejecucción llaman a la función prompt principal, es decir, al menú inicial. 
+
 
 ### Retos
 ### Gestor

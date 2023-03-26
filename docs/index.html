@@ -29,17 +29,19 @@
 <a href="#índice" id="índice" style="color: inherit; text-decoration: none;">
   <h2>Índice</h2>
 </a>
-<ol>
+<ul>
 <li><a href="#introducci%C3%B3n">Introdución</a></li>
-<li><a href="#implementaci%C3%B3n">Implementación</a></li>
-</ol>
-<p>  2.1. <a href="#usuarios">Usuarios</a></p>
-<p>  2.2. <a href="#grupos">Grupos</a></p>
-<p>  2.3. <a href="#rutas">Rutas</a></p>
-<p>  2.4. <a href="#retos">Retos</a></p>
-<p>  2.5. <a href="#gestor">Gestor</a>
-3. <a href="#conclusiones">Conclusiones</a>
-4. <a href="#referencias">Referencias</a></p>
+<li><a href="#implementaci%C3%B3n">Implementación</a><ul>
+<li><a href="#usuarios">Usuarios</a></li>
+<li><a href="#grupos">Grupos</a></li>
+<li><a href="#rutas">Rutas</a></li>
+<li><a href="#retos">Retos</a></li>
+<li><a href="#gestor">Gestor</a></li>
+</ul>
+</li>
+<li><a href="#conclusiones">Conclusiones</a></li>
+<li><a href="#referencias">Referencias</a></li>
+</ul>
 
 <a href="#introducción" id="introducción" style="color: inherit; text-decoration: none;">
   <h2>Introducción</h2>
@@ -116,6 +118,8 @@
 <a href="#usuariopromptts" id="usuariopromptts" style="color: inherit; text-decoration: none;">
   <h4>usuarioPrompt.ts</h4>
 </a>
+<p>Contiene una serie de funciones para trabajar con las distintas opciones posibles del prompt (empleando <strong>inquirer</strong>), relacionadas con los usuarios.</p>
+<p>En este fichero se encuentra el enumerado <code>AtributosOrdenacionUsuario</code> que consiste en las distintas opciones por las que se puede ordenar usuarios, por el nombre del Usuario o por los kilometros totales en función de la semana actual, mes o año; la función asíncrona <code>insertarUsuarioPrompt</code> que sirve para insertar un elemento Usuario; la función asíncrona <code>eliminarUsuarioPrompt</code> que sirve para eliminar un elemento Usuario; la función asíncrona <code>modificarUsuarioPrompt</code> que sirve para modificar un determinado elemento Usuario;</p>
 
 <a href="#grupos" id="grupos" style="color: inherit; text-decoration: none;">
   <h3>Grupos</h3>
@@ -140,23 +144,22 @@
 <li><code>protected _ultID : number</code>, el último ID que se ha asignado.</li>
 </ul>
 <p>El atributo <code>_ultID</code> se requiere debido a que los IDs de los grupos se asignan de forma automática y correlativa, es decir, se empieza por la ID número cero.</p>
-<p>Respecto a las funciones, <code>insertarGrupo</code> permite insertar un grupo a la colección de grupos de la clase; <code>devolverIndexGrupo</code> permite devolver la posición del vector en la que se encuentra un grupo con la ID introducida (<code>number</code>); <code>anadirUsuario</code> posibilita que un usuario sea añadido a un grupo concreto, recibiendo, por tanto, tanto la ID del usuario como la del grupo; <code>borrarGrupo</code> recibe la ID del grupo y procede a su eliminación en la colección; <code>modificarGrupo</code> permite modificar alguno de los parámetros del grupo, a elección del usuario que introduce cuál es el atributo a modificar y el nuevo atributo que desea establecer en sustitución; <code>buscarGrupos</code> es un método para retornar los Grupos correspondientes a una colección de IDs; <code>mostrarGrupos</code> muestra una serie de atributos de un grupo de la colección, teniendo en cuenta factores de ordenación, es decir, si se desea ordenar de manera ascendente o descendente; <code>existeGrupo</code> verifica a través de una ID si dicho grupo existe o no; y <code>buscarAdministrador</code> retornar el ID del administrador de un grupo, recibiendo la ID del mismo y retornando la ID del usuario administrado;</p>
+<p>Respecto a las funciones, <code>insertarGrupo</code> permite insertar un grupo a la colección de grupos de la clase; <code>devolverIndexGrupo</code> permite devolver la posición del vector en la que se encuentra un grupo con la ID introducida (<code>number</code>); <code>anadirUsuario</code> posibilita que un usuario sea añadido a un grupo concreto, recibiendo, por tanto, tanto la ID del usuario como la del grupo; <code>borrarGrupo</code> recibe la ID del grupo y procede a su eliminación en la colección; <code>modificarGrupo</code> permite modificar alguno de los parámetros del grupo, a elección del usuario que introduce cuál es el atributo a modificar y el nuevo atributo que desea establecer en sustitución; <code>buscarGrupos</code> es un método para retornar los Grupos correspondientes a una colección de IDs; <code>mostrarGrupos</code> muestra una serie de atributos de un grupo de la colección, teniendo en cuenta factores de ordenación, es decir, si se desea ordenar de manera ascendente o descendente; <code>existeGrupo</code> verifica a través de una ID si dicho grupo existe o no; y <code>buscarAdministrador</code> retornar el ID del administrador de un grupo, recibiendo la ID del mismo y retornando la ID del usuario administrado.</p>
+
+<a href="#jsongrupocoleccionts" id="jsongrupocoleccionts" style="color: inherit; text-decoration: none;">
+  <h4>jsonGrupoColeccion.ts</h4>
+</a>
+<p>Este fichero posee la clase que interactúa con el fichero JSON, <code>JsonGrupoColeccion</code>. Esta clase sirve para guardar la información de los grupos. A su vez, también se encuentra el esquema de la Base de Datos para Grupo (<code>lowdb</code>):</p>
+<pre><code class="language-typescript">
+</code></pre>
 
 <a href="#grupopromptts" id="grupopromptts" style="color: inherit; text-decoration: none;">
   <h4>grupoPrompt.ts</h4>
 </a>
 <p>Contiene una serie de funciones para trabajar con las distintas opciones posibles del prompt (empleando <strong>inquirer</strong>), relacionadas con los grupos.</p>
-<p>Dichas funciones son las siguientes: <code>insertarGrupoPrompt</code> solicita los datos uno a uno para insertar un grupo, es decir, añadirlo a la clase <code>GrupoColeccion</code>; <code>eliminarGrupoPrompt</code> solicita el ID del grupo a eliminar y procede a su eliminación</p>
+<p>Dichas funciones son las siguientes: <code>insertarGrupoPrompt</code> solicita los datos uno a uno para insertar un grupo, es decir, añadirlo a la clase <code>GrupoColeccion</code>; <code>eliminarGrupoPrompt</code> solicita el ID del grupo a eliminar y procede a su eliminación; <code>modificarGrupoPrompt</code> para modificar un determinado elemento, que es indicado por el usuario; <code>mostrarGrupoPrompt</code> para mostrar los grupos según unos criterios de ordenación introducido en las opciones; Por último, <code>promptGrupos</code>, que se encarga de gestionar todas las posibilidades dentro de grupos, es decir, las funciones anteriomente com </p>
 <p>Se hace uso de funciones de la clase <code>JsonGrupoColeccion</code> para llevar a cabo las tareas como eliminar, incluir o mostrar usuarios. </p>
-<p>Las funciones que reciben como parámetro la ID del administrador del grupo lo hacen para garantizar que es el propietario de dicho grupo . Algunas funciones para finalizar su ejecucción llaman a la función prompt principal, es decir, al menú inicial. </p>
-<p>lowdb, archivos json. para ello extendemos de grupo collection tenemos un constructor que coge todos los elementos y los va guardando en json, en caso de que esté vacío crea uno nuevo...</p>
-
-<a href="#jsongrupocoleccionts" id="jsongrupocoleccionts" style="color: inherit; text-decoration: none;">
-  <h4>jsonGrupoColeccion.ts</h4>
-</a>
-<p>Este fichero posee la clase que interactúa con el fichero JSON, <code>JsonUsuarioColeccion</code>. Esta clase sirve para guardar la información de los USuarios. A su vez, también se encuentra el esquema de la Base de Datos para Usuario:</p>
-<pre><code class="language-typescript">
-</code></pre>
+<p>Las funciones que reciben como parámetro la ID del administrador del grupo lo hacen para garantizar que es el propietario de dicho grupo, en caso de que no lo sea no podría realizar cambios. Algunas funciones para finalizar su ejecucción llaman a la función prompt principal, es decir, al menú inicial. </p>
 
 <a href="#rutas" id="rutas" style="color: inherit; text-decoration: none;">
   <h3>Rutas</h3>
@@ -184,7 +187,7 @@
 <a href="#jsonrutacoleccionts" id="jsonrutacoleccionts" style="color: inherit; text-decoration: none;">
   <h4>jsonRutaColeccion.ts</h4>
 </a>
-<p>Este fichero posee la clase que interactúa con el fichero JSON, <code>JsonRutaColeccion</code>. Esta clase sirve para guardar la información de las Rutas. A su vez, también se encuentra el esquema de la Base de Datos para Ruta:</p>
+<p>Este fichero posee la clase que interactúa con el fichero JSON, <code>JsonRutaColeccion</code>. Esta clase sirve para guardar la información de las Rutas. A su vez, también se encuentra el esquema de la Base de Datos para Ruta (<code>lowdb</code>):</p>
 <pre><code class="language-typescript"><span class="hl-4">type</span><span class="hl-1"> </span><span class="hl-5">schemaRutas</span><span class="hl-1"> = {</span><br/><span class="hl-1">  </span><span class="hl-0">ruta</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-0">_ID</span><span class="hl-1">: </span><span class="hl-5">number</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-0">_nombre</span><span class="hl-1">: </span><span class="hl-5">string</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-0">_geolocalizacionInicio</span><span class="hl-1">: </span><span class="hl-5">Coordenada</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-0">_geolocalizacionFinal</span><span class="hl-1">: </span><span class="hl-5">Coordenada</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-0">_longitud</span><span class="hl-1">: </span><span class="hl-5">number</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-0">_desnivelMedio</span><span class="hl-1">: </span><span class="hl-5">number</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-0">_usuariosRealizaron</span><span class="hl-1">: </span><span class="hl-5">number</span><span class="hl-1">[];</span><br/><span class="hl-1">    </span><span class="hl-0">_tipoActividad</span><span class="hl-1">: </span><span class="hl-5">Actividad</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-0">_calificacionMedia</span><span class="hl-1">: </span><span class="hl-5">number</span><span class="hl-1">;</span><br/><span class="hl-1">  }[];</span><br/><span class="hl-1">}</span>
 </code></pre>
 <p>Esta clase hereda de la clase <code>RutaColeccion</code>, y en esta definimos los métodos que invocan a otros de la heredada y que despues llaman a un método interno que sirve para guardar la información en el Json.</p>
@@ -200,30 +203,34 @@
 <pre><code class="language-typescript"><span class="hl-6">removeRuta</span><span class="hl-1">(</span><span class="hl-7">ID</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">): </span><span class="hl-0">boolean</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">let</span><span class="hl-1"> </span><span class="hl-0">borro</span><span class="hl-1">: </span><span class="hl-5">boolean</span><span class="hl-1"> = </span><span class="hl-4">super</span><span class="hl-1">.</span><span class="hl-6">borrarRuta</span><span class="hl-1">(</span><span class="hl-7">ID</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-4">this</span><span class="hl-1">.</span><span class="hl-6">storeTasks</span><span class="hl-1">();</span><br/><span class="hl-1">  </span><span class="hl-8">return</span><span class="hl-1"> </span><span class="hl-0">borro</span><span class="hl-1">;</span><br/><span class="hl-1">}</span>
 </code></pre>
 <ul>
-<li><code>modifyRuta</code>:  Método para modificar un atributo de un usuario de la colección</li>
+<li><code>modifyRuta</code>:  Método para modificar un atributo de una ruta de la colección</li>
 </ul>
 <pre><code class="language-typescript"><span class="hl-6">modifyRuta</span><span class="hl-1">(</span><span class="hl-7">ID</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">, </span><span class="hl-0">atributoModificar</span><span class="hl-1">: </span><span class="hl-0">string</span><span class="hl-1">, </span><span class="hl-0">nuevoAtributo</span><span class="hl-1">: </span><span class="hl-0">string</span><span class="hl-1">): </span><span class="hl-0">boolean</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">let</span><span class="hl-1"> </span><span class="hl-0">modifico</span><span class="hl-1">: </span><span class="hl-5">boolean</span><span class="hl-1"> = </span><span class="hl-4">super</span><span class="hl-1">.</span><span class="hl-6">modificarRuta</span><span class="hl-1">(</span><span class="hl-7">ID</span><span class="hl-1">, </span><span class="hl-0">atributoModificar</span><span class="hl-1">, </span><span class="hl-0">nuevoAtributo</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-4">this</span><span class="hl-1">.</span><span class="hl-6">storeTasks</span><span class="hl-1">();</span><br/><span class="hl-1">  </span><span class="hl-8">return</span><span class="hl-1"> </span><span class="hl-0">modifico</span><span class="hl-1">;</span><br/><span class="hl-1">}</span>
 </code></pre>
 <ul>
-<li><code>showUsuario</code>:  Método para mostrar una serie de atributos de un usuario de la colección</li>
+<li><code>showRuta</code>:  Método para mostrar una serie de atributos de una ruta de la colección</li>
 </ul>
-<pre><code class="language-typescript"><span class="hl-6">showUsuario</span><span class="hl-1">(</span><span class="hl-0">ordenacion</span><span class="hl-1">: </span><span class="hl-0">string</span><span class="hl-1">, </span><span class="hl-0">orientacion</span><span class="hl-1">: </span><span class="hl-0">string</span><span class="hl-1">): </span><span class="hl-0">boolean</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">let</span><span class="hl-1"> </span><span class="hl-0">muestro</span><span class="hl-1">: </span><span class="hl-5">boolean</span><span class="hl-1"> = </span><span class="hl-4">super</span><span class="hl-1">.</span><span class="hl-6">mostrarUsuarios</span><span class="hl-1">(</span><span class="hl-0">ordenacion</span><span class="hl-1">, </span><span class="hl-0">orientacion</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-8">return</span><span class="hl-1"> </span><span class="hl-0">muestro</span><span class="hl-1">;</span><br/><span class="hl-1">}</span>
-</code></pre>
-<ul>
-<li><code>addAmigo</code>: Método para añadir un amigo a un usuario</li>
-</ul>
-<pre><code class="language-typescript"><span class="hl-6">addAmigo</span><span class="hl-1">(</span><span class="hl-0">ID_usuario</span><span class="hl-1"> : </span><span class="hl-0">number</span><span class="hl-1">, </span><span class="hl-0">ID_amigo</span><span class="hl-1"> : </span><span class="hl-0">number</span><span class="hl-1">) {</span><br/><span class="hl-1">  </span><span class="hl-4">super</span><span class="hl-1">.</span><span class="hl-6">anadirAmigo</span><span class="hl-1">(</span><span class="hl-0">ID_usuario</span><span class="hl-1">, </span><span class="hl-0">ID_amigo</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-4">this</span><span class="hl-1">.</span><span class="hl-6">storeTasks</span><span class="hl-1">();</span><br/><span class="hl-1">}</span>
-</code></pre>
-<ul>
-<li><code>removeAmigo</code>: Método para eliminar un amigo a un usuario</li>
-</ul>
-<pre><code class="language-typescript"><span class="hl-6">removeAmigo</span><span class="hl-1">(</span><span class="hl-0">ID_usuario</span><span class="hl-1"> : </span><span class="hl-0">number</span><span class="hl-1">, </span><span class="hl-0">ID_amigo</span><span class="hl-1"> : </span><span class="hl-0">number</span><span class="hl-1">) {</span><br/><span class="hl-1">  </span><span class="hl-4">super</span><span class="hl-1">.</span><span class="hl-6">borrarAmigo</span><span class="hl-1">(</span><span class="hl-0">ID_usuario</span><span class="hl-1">, </span><span class="hl-0">ID_amigo</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-4">this</span><span class="hl-1">.</span><span class="hl-6">storeTasks</span><span class="hl-1">();</span><br/><span class="hl-1">}</span>
+<pre><code class="language-typescript"><span class="hl-6">showRuta</span><span class="hl-1">(</span><span class="hl-0">ordenacion</span><span class="hl-1">: </span><span class="hl-0">string</span><span class="hl-1">, </span><span class="hl-0">orientacion</span><span class="hl-1">: </span><span class="hl-0">string</span><span class="hl-1">): </span><span class="hl-0">boolean</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">let</span><span class="hl-1"> </span><span class="hl-0">muestro</span><span class="hl-1">: </span><span class="hl-5">boolean</span><span class="hl-1"> = </span><span class="hl-4">super</span><span class="hl-1">.</span><span class="hl-6">mostrarRuta</span><span class="hl-1">(</span><span class="hl-0">ordenacion</span><span class="hl-1">, </span><span class="hl-0">orientacion</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-8">return</span><span class="hl-1"> </span><span class="hl-0">muestro</span><span class="hl-1">;</span><br/><span class="hl-1">}</span>
 </code></pre>
 <ul>
 <li><code>storeTasks</code>: Método privado para actualizar los valores del fichero JSON, con los de la colección</li>
 </ul>
 <pre><code class="language-typescript"><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-6">storeTasks</span><span class="hl-1">() {</span><br/><span class="hl-1">  </span><span class="hl-4">this</span><span class="hl-1">.</span><span class="hl-0">database</span><span class="hl-1">.</span><span class="hl-6">set</span><span class="hl-1">(</span><span class="hl-9">&quot;usuario&quot;</span><span class="hl-1">, [...</span><span class="hl-4">this</span><span class="hl-1">.</span><span class="hl-0">_usuarios</span><span class="hl-1">.</span><span class="hl-6">values</span><span class="hl-1">()]).</span><span class="hl-6">write</span><span class="hl-1">();</span><br/><span class="hl-1">}</span>
 </code></pre>
+
+<a href="#jsonrutacoleccionts-1" id="jsonrutacoleccionts-1" style="color: inherit; text-decoration: none;">
+  <h4>jsonRutaColeccion.ts</h4>
+</a>
+<p>Contiene una serie de funciones para trabajar con las distintas opciones posibles del prompt (empleando <strong>inquirer</strong>), relacionadas con las Rutas.</p>
+<p>Dichas funciones son las siguientes: </p>
+<ul>
+<li><code>insertarRutaPrompt()</code> solicita los datos uno a uno para insertar una ruta, es decir, añadirla a la clase <code>RutaColeccion</code>.</li>
+<li><code>eliminarRutaPrompt()</code> solicita el ID de la Ruta a eliminar y procede a su eliminación llamando al método de la clase.</li>
+<li><code>modificarRutaPrompt()</code> solicita el ID de la Ruta a modificar, el atributo a modificar y el nuevo valor, y procede a modificarlo llamando al método de la clase.</li>
+<li><code>mostrarRutaPrompt()</code> muestra una lista de opciones de atributos para la ordenación y vizualización, y tras el usuario elegir una, junto a la opcion de ascendente o descendente, llama a la método de la clase encargado de mostrar las Rutas.</li>
+</ul>
+<p>Se hace uso de funciones de la clase <code>JsonRutaColeccion</code> para llevar a cabo las tareas como eliminar, incluir o mostrar usuarios. </p>
+<p>Las funciones que reciben como parámetro la ID del administrador del grupo lo hacen para garantizar que es el propietario de dicho grupo, en caso de que no lo sea no podría realizar cambios. Algunas funciones para finalizar su ejecucción llaman a la función prompt principal, es decir, al menú inicial. </p>
 
 <a href="#retos" id="retos" style="color: inherit; text-decoration: none;">
   <h3>Retos</h3>
