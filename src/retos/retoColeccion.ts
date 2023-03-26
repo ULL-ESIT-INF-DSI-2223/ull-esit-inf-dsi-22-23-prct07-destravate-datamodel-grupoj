@@ -119,6 +119,13 @@ export class RetoColeccion {
     return flag;
   }
 
+  /**
+   * Método para mostrar los distintos retos, siguiendo
+   * criterios de ordenación 
+   * @param ordenación criterio por el que se desea realizar la ordenación
+   * @param orientación si la ordenación se debe mostrar por orden ascendente o descendente
+   * @returns un valor logico si se pudo mostrar correctamente o no
+   */
   mostrarRetos(ordenacion: string, orientacion : string) : boolean {
 
     switch (ordenacion) {

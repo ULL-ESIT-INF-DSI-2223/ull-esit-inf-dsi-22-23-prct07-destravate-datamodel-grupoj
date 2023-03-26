@@ -8,13 +8,20 @@ enum LogIn {
   Registrarse = "Registrarse"
 }
 
+/**
+ * Clase Gestor 
+ * para gestionar el tratamiento de la información del sistema
+ * @param UsuarioRegistradoID almacena la última ID empleada en un usuario registrado en el sistema
+ */
 export class Gestor {
   private UsuarioRegistradoID: number = 0;
-  private enGrupo:boolean = false;
   constructor(private _usuarios : JsonUsuarioColeccion, private _grupos : JsonGrupoColeccion,
-                      private _rutas : JsonRutaColeccion, private _retos : JsonRetoColeccion) {
-  }
+                      private _rutas : JsonRutaColeccion, private _retos : JsonRetoColeccion) {}
 
+  /**
+   * Función que posibilita a un usuario registrarte
+   * en el sistema, solicitando para ello una serie de atributos requeridos
+   */                  
   registrarse() : void {
     console.clear();
     inquirer.prompt({
@@ -49,6 +56,10 @@ export class Gestor {
     })
   }
 
+  /**
+   * Clase para que un usuario pueda añadir un amigo a su lista
+   * de amigos
+   */
   añadirAmigo() : void {
     inquirer.prompt([  
     {
@@ -66,6 +77,10 @@ export class Gestor {
     })
   }
 
+  /**
+   * Función para que un usuario pueda
+   * eliminar a un usuario de su lista de amistades
+   */
   eliminarAmigo() : void {
     inquirer.prompt([  
     {
@@ -83,15 +98,26 @@ export class Gestor {
     })
   }
 
+  /**
+   * Función para visualizar los distintos usuarios siguiendo criterios
+   * de ordenación indicados por el usuario, según una lista de opciones
+   */
   visualizarUsuarios() : void {
     mostrarUsuarioPrompt(0);
   }
 
-  visualizarRutas () : void {
+  /**
+   * Función para visualizar las distintos rutas siguiendo criterios
+   * de ordenación indicados por el usuario, según una lista de opciones
+   */
+  visualizarRutas() : void {
     mostrarRutaPrompt(0);
   }
 
-  unirseGrupo () : void {
+  /**
+   * Función para que un usuario se pueda unir a un determinado grupo
+   */
+  unirseGrupo() : void {
     inquirer.prompt([  
       {
         type: "input",
@@ -108,15 +134,26 @@ export class Gestor {
     })
   }
   
-  visualizarGrupo () : void {
+  /**
+   * Función para visualizar los grupos siguiendo criterios
+   * de ordenación indicados por el usuario, según una lista de opciones
+   */
+  visualizarGrupo() : void {
     mostrarGrupoPrompt(0);
   }
   
-  crearGrupo () : void {
+  /**
+   * Función para crear un grupo, solicitando los datos necesarios
+   * para construirlo
+   */
+  crearGrupo() : void {
     insertarGrupoPrompt(0, this.UsuarioRegistradoID);
   }
 
-  borrarGrupo () : void {
+  /**
+   * Función para borrar un grupo, solicitando la ID del mismo
+   */
+  borrarGrupo() : void {
     eliminarGrupoPrompt(0, this.UsuarioRegistradoID);
   }
 }

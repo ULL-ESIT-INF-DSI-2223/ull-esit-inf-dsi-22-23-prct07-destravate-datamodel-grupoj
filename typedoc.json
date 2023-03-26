@@ -15,7 +15,9 @@
     "./src/grupos/grupo.ts",
     "./src/grupos/grupoColeccion.ts",
     "./src/grupos/jsonGrupoColeccion.ts",
-    "./src/grupos/grupoPrompt.ts"
+    "./src/grupos/grupoPrompt.ts",
+    "./src/grupos/gestor.ts",
+    "./src/grupos/index.ts"
   ],
   "out": "./docs" 
 }

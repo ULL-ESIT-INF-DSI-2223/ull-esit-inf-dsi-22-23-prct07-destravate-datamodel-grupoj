@@ -37,6 +37,7 @@
 <li><a href="#rutas">Rutas</a></li>
 <li><a href="#retos">Retos</a></li>
 <li><a href="#gestor">Gestor</a></li>
+<li><a href="#index">Index</a></li>
 </ul>
 </li>
 <li><a href="#conclusiones">Conclusiones</a></li>
@@ -70,12 +71,12 @@
 <a href="#usuariocoleccionts" id="usuariocoleccionts" style="color: inherit; text-decoration: none;">
   <h4>usuarioColeccion.ts</h4>
 </a>
-<p>Este fichero posee una clase que almacena varios elementos de la clase usuarios. Otro atributo que posee es el parametro <code>_ultID</code>, que consiste en guarda el ID registrado y sumarle itereadamente 1, para dar a los distintos usuarios un único ID y de manera ordenada. A su vez, en este fichero se encuentran enumerados como <code>AtributosUsuario</code> que muestra como se pondrían los atributos de usuario. También existen clase que ayudan a modificar el array de Usuario como <code>insertarUsuario</code>, añade Usuario a Array; <code>borrarUsuario</code>, se elimina Usuario del array; <code>modificarUsuario</code>, que cambia las entradas a los atributos de la clase; <code>buscarUsuarios</code>, retorna los usuarios correspondientes a una colección de IDs; <code>devolverIndexUsuario</code>, obtiene la posición en el array de la clase; <code>añadirAmigos</code>, añade un amigo a un usuario; <code>borrarAmigo</code>, elimina un amigo a un usuario; <code>mostrarUsuario</code>, muestra una serie de atributos de un grupo de la colección; y, por último, <code>existeUsuario</code>, verifica si el usuario pertenece a la colección.</p>
+<p>Este fichero posee una clase que almacena varios elementos de la clase Usuario. Otro atributo que posee es el parametro <code>_ultID</code>, que consiste en guarda el ID registrado y sumarle itereadamente 1, para dar a los distintos usuarios un único ID y de manera ordenada. A su vez, en este fichero se encuentran enumerados como <code>AtributosUsuario</code> que muestra como se pondrían los atributos de usuario. También existen clase que ayudan a modificar el array de Usuario como <code>insertarUsuario</code>, añade Usuario a Array; <code>borrarUsuario</code>, se elimina Usuario del array; <code>modificarUsuario</code>, que cambia las entradas a los atributos de la clase; <code>buscarUsuarios</code>, retorna los usuarios correspondientes a una colección de IDs; <code>devolverIndexUsuario</code>, obtiene la posición en el array de la clase; <code>añadirAmigos</code>, añade un amigo a un usuario; <code>borrarAmigo</code>, elimina un amigo a un usuario; <code>mostrarUsuario</code>, muestra una serie de atributos de un usuario de la colección; y, por último, <code>existeUsuario</code>, verifica si el usuario pertenece a la colección.</p>
 
 <a href="#jsonusuariocoleccionts" id="jsonusuariocoleccionts" style="color: inherit; text-decoration: none;">
   <h4>jsonUsuarioColeccion.ts</h4>
 </a>
-<p>Este fichero posee la clase que interactúa con el fichero JSON, <code>JsonUsuarioColeccion</code>. Esta clase sirve para guardar la información de los USuarios. A su vez, también se encuentra el esquema de la Base de Datos para Usuario:</p>
+<p>Este fichero posee la clase que interactúa con el fichero JSON, <code>JsonUsuarioColeccion</code>. Esta clase sirve para guardar la información de los Usuarios. A su vez, también se encuentra el esquema de la Base de Datos para Usuario:</p>
 <pre><code class="language-typescript"><span class="hl-4">type</span><span class="hl-1"> </span><span class="hl-5">schemaUsuarios</span><span class="hl-1"> = {</span><br/><span class="hl-1">  </span><span class="hl-0">usuario</span><span class="hl-1">: { </span><br/><span class="hl-1">    </span><span class="hl-0">_ID</span><span class="hl-1">: </span><span class="hl-5">number</span><span class="hl-1">; </span><br/><span class="hl-1">    </span><span class="hl-0">_nombre</span><span class="hl-1">: </span><span class="hl-5">string</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-0">_actividades</span><span class="hl-1">: </span><span class="hl-5">Actividad</span><span class="hl-1">; </span><br/><span class="hl-1">    </span><span class="hl-0">_amigosApp</span><span class="hl-1">: </span><span class="hl-5">number</span><span class="hl-1">[]; </span><br/><span class="hl-1">    </span><span class="hl-0">_grupoAmigos</span><span class="hl-1">: </span><span class="hl-5">Coleccion</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-0">_entrenamiento</span><span class="hl-1">: </span><span class="hl-5">EstadisticasEntrenamiento</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-0">_rutasFavoritas</span><span class="hl-1">: </span><span class="hl-5">number</span><span class="hl-1">[];</span><br/><span class="hl-1">    </span><span class="hl-0">_retosActivos</span><span class="hl-1">: </span><span class="hl-5">number</span><span class="hl-1">[];</span><br/><span class="hl-1">    </span><span class="hl-0">_historicoRutas</span><span class="hl-1">: </span><span class="hl-5">HistoricoRuta</span><span class="hl-1">[];</span><br/><span class="hl-1">  }[];</span><br/><span class="hl-1">};</span>
 </code></pre>
 <p>Y dentro de la clase JsonUsuarioColeccion se encuentra el constructor, y los siguientes métodos:</p>
@@ -279,17 +280,68 @@
 <p>Para esta práctica se crea una clase llamada <code>Reto</code> que se encuentra en el fichero <code>reto.ts</code>. Esta clase contiene los siguientes atributos:</p>
 <pre><code class="language-typescript"><span class="hl-1">- </span><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-0">_ID</span><span class="hl-1">  </span><span class="hl-3">//ID único del reto</span><br/><span class="hl-1">- </span><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-0">_nombre</span><span class="hl-1">  </span><span class="hl-3">//Nombre del reto</span><br/><span class="hl-1">- </span><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-0">_rutas</span><span class="hl-1"> </span><span class="hl-0">Rutas</span><span class="hl-1">  </span><span class="hl-3">//que forman parte del reto</span><br/><span class="hl-1">- </span><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-0">_tipoActividad</span><span class="hl-1">  </span><span class="hl-3">//Tipo de actividad del reto: bicicleta o correr</span><br/><span class="hl-1">- </span><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-0">_kilometrosTotales</span><span class="hl-1">  </span><span class="hl-3">//Km totales a realizar (como la suma de los kms de las rutas que lo engloban)</span><br/><span class="hl-1">- </span><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-0">_usuarios</span><span class="hl-1">  </span><span class="hl-3">//Usuarios que están realizando el reto</span>
 </code></pre>
-<p>Los métodos de la clase son los respectivos getters y setters, una función mostrarReto</p>
+<p>Los métodos de la clase son los respectivos getters y setters, y una función mostrarReto (muestra todos los atributos con su valor).</p>
+
+<a href="#retocoleccionts" id="retocoleccionts" style="color: inherit; text-decoration: none;">
+  <h4>retoColeccion.ts</h4>
+</a>
+<p>Este fichero posee una clase que almacena varios elementos de la clase Reto. Otro atributo que posee es el parametro <code>_ultID</code>, que consiste en guarda el ID registrado y sumarle itereadamente 1, para dar a los distintos usuarios un único ID y de manera ordenada. A su vez, en este fichero se encuentran enumerados como <code>AtributosReto</code> que muestra como se pondrían los atributos de reto. También existen clase que ayudan a modificar el array de Usuario como <code>insertarReto</code>, añade Reto a Array; <code>borrarReto</code>, se elimina Reto del array; <code>modificarReto</code>, que cambia las entradas a los atributos de la clase; y, por último, <code>mostrarReto</code>, muestra una serie de atributos de un Reto de la colección;</p>
+
+<a href="#jsonretocoleccionts" id="jsonretocoleccionts" style="color: inherit; text-decoration: none;">
+  <h4>jsonRetoColeccion.ts</h4>
+</a>
+<p>Este fichero posee la clase que interactúa con el fichero JSON, <code>JsonRetoColeccion</code>. Esta clase sirve para guardar la información de los Retos. A su vez, también se encuentra el esquema de la Base de Datos para Reto:</p>
+<pre><code class="language-typescript"><span class="hl-4">type</span><span class="hl-1"> </span><span class="hl-5">schemaRetos</span><span class="hl-1"> = {</span><br/><span class="hl-1">  </span><span class="hl-0">reto</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-0">_ID</span><span class="hl-1">: </span><span class="hl-5">number</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-0">_nombre</span><span class="hl-1">: </span><span class="hl-5">string</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-0">_rutas</span><span class="hl-1">: </span><span class="hl-5">Ruta</span><span class="hl-1">[];</span><br/><span class="hl-1">    </span><span class="hl-0">_tipoActividad</span><span class="hl-1">: </span><span class="hl-5">Actividad</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-0">_kilometrosTotales</span><span class="hl-1">: </span><span class="hl-5">number</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><span class="hl-0">_usuarios</span><span class="hl-1">: </span><span class="hl-5">Usuario</span><span class="hl-1">[];</span><br/><span class="hl-1">  }[];</span><br/><span class="hl-1">}</span>
+</code></pre>
+<p>Y dentro de la clase JsonRetoColeccion se encuentra el constructor, y los siguientes métodos:</p>
+<p>-<code>addReto</code>: Método para insertar un reto a la colección</p>
+<pre><code class="language-typescript"><span class="hl-6">addReto</span><span class="hl-1">(</span><span class="hl-0">nombre</span><span class="hl-1">: </span><span class="hl-0">string</span><span class="hl-1">, </span><span class="hl-0">rutas</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">[], </span><span class="hl-0">tipoActividad</span><span class="hl-1">: </span><span class="hl-0">Actividad</span><span class="hl-1">, </span><span class="hl-0">usuarios</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">[]) {</span><br/><span class="hl-1">  </span><span class="hl-4">super</span><span class="hl-1">.</span><span class="hl-6">insertarReto</span><span class="hl-1">(</span><span class="hl-0">nombre</span><span class="hl-1">, </span><span class="hl-0">rutas</span><span class="hl-1">, </span><span class="hl-0">tipoActividad</span><span class="hl-1">, </span><span class="hl-0">usuarios</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-4">this</span><span class="hl-1">.</span><span class="hl-6">storeTasks</span><span class="hl-1">();</span><br/><span class="hl-1">}</span>
+</code></pre>
+<p>-<code>removeReto</code>: Método para eliminar un reto de la colección</p>
+<pre><code class="language-typescript"><span class="hl-6">removeReto</span><span class="hl-1">(</span><span class="hl-7">ID</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">): </span><span class="hl-0">boolean</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">let</span><span class="hl-1"> </span><span class="hl-0">borro</span><span class="hl-1">: </span><span class="hl-5">boolean</span><span class="hl-1"> = </span><span class="hl-4">super</span><span class="hl-1">.</span><span class="hl-6">borrarReto</span><span class="hl-1">(</span><span class="hl-7">ID</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-4">this</span><span class="hl-1">.</span><span class="hl-6">storeTasks</span><span class="hl-1">();</span><br/><span class="hl-1">  </span><span class="hl-8">return</span><span class="hl-1"> </span><span class="hl-0">borro</span><span class="hl-1">;</span><br/><span class="hl-1">}</span>
+</code></pre>
+<p>-<code>modifyReto</code>: Método para modificar un atributo de un reto de la colección</p>
+<pre><code class="language-typescript"><span class="hl-6">modifyReto</span><span class="hl-1">(</span><span class="hl-7">ID</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">, </span><span class="hl-0">atributoModificar</span><span class="hl-1">: </span><span class="hl-0">string</span><span class="hl-1">, </span><span class="hl-0">nuevoAtributo</span><span class="hl-1">: </span><span class="hl-0">string</span><span class="hl-1">): </span><span class="hl-0">boolean</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">let</span><span class="hl-1"> </span><span class="hl-0">modifico</span><span class="hl-1">: </span><span class="hl-5">boolean</span><span class="hl-1"> = </span><span class="hl-4">super</span><span class="hl-1">.</span><span class="hl-6">modificarReto</span><span class="hl-1">(</span><span class="hl-7">ID</span><span class="hl-1">, </span><span class="hl-0">atributoModificar</span><span class="hl-1">, </span><span class="hl-0">nuevoAtributo</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-4">this</span><span class="hl-1">.</span><span class="hl-6">storeTasks</span><span class="hl-1">();</span><br/><span class="hl-1">  </span><span class="hl-8">return</span><span class="hl-1"> </span><span class="hl-0">modifico</span><span class="hl-1">;</span><br/><span class="hl-1">}</span>
+</code></pre>
+<p>-<code>showReto</code>: Método para mostrar una serie de atributos de un reto de la colección</p>
+<pre><code class="language-typescript"><span class="hl-6">showReto</span><span class="hl-1">(</span><span class="hl-0">ordenacion</span><span class="hl-1">: </span><span class="hl-0">string</span><span class="hl-1">, </span><span class="hl-0">orientacion</span><span class="hl-1">: </span><span class="hl-0">string</span><span class="hl-1">): </span><span class="hl-0">boolean</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-4">let</span><span class="hl-1"> </span><span class="hl-0">muestro</span><span class="hl-1">: </span><span class="hl-5">boolean</span><span class="hl-1"> = </span><span class="hl-4">super</span><span class="hl-1">.</span><span class="hl-6">mostrarRetos</span><span class="hl-1">(</span><span class="hl-0">ordenacion</span><span class="hl-1">, </span><span class="hl-0">orientacion</span><span class="hl-1">);</span><br/><span class="hl-1">  </span><span class="hl-8">return</span><span class="hl-1"> </span><span class="hl-0">muestro</span><span class="hl-1">;</span><br/><span class="hl-1">}</span>
+</code></pre>
+<p>-<code>storeTasks</code>: Método privado para actualizar los valores del fichero JSON, con los de la colección</p>
+<pre><code class="language-typescript"><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-6">storeTasks</span><span class="hl-1">() {</span><br/><span class="hl-1">  </span><span class="hl-4">this</span><span class="hl-1">.</span><span class="hl-0">database</span><span class="hl-1">.</span><span class="hl-6">set</span><span class="hl-1">(</span><span class="hl-9">&quot;reto&quot;</span><span class="hl-1">, [...</span><span class="hl-4">this</span><span class="hl-1">.</span><span class="hl-0">_retos</span><span class="hl-1">.</span><span class="hl-6">values</span><span class="hl-1">()]).</span><span class="hl-6">write</span><span class="hl-1">();</span><br/><span class="hl-1">}</span>
+</code></pre>
+
+<a href="#retopromptts" id="retopromptts" style="color: inherit; text-decoration: none;">
+  <h4>retoPrompt.ts</h4>
+</a>
+<p>Contiene una serie de funciones para trabajar con las distintas opciones posibles del prompt (empleando <strong>inquirer</strong>), relacionadas con los retos.</p>
+<p>En este fichero se encuentra el enumerado <code>AtributosOrdenacionReto</code> que consiste en las distintas opciones por las que se puede ordenar usuarios, por el nombre del Reto o por los kilometros realizados conjuntamente, en función de la semana actual, mes o año ó por la cantidad de miembros que lo componen; la función asíncrona <code>insertarRetoPrompt</code> que sirve para insertar un elemento Reto; la función asíncrona <code>eliminarRetoPrompt</code> que sirve para eliminar un elemento Reto; la función asíncrona <code>modificarRetoPrompt</code> que sirve para modificar un determinado elemento Reto; la función asíncrona <code>mostrarRetoPrompt</code> que sirve para enseñar un elemento Reto; y por último, <code>promptRetos</code> que es el prompt principal de Retos.</p>
 
 <a href="#gestor" id="gestor" style="color: inherit; text-decoration: none;">
   <h3>Gestor</h3>
 </a>
+<p>Esta clase será la encargada de la interacción con el usuario. Está tendra como atributos, las cuatro colecciones y un valor <em>number</em> con el Id del usuario que ha iniciado sesión.</p>
+<p>Los método que descriibimos en esta clase, para que un usuario pueda interactuar son los siguientes:</p>
 <ul>
-<li>Atributos</li>
-<li>FUnciones</li>
-<li>Colecciones</li>
-<li>Json</li>
+<li><p><code>registrarse()</code>: Haciendo uso de la terminal y del modulo <code>Inquirer.js</code>. Este método pregunta al usuario si se quiere registrar o iniciar sesión. En caso de iniciar sesion, le pedira el ID del usuario a loguearse, e iniciara sesión. En caso de que el ID no exista o que quiera registrarse, llamará a la función encargada de añadir un usuario, <code>insertarUsuarioPrompt</code>.</p>
+</li>
+<li><p><code>añadirAmigo()</code>: Este método permite añadir un amigo al usuario que inicio sesión, para ello se pide por consola el ID del amigo a añadir, y si el ID existe entonces llama al metodo encargado de añadir un amigo, <code>addAmigo()</code>.</p>
+</li>
+<li><p><code>eliminarAmigo()</code>: Este método permite eliminar un amigo al usuario que inicio sesión, para ello se pide por consola el ID del amigo a aliminar, y si el ID existe entonces llama al metodo encargado de eliminar un amigo, <code>removeAmigo()</code>.</p>
+</li>
+<li><p><code>visualizarUsuarios()</code>: Este método permite visualizar el listado de usuarios existentes dentro del sistema, entonces llama al metodo encargado de mostrar los usuarios, <code>mostrarUsuarioPrompt()</code>.</p>
+</li>
+<li><p><code>visualizarRutas()</code>: Este método permite visualizar todas las rutas existentes dentro del sistema, entonces llama al metodo encargado de mostrar las rutas, <code>mostrarRutaPrompt()</code>.</p>
+</li>
+<li><p><code>unirseGrupo()</code>: Este método permite añadir a un grupo el usuario que inicio sesión, para ello se pide por consola el ID del grupo a unirse, y si el ID existe entonces llama al metodo encargado de unirse a un grupo, <code>addUsuario()</code>.</p>
+</li>
+<li><p><code>visualizarGrupo()</code>: Este método permite visualizar todos los grupos existentes dentro del sistema, entonces llama al metodo encargado de mostrar los grupos, <code>mostrarGrupoPrompt()</code>.</p>
+</li>
 </ul>
+
+<a href="#index" id="index" style="color: inherit; text-decoration: none;">
+  <h3>Index</h3>
+</a>
+<p>Esta es el conjunto de elementos que se encargada de la interación con el usuario. DOnde el usuario puede ser tanto los administradores de la Base de Datos, como un usuario cualquiera.</p>
 
 <a href="#pruebas" id="pruebas" style="color: inherit; text-decoration: none;">
   <h2>Pruebas</h2>
@@ -302,6 +354,11 @@
 <a href="#referencias" id="referencias" style="color: inherit; text-decoration: none;">
   <h2>Referencias</h2>
 </a>
+<p>Para la correcta realización del proyecto se ha requerido de la consulta de los siguientes recursos:</p>
+<ul>
+<li><a href="https://ull-esit-inf-dsi-2223.github.io/prct07-destravate-dataModel/">https://ull-esit-inf-dsi-2223.github.io/prct07-destravate-dataModel/</a> </li>
+<li></li>
+</ul>
 </div></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">

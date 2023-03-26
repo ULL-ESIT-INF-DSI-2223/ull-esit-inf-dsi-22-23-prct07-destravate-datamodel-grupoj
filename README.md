@@ -17,6 +17,7 @@
   - [Rutas](#rutas)
   - [Retos](#retos)
   - [Gestor](#gestor)
+  - [Index](#index)
 - [Conclusiones](#conclusiones)
 - [Referencias](#referencias)
 
@@ -52,11 +53,11 @@ Los métodos de la clase son los respectivos getters y setters, una función de 
 
 #### usuarioColeccion.ts
 
-Este fichero posee una clase que almacena varios elementos de la clase usuarios. Otro atributo que posee es el parametro `_ultID`, que consiste en guarda el ID registrado y sumarle itereadamente 1, para dar a los distintos usuarios un único ID y de manera ordenada. A su vez, en este fichero se encuentran enumerados como `AtributosUsuario` que muestra como se pondrían los atributos de usuario. También existen clase que ayudan a modificar el array de Usuario como `insertarUsuario`, añade Usuario a Array; `borrarUsuario`, se elimina Usuario del array; `modificarUsuario`, que cambia las entradas a los atributos de la clase; `buscarUsuarios`, retorna los usuarios correspondientes a una colección de IDs; `devolverIndexUsuario`, obtiene la posición en el array de la clase; `añadirAmigos`, añade un amigo a un usuario; `borrarAmigo`, elimina un amigo a un usuario; `mostrarUsuario`, muestra una serie de atributos de un grupo de la colección; y, por último, `existeUsuario`, verifica si el usuario pertenece a la colección.
+Este fichero posee una clase que almacena varios elementos de la clase Usuario. Otro atributo que posee es el parametro `_ultID`, que consiste en guarda el ID registrado y sumarle itereadamente 1, para dar a los distintos usuarios un único ID y de manera ordenada. A su vez, en este fichero se encuentran enumerados como `AtributosUsuario` que muestra como se pondrían los atributos de usuario. También existen clase que ayudan a modificar el array de Usuario como `insertarUsuario`, añade Usuario a Array; `borrarUsuario`, se elimina Usuario del array; `modificarUsuario`, que cambia las entradas a los atributos de la clase; `buscarUsuarios`, retorna los usuarios correspondientes a una colección de IDs; `devolverIndexUsuario`, obtiene la posición en el array de la clase; `añadirAmigos`, añade un amigo a un usuario; `borrarAmigo`, elimina un amigo a un usuario; `mostrarUsuario`, muestra una serie de atributos de un usuario de la colección; y, por último, `existeUsuario`, verifica si el usuario pertenece a la colección.
 
 #### jsonUsuarioColeccion.ts
 
-Este fichero posee la clase que interactúa con el fichero JSON, `JsonUsuarioColeccion`. Esta clase sirve para guardar la información de los USuarios. A su vez, también se encuentra el esquema de la Base de Datos para Usuario:
+Este fichero posee la clase que interactúa con el fichero JSON, `JsonUsuarioColeccion`. Esta clase sirve para guardar la información de los Usuarios. A su vez, también se encuentra el esquema de la Base de Datos para Usuario:
 ```typescript
 type schemaUsuarios = {
   usuario: { 
@@ -379,17 +380,109 @@ Para esta práctica se crea una clase llamada `Reto` que se encuentra en el fich
 - private _kilometrosTotales  //Km totales a realizar (como la suma de los kms de las rutas que lo engloban)
 - private _usuarios  //Usuarios que están realizando el reto
 ```
-Los métodos de la clase son los respectivos getters y setters, una función mostrarReto (muestra todos los atributos con su valor), añadir amigo
-### Gestor
+Los métodos de la clase son los respectivos getters y setters, y una función mostrarReto (muestra todos los atributos con su valor).
 
-- Atributos
-- FUnciones
-- Colecciones
-- Json
+#### retoColeccion.ts
+Este fichero posee una clase que almacena varios elementos de la clase Reto. Otro atributo que posee es el parametro `_ultID`, que consiste en guarda el ID registrado y sumarle itereadamente 1, para dar a los distintos usuarios un único ID y de manera ordenada. A su vez, en este fichero se encuentran enumerados como `AtributosReto` que muestra como se pondrían los atributos de reto. También existen clase que ayudan a modificar el array de Usuario como `insertarReto`, añade Reto a Array; `borrarReto`, se elimina Reto del array; `modificarReto`, que cambia las entradas a los atributos de la clase; y, por último, `mostrarReto`, muestra una serie de atributos de un Reto de la colección;
+
+#### jsonRetoColeccion.ts
+
+Este fichero posee la clase que interactúa con el fichero JSON, `JsonRetoColeccion`. Esta clase sirve para guardar la información de los Retos. A su vez, también se encuentra el esquema de la Base de Datos para Reto:
+```typescript
+type schemaRetos = {
+  reto: {
+    _ID: number;
+    _nombre: string;
+    _rutas: Ruta[];
+    _tipoActividad: Actividad;
+    _kilometrosTotales: number;
+    _usuarios: Usuario[];
+  }[];
+}
+```
+
+Y dentro de la clase JsonRetoColeccion se encuentra el constructor, y los siguientes métodos:
+
+-`addReto`: Método para insertar un reto a la colección
+```typescript
+addReto(nombre: string, rutas: number[], tipoActividad: Actividad, usuarios: number[]) {
+  super.insertarReto(nombre, rutas, tipoActividad, usuarios);
+  this.storeTasks();
+}
+```
+
+-`removeReto`: Método para eliminar un reto de la colección
+```typescript
+removeReto(ID: number): boolean {
+  let borro: boolean = super.borrarReto(ID);
+  this.storeTasks();
+  return borro;
+}
+```
+
+-`modifyReto`: Método para modificar un atributo de un reto de la colección
+```typescript
+modifyReto(ID: number, atributoModificar: string, nuevoAtributo: string): boolean {
+  let modifico: boolean = super.modificarReto(ID, atributoModificar, nuevoAtributo);
+  this.storeTasks();
+  return modifico;
+}
+```
+
+-`showReto`: Método para mostrar una serie de atributos de un reto de la colección
+```typescript
+showReto(ordenacion: string, orientacion: string): boolean {
+  let muestro: boolean = super.mostrarRetos(ordenacion, orientacion);
+  return muestro;
+}
+```
+
+-`storeTasks`: Método privado para actualizar los valores del fichero JSON, con los de la colección
+```typescript
+private storeTasks() {
+  this.database.set("reto", [...this._retos.values()]).write();
+}
+```
+
+#### retoPrompt.ts
+Contiene una serie de funciones para trabajar con las distintas opciones posibles del prompt (empleando **inquirer**), relacionadas con los retos.
+
+En este fichero se encuentra el enumerado `AtributosOrdenacionReto` que consiste en las distintas opciones por las que se puede ordenar usuarios, por el nombre del Reto o por los kilometros realizados conjuntamente, en función de la semana actual, mes o año ó por la cantidad de miembros que lo componen; la función asíncrona `insertarRetoPrompt` que sirve para insertar un elemento Reto; la función asíncrona `eliminarRetoPrompt` que sirve para eliminar un elemento Reto; la función asíncrona `modificarRetoPrompt` que sirve para modificar un determinado elemento Reto; la función asíncrona `mostrarRetoPrompt` que sirve para enseñar un elemento Reto; y por último, `promptRetos` que es el prompt principal de Retos.
+
+
+### Gestor
+Esta clase será la encargada de la interacción con el usuario. Está tendra como atributos, las cuatro colecciones y un valor *number* con el Id del usuario que ha iniciado sesión.
+
+Los método que descriibimos en esta clase, para que un usuario pueda interactuar son los siguientes:
+- `registrarse()`: Haciendo uso de la terminal y del modulo `Inquirer.js`. Este método pregunta al usuario si se quiere registrar o iniciar sesión. En caso de iniciar sesion, le pedira el ID del usuario a loguearse, e iniciara sesión. En caso de que el ID no exista o que quiera registrarse, llamará a la función encargada de añadir un usuario, `insertarUsuarioPrompt`.
+
+- `añadirAmigo()`: Este método permite añadir un amigo al usuario que inicio sesión, para ello se pide por consola el ID del amigo a añadir, y si el ID existe entonces llama al metodo encargado de añadir un amigo, `addAmigo()`.
+
+- `eliminarAmigo()`: Este método permite eliminar un amigo al usuario que inicio sesión, para ello se pide por consola el ID del amigo a aliminar, y si el ID existe entonces llama al metodo encargado de eliminar un amigo, `removeAmigo()`.
+
+- `visualizarUsuarios()`: Este método permite visualizar el listado de usuarios existentes dentro del sistema, entonces llama al metodo encargado de mostrar los usuarios, `mostrarUsuarioPrompt()`.
+
+- `visualizarRutas()`: Este método permite visualizar todas las rutas existentes dentro del sistema, entonces llama al metodo encargado de mostrar las rutas, `mostrarRutaPrompt()`.
+
+- `unirseGrupo()`: Este método permite añadir a un grupo el usuario que inicio sesión, para ello se pide por consola el ID del grupo a unirse, y si el ID existe entonces llama al metodo encargado de unirse a un grupo, `addUsuario()`.
+
+- `visualizarGrupo()`: Este método permite visualizar todos los grupos existentes dentro del sistema, entonces llama al metodo encargado de mostrar los grupos, `mostrarGrupoPrompt()`.
+
+
+### Index
+
+Esta es el conjunto de elementos que se encargada de la interación con el usuario. DOnde el usuario puede ser tanto los administradores de la Base de Datos, como un usuario cualquiera.
 
 ## Pruebas 
 
 
 ## Conclusiones
 
+
+
 ## Referencias
+
+Para la correcta realización del proyecto se ha requerido de la consulta de los siguientes recursos:
+
+- https://ull-esit-inf-dsi-2223.github.io/prct07-destravate-dataModel/ 
+- 
