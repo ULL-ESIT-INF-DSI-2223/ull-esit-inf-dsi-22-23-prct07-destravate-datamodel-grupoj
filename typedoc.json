@@ -3,12 +3,19 @@
     "./src/usuarios/usuario.ts",
     "./src/usuarios/usuarioColeccion.ts",
     "./src/usuarios/jsonUsuarioColeccion.ts",
+    "./src/usuarios/usuarioPrompt.ts",
     "./src/rutas/ruta.ts",
     "./src/rutas/rutaColeccion.ts",
     "./src/rutas/jsonRutaColeccion.ts",
+    "./src/rutas/rutaPrompt.ts",
     "./src/retos/reto.ts",
     "./src/retos/retoColeccion.ts",
-    "./src/retos/jsonRetoColeccion.ts"
+    "./src/retos/jsonRetoColeccion.ts",
+    "./src/retos/retoPrompt.ts",
+    "./src/grupos/grupo.ts",
+    "./src/grupos/grupoColeccion.ts",
+    "./src/grupos/jsonGrupoColeccion.ts",
+    "./src/grupos/grupoPrompt.ts"
   ],
   "out": "./docs" 
 }

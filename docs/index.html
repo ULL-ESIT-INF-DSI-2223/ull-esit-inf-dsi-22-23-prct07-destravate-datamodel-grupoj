@@ -23,7 +23,126 @@
   <a href="https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-grupoj/actions/workflows/node.js.yml">
     <img alt="Tests" src="https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-grupoj/actions/workflows/node.js.yml/badge.svg">
   </a>
-</p></div></div>
+</p>
+
+
+<a href="#índice" id="índice" style="color: inherit; text-decoration: none;">
+  <h2>Índice</h2>
+</a>
+<ol>
+<li><a href="#introducci%C3%B3n">Introdución</a></li>
+<li><a href="#implementaci%C3%B3n">Implementación</a>
+  2.1. <a href="#usuarios">Usuarios</a>
+  2.2. <a href="#grupos">Grupos</a>
+  2.3. <a href="#rutas">Rutas</a>
+  2.4. <a href="#retos">Retos</a>
+  2.5. <a href="#gestor">Gestor</a></li>
+<li><a href="#conclusiones">Conclusiones</a></li>
+<li><a href="#referencias">Referencias</a></li>
+</ol>
+
+<a href="#introducción" id="introducción" style="color: inherit; text-decoration: none;">
+  <h2>Introducción</h2>
+</a>
+<p>En esta práctica grupal se requiere del desarrollo de un programa que englobe una serie de conceptos como son unos usuarios, grupos, rutas y retos, todos ellos relacionados entre sí. Los grupos estarán compuestos por usuarios, los usuarios serán miembros de grupos, los retos y las rutas serán realiadas por los distintos usuarios, entre otras relaciones.</p>
+<p>Se introducirán conceptos nuevos sobre interfaces interactivas y almacenamiento y gestión de conjuntos de información. Además, se exige la utilización de elementos ya conocidos como TypeDoc, la metodología TDD o BDD, los principios SOLID y el cubrimiento de código con Coveralls.</p>
+
+<a href="#implementación" id="implementación" style="color: inherit; text-decoration: none;">
+  <h2>Implementación</h2>
+</a>
+<p>Hemos estructurado el proyecto en una serie de carpetas de trabajo que nos permiten trabajar y visualizar el conjunto del programa de manera más ordenada. Teniendo en cuenta ésto las carpetas se estructuran de la siguiente forma:</p>
+
+<a href="#usuarios" id="usuarios" style="color: inherit; text-decoration: none;">
+  <h3>Usuarios</h3>
+</a>
+<p>En el directorio <strong>Usuarios</strong> se encuentran cuatro ficheros:</p>
+
+<a href="#usuariots" id="usuariots" style="color: inherit; text-decoration: none;">
+  <h4>usuario.ts</h4>
+</a>
+<p>Para esta práctica se crea una clase llamada usuario que se encuentra en el fichero usuario.ts. Esta clase contiene los siguientes atributos:</p>
+<pre><code class="language-typescript"><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_ID</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">, </span><span class="hl-3">ID</span><span class="hl-1"> </span><span class="hl-0">único</span><span class="hl-1"> </span><span class="hl-0">del</span><span class="hl-1"> </span><span class="hl-0">usuario</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_nombre</span><span class="hl-1">: </span><span class="hl-0">string</span><span class="hl-1">, </span><span class="hl-0">Nombre</span><span class="hl-1"> </span><span class="hl-0">propio</span><span class="hl-1"> </span><span class="hl-0">de</span><span class="hl-1"> </span><span class="hl-0">usuario</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_actividades</span><span class="hl-1">: </span><span class="hl-0">Actividad</span><span class="hl-1">, </span><span class="hl-0">Tipo</span><span class="hl-1"> </span><span class="hl-0">de</span><span class="hl-1"> </span><span class="hl-0">actividad</span><span class="hl-1">; </span><span class="hl-0">correr</span><span class="hl-1"> </span><span class="hl-0">o</span><span class="hl-1"> </span><span class="hl-0">bicicleta</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_amigosApp</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">[], </span><span class="hl-0">Colleción</span><span class="hl-1"> </span><span class="hl-0">de</span><span class="hl-1"> </span><span class="hl-0">IDs</span><span class="hl-1"> </span><span class="hl-0">de</span><span class="hl-1"> </span><span class="hl-0">usuarios</span><span class="hl-1"> </span><span class="hl-0">con</span><span class="hl-1"> </span><span class="hl-0">los</span><span class="hl-1"> </span><span class="hl-0">que</span><span class="hl-1"> </span><span class="hl-0">se</span><span class="hl-1"> </span><span class="hl-0">interacciona</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_grupoAmigos</span><span class="hl-1">: </span><span class="hl-0">Coleccion</span><span class="hl-1">, </span><span class="hl-0">Diferentes</span><span class="hl-1"> </span><span class="hl-0">colecciones</span><span class="hl-1"> </span><span class="hl-0">de</span><span class="hl-1"> </span><span class="hl-0">IDs</span><span class="hl-1"> </span><span class="hl-0">de</span><span class="hl-1"> </span><span class="hl-0">usuarios</span><span class="hl-1"> </span><span class="hl-0">con</span><span class="hl-1"> </span><span class="hl-0">los</span><span class="hl-1"> </span><span class="hl-0">que</span><span class="hl-1"> </span><span class="hl-0">suele</span><span class="hl-1"> </span><span class="hl-0">realizar</span><span class="hl-1"> </span><span class="hl-0">rutas</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_entrenamiento</span><span class="hl-1">: </span><span class="hl-0">EstadisticasEntrenamiento</span><span class="hl-1">, </span><span class="hl-0">Cantidad</span><span class="hl-1"> </span><span class="hl-0">de</span><span class="hl-1"> </span><span class="hl-0">km</span><span class="hl-1"> </span><span class="hl-0">y</span><span class="hl-1"> </span><span class="hl-0">desnivel</span><span class="hl-1"> </span><span class="hl-0">total</span><span class="hl-1"> </span><span class="hl-0">acumulados</span><span class="hl-1"> </span><span class="hl-0">en</span><span class="hl-1"> </span><span class="hl-0">la</span><span class="hl-1"> </span><span class="hl-0">semana</span><span class="hl-1">, </span><span class="hl-0">mes</span><span class="hl-1"> </span><span class="hl-0">y</span><span class="hl-1"> </span><span class="hl-0">año</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_rutasFavoritas</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">[], </span><span class="hl-0">Colección</span><span class="hl-1"> </span><span class="hl-0">de</span><span class="hl-1"> </span><span class="hl-0">IDs</span><span class="hl-1"> </span><span class="hl-0">de</span><span class="hl-1"> </span><span class="hl-0">las</span><span class="hl-1"> </span><span class="hl-0">rutas</span><span class="hl-1"> </span><span class="hl-0">que</span><span class="hl-1"> </span><span class="hl-0">el</span><span class="hl-1"> </span><span class="hl-0">usuario</span><span class="hl-1"> </span><span class="hl-0">ha</span><span class="hl-1"> </span><span class="hl-0">realizado</span><span class="hl-1"> </span><span class="hl-0">con</span><span class="hl-1"> </span><span class="hl-0">mayor</span><span class="hl-1"> </span><span class="hl-0">frecuencia</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_retosActivos</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">[], </span><span class="hl-0">Colección</span><span class="hl-1"> </span><span class="hl-0">de</span><span class="hl-1"> </span><span class="hl-0">IDs</span><span class="hl-1"> </span><span class="hl-0">de</span><span class="hl-1"> </span><span class="hl-0">los</span><span class="hl-1"> </span><span class="hl-0">retos</span><span class="hl-1"> </span><span class="hl-0">que</span><span class="hl-1"> </span><span class="hl-0">el</span><span class="hl-1"> </span><span class="hl-0">usuario</span><span class="hl-1"> </span><span class="hl-0">está</span><span class="hl-1"> </span><span class="hl-0">realizando</span><span class="hl-1"> </span><span class="hl-0">actualmente</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_historicoRutas</span><span class="hl-1">: </span><span class="hl-0">HistoricoRuta</span><span class="hl-1">[], </span><span class="hl-0">Colección</span><span class="hl-1"> </span><span class="hl-0">del</span><span class="hl-1"> </span><span class="hl-0">historial</span><span class="hl-1"> </span><span class="hl-0">de</span><span class="hl-1"> </span><span class="hl-0">rutas</span><span class="hl-1"> </span><span class="hl-0">realizadas</span><span class="hl-1"> </span>
+</code></pre>
+<p>Los métodos de la clase son los respectivos getters y setters, una función de mostrarUsuario (muestra todos los atributos con su valor), añadir amigo, que consiste en añadir el Array AmigoApp (Amigos en la aplicación) el ID de otro usuario existente, y quitar amigo, que consiste en eliminarlo.</p>
+
+<a href="#usuariocoleccionts" id="usuariocoleccionts" style="color: inherit; text-decoration: none;">
+  <h4>usuarioColeccion.ts</h4>
+</a>
+<p>Este fichero posee una clase que almacena varios elementos de la clase usuarios. Otro atributo que posee es el parametro _ultID, que consiste en guarda el ID registrado y sumarle itereadamente 1, para dar a los distintos usuarios un único ID y de manera ordenada. A su vez, en este fichero se encuentran enumerados como AtributosUsuario que muestra como se pondrían los atributos de usuario. También existen clase que ayudan a modificar el array de Usuario como insertarUsuario, añade Usuario a Array; borrarUsuario, se elimina Usuario del array; modifyUsuario, </p>
+
+<a href="#grupos" id="grupos" style="color: inherit; text-decoration: none;">
+  <h3>Grupos</h3>
+</a>
+<p>En el directorio <strong>Grupos</strong> se encuentran cuatro ficheros:</p>
+
+<a href="#grupots" id="grupots" style="color: inherit; text-decoration: none;">
+  <h4>grupo.ts</h4>
+</a>
+<p>Alberga la clase <code>Grupo</code> con los siguientes atributos:</p>
+<pre><code class="language-typescript"><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_ID</span><span class="hl-1"> : </span><span class="hl-0">number</span><span class="hl-1">, </span><span class="hl-3">ID</span><span class="hl-1"> </span><span class="hl-0">para</span><span class="hl-1"> </span><span class="hl-0">identificar</span><span class="hl-1"> </span><span class="hl-0">al</span><span class="hl-1"> </span><span class="hl-0">grupo</span><span class="hl-1">.</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_nombre</span><span class="hl-1"> : </span><span class="hl-0">string</span><span class="hl-1">, </span><span class="hl-0">nombre</span><span class="hl-1"> </span><span class="hl-0">del</span><span class="hl-1"> </span><span class="hl-0">grupo</span><span class="hl-1">.</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_participantes</span><span class="hl-1"> : </span><span class="hl-0">number</span><span class="hl-1">[], </span><span class="hl-0">alberga</span><span class="hl-1"> </span><span class="hl-0">las</span><span class="hl-1"> </span><span class="hl-0">IDs</span><span class="hl-1"> </span><span class="hl-0">de</span><span class="hl-1"> </span><span class="hl-0">los</span><span class="hl-1"> </span><span class="hl-0">integrantes</span><span class="hl-1"> </span><span class="hl-0">del</span><span class="hl-1"> </span><span class="hl-0">grupo</span><span class="hl-1">.</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_estadisticasEntrenamiento</span><span class="hl-1"> : </span><span class="hl-0">EstadisticasEntrenamiento</span><span class="hl-1">, </span><span class="hl-0">las</span><span class="hl-1"> </span><span class="hl-0">estadísticas</span><span class="hl-1"> </span><span class="hl-0">de</span><span class="hl-1"> </span><span class="hl-0">entrenamiento</span><span class="hl-1"> </span><span class="hl-0">del</span><span class="hl-1"> </span><span class="hl-0">grupo</span><span class="hl-1">.</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_clasificacion</span><span class="hl-1"> : </span><span class="hl-0">Usuario</span><span class="hl-1">[], </span><span class="hl-0">la</span><span class="hl-1"> </span><span class="hl-0">clasificación</span><span class="hl-1"> </span><span class="hl-0">de</span><span class="hl-1"> </span><span class="hl-0">los</span><span class="hl-1"> </span><span class="hl-0">distintos</span><span class="hl-1"> </span><span class="hl-0">usuarios</span><span class="hl-1"> </span><span class="hl-0">que</span><span class="hl-1"> </span><span class="hl-0">conforman</span><span class="hl-1"> </span><span class="hl-0">el</span><span class="hl-1"> </span><span class="hl-0">grupo</span><span class="hl-1">.</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_rutasFavoritas</span><span class="hl-1"> : </span><span class="hl-0">number</span><span class="hl-1">[], </span><span class="hl-0">el</span><span class="hl-1"> </span><span class="hl-3">ID</span><span class="hl-1"> </span><span class="hl-0">de</span><span class="hl-1"> </span><span class="hl-0">las</span><span class="hl-1"> </span><span class="hl-0">rutas</span><span class="hl-1"> </span><span class="hl-0">favoritas</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_historicoRutas</span><span class="hl-1"> : </span><span class="hl-0">HistoricoRuta</span><span class="hl-1">[], </span><span class="hl-0">el</span><span class="hl-1"> </span><span class="hl-0">histórico</span><span class="hl-1"> </span><span class="hl-0">de</span><span class="hl-1"> </span><span class="hl-0">las</span><span class="hl-1"> </span><span class="hl-0">rutas</span><span class="hl-1"> </span><span class="hl-0">del</span><span class="hl-1"> </span><span class="hl-0">grupo</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_administrador</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">, </span><span class="hl-0">la</span><span class="hl-1"> </span><span class="hl-3">ID</span><span class="hl-1"> </span><span class="hl-0">del</span><span class="hl-1"> </span><span class="hl-0">administrador</span><span class="hl-1"> </span><span class="hl-0">del</span><span class="hl-1"> </span><span class="hl-0">grupo</span><span class="hl-1">, </span><span class="hl-0">es</span><span class="hl-1"> </span><span class="hl-0">decir</span><span class="hl-1">, </span><span class="hl-0">quién</span><span class="hl-1"> </span><span class="hl-0">fue</span><span class="hl-1"> </span><span class="hl-0">el</span><span class="hl-1"> </span><span class="hl-0">qué</span><span class="hl-1"> </span><span class="hl-0">lo</span><span class="hl-1"> </span><span class="hl-0">creó</span><span class="hl-1">.</span>
+</code></pre>
+<p>Esta clase contiene todo lo necesario para gestionar un grupo.</p>
+<p>Contiene getters y setters para cada uno de los atributos de la clase. Respecto a las funciones, <code>mostrarGrupo</code> permite mostrar los valores de los atributos de la clase; <code>incluirUsuario</code> permite añadir un usuario al grupo, es decir, la ID del usuario en cuestión.</p>
+
+<a href="#grupocoleccionts" id="grupocoleccionts" style="color: inherit; text-decoration: none;">
+  <h4>grupoColeccion.ts</h4>
+</a>
+<p>Contiene la clase <code>GrupoColeccion</code> y sus atributos:</p>
+<ul>
+<li><code>protected _grupos : Grupo[]</code>, el array con los distintos grupos de la colección.</li>
+<li><code>protected _ultID : number</code>, el último ID que se ha asignado.</li>
+</ul>
+<p>El atributo <code>_ultID</code> se requiere debido a que los IDs de los grupos se asignan de forma automática y correlativa, es decir, se empieza por la ID número cero.</p>
+<p>Respecto a las funciones, <code>insertarGrupo</code> permite insertar un grupo a la colección de grupos de la clase; <code>devolverIndexGrupo</code> permite devolver la posición del vector en la que se encuentra un grupo con la ID introducida (<code>number</code>); <code>anadirUsuario</code> posibilita que un usuario sea añadido a un grupo concreto, recibiendo, por tanto, tanto la </p>
+<p>lowdb, archivos json. para ello extendemos de grupo collection tenemos un constructor que coge todos los elementos y los va guardando en json, en caso de que esté vacío crea uno nuevo...</p>
+
+<a href="#rutas" id="rutas" style="color: inherit; text-decoration: none;">
+  <h3>Rutas</h3>
+</a>
+<p>En el directorio <strong>Rutas</strong> se encuentran al igual que en los anteriores cuatro ficheros:</p>
+
+<a href="#rutats" id="rutats" style="color: inherit; text-decoration: none;">
+  <h4>ruta.ts</h4>
+</a>
+<p>Para esta práctica se crea una clase llamada ruta que se encuentra en el fichero ruta.ts. Esta clase contiene los siguientes atributos:</p>
+<pre><code class="language-typescript"><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_ID</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">; </span><span class="hl-4">// ID único de la ruta.</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_nombre</span><span class="hl-1">: </span><span class="hl-0">string</span><span class="hl-1">; </span><span class="hl-4">// Nombre de la ruta.</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_geolocalizacionInicio</span><span class="hl-1">: </span><span class="hl-0">Coordenada</span><span class="hl-1">; </span><span class="hl-4">// Geolocalización del inicio (coordenadas).</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_geolocalizacionFinal</span><span class="hl-1">: </span><span class="hl-0">Coordenada</span><span class="hl-1">; </span><span class="hl-4">// Geolocalización del final de la ruta (coordenadas).</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_longitud</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">; </span><span class="hl-4">// Longitud de la ruta en kilómetros.</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_desnivelMedio</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">; </span><span class="hl-4">// Desnivel medio de la ruta.</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_usuariosRealizaron</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">[]; </span><span class="hl-4">// Usuarios que han realizado la ruta (IDs).</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_tipoActividad</span><span class="hl-1">: </span><span class="hl-0">Actividad</span><span class="hl-1">; </span><span class="hl-4">// Tipo de actividad: Indicador si la ruta se puede realizar en bicicleta o corriendo.</span><br/><span class="hl-0">private</span><span class="hl-1"> </span><span class="hl-2">_calificacionMedia</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">; </span><span class="hl-4">// Calificación media de la ruta.</span>
+</code></pre>
+<p>Los métodos de la clase son los respectivos getters y setters y una función de <code>mostrarRuta</code>, que muestra todos los atributos con su valor.</p>
+
+<a href="#rutacoleccionts" id="rutacoleccionts" style="color: inherit; text-decoration: none;">
+  <h4>rutaColeccion.ts</h4>
+</a>
+<p>Este fichero almacena la clase <code>RutaColeccion</code> que almacena un array de varios elementos de la clase <code>Ruta</code>. Otro atributo que posee es el parametro <code>_ultID</code>, que consiste en guarda el último ID registrado y sumarle itereadamente 1 a la hora de crear una nueva ruta. Como el resto de colecciones, la rutas se deben poder crear, modificar y eliminar por ello definimos los siguientes métodos: </p>
+<p><code>insertarRuta</code></p>
+<pre><code class="language-typescript"><span class="hl-5">insertarRuta</span><span class="hl-1">(</span><span class="hl-0">nombre</span><span class="hl-1">: </span><span class="hl-0">string</span><span class="hl-1">, </span><span class="hl-0">geolocalizacionInicio</span><span class="hl-1">: </span><span class="hl-0">Coordenada</span><span class="hl-1">, </span><span class="hl-0">geolocalizacionFinal</span><span class="hl-1">: </span><span class="hl-0">Coordenada</span><span class="hl-1">, </span><span class="hl-0">longitud</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">, </span><br/><span class="hl-1">             </span><span class="hl-0">desnivelMedio</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">, </span><span class="hl-0">usuariosRealizaron</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">[], </span><span class="hl-0">tipoActividad</span><span class="hl-1">: </span><span class="hl-0">Actividad</span><span class="hl-1">, </span><span class="hl-0">calificacionMedia</span><span class="hl-1">: </span><span class="hl-0">number</span><span class="hl-1">) {</span><br/><br/><span class="hl-1">  </span><span class="hl-6">this</span><span class="hl-1">.</span><span class="hl-0">_rutas</span><span class="hl-1">.</span><span class="hl-5">push</span><span class="hl-1">(</span><span class="hl-6">new</span><span class="hl-1"> </span><span class="hl-5">Ruta</span><span class="hl-1">(++</span><span class="hl-6">this</span><span class="hl-1">.</span><span class="hl-0">_ultID</span><span class="hl-1">, </span><span class="hl-0">nombre</span><span class="hl-1">, </span><span class="hl-0">geolocalizacionInicio</span><span class="hl-1">, </span><span class="hl-0">geolocalizacionFinal</span><span class="hl-1">, </span><span class="hl-0">longitud</span><span class="hl-1">, </span><span class="hl-0">desnivelMedio</span><span class="hl-1">, </span><span class="hl-0">usuariosRealizaron</span><span class="hl-1">, </span><span class="hl-0">tipoActividad</span><span class="hl-1">, </span><span class="hl-0">calificacionMedia</span><span class="hl-1">));</span><br/><span class="hl-1">}</span>
+</code></pre>
+
+<a href="#retos" id="retos" style="color: inherit; text-decoration: none;">
+  <h3>Retos</h3>
+</a>
+
+<a href="#gestor" id="gestor" style="color: inherit; text-decoration: none;">
+  <h3>Gestor</h3>
+</a>
+<ul>
+<li>Atributos</li>
+<li>FUnciones</li>
+<li>Colecciones</li>
+<li>Json</li>
+</ul>
+
+<a href="#pruebas" id="pruebas" style="color: inherit; text-decoration: none;">
+  <h2>Pruebas</h2>
+</a>
+
+<a href="#conclusiones" id="conclusiones" style="color: inherit; text-decoration: none;">
+  <h2>Conclusiones</h2>
+</a>
+
+<a href="#referencias" id="referencias" style="color: inherit; text-decoration: none;">
+  <h2>Referencias</h2>
+</a>
+</div></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
@@ -45,15 +164,22 @@
 <ul>
 <li class="current selected"><a href="modules.html">dsi-<wbr/>prct07-<wbr/>grupal-<wbr/>destravate</a>
 <ul>
+<li class="tsd-kind-module"><a href="modules/grupos_grupo.html">grupos/grupo</a></li>
+<li class="tsd-kind-module"><a href="modules/grupos_grupoColeccion.html">grupos/grupo<wbr/>Coleccion</a></li>
+<li class="tsd-kind-module"><a href="modules/grupos_grupoPrompt.html">grupos/grupo<wbr/>Prompt</a></li>
+<li class="tsd-kind-module"><a href="modules/grupos_jsonGrupoColeccion.html">grupos/json<wbr/>Grupo<wbr/>Coleccion</a></li>
 <li class="tsd-kind-module"><a href="modules/retos_jsonRetoColeccion.html">retos/json<wbr/>Reto<wbr/>Coleccion</a></li>
 <li class="tsd-kind-module"><a href="modules/retos_reto.html">retos/reto</a></li>
 <li class="tsd-kind-module"><a href="modules/retos_retoColeccion.html">retos/reto<wbr/>Coleccion</a></li>
+<li class="tsd-kind-module"><a href="modules/retos_retoPrompt.html">retos/reto<wbr/>Prompt</a></li>
 <li class="tsd-kind-module"><a href="modules/rutas_jsonRutaColeccion.html">rutas/json<wbr/>Ruta<wbr/>Coleccion</a></li>
 <li class="tsd-kind-module"><a href="modules/rutas_ruta.html">rutas/ruta</a></li>
 <li class="tsd-kind-module"><a href="modules/rutas_rutaColeccion.html">rutas/ruta<wbr/>Coleccion</a></li>
+<li class="tsd-kind-module"><a href="modules/rutas_rutaPrompt.html">rutas/ruta<wbr/>Prompt</a></li>
 <li class="tsd-kind-module"><a href="modules/usuarios_jsonUsuarioColeccion.html">usuarios/json<wbr/>Usuario<wbr/>Coleccion</a></li>
 <li class="tsd-kind-module"><a href="modules/usuarios_usuario.html">usuarios/usuario</a></li>
-<li class="tsd-kind-module"><a href="modules/usuarios_usuarioColeccion.html">usuarios/usuario<wbr/>Coleccion</a></li></ul></li></ul></div></details></nav></div></div>
+<li class="tsd-kind-module"><a href="modules/usuarios_usuarioColeccion.html">usuarios/usuario<wbr/>Coleccion</a></li>
+<li class="tsd-kind-module"><a href="modules/usuarios_usuarioPrompt.html">usuarios/usuario<wbr/>Prompt</a></li></ul></li></ul></div></details></nav></div></div>
 <div class="container tsd-generator">
 <p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div>
 <div class="overlay"></div><script src="assets/main.js"></script></body></html>
