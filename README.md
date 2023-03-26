@@ -10,20 +10,15 @@
 </p>
 
 ## Índice
-1. [Introdución](#introducción)
-2. [Implementación](#implementación)
-
-  2.1. [Usuarios](#usuarios)
-
-  2.2. [Grupos](#grupos)
-
-  2.3. [Rutas](#rutas)
-
-  2.4. [Retos](#retos)
-
-  2.5. [Gestor](#gestor)
-3. [Conclusiones](#conclusiones)
-4. [Referencias](#referencias)
+- [Introdución](#introducción)
+- [Implementación](#implementación)
+  - [Usuarios](#usuarios)
+  - [Grupos](#grupos)
+  - [Rutas](#rutas)
+  - [Retos](#retos)
+  - [Gestor](#gestor)
+- [Conclusiones](#conclusiones)
+- [Referencias](#referencias)
 
 ## Introducción
 
@@ -183,7 +178,7 @@ Dichas funciones son las siguientes: `insertarGrupoPrompt` solicita los datos un
 
 Se hace uso de funciones de la clase `JsonGrupoColeccion` para llevar a cabo las tareas como eliminar, incluir o mostrar usuarios. 
 
-Las funciones que reciben como parámetro la ID del administrador del grupo lo hacen para garantizar que es el propietario de dicho grupo . Algunas funciones para finalizar su ejecucción llaman a la función prompt principal, es decir, al menú inicial. 
+Las funciones que reciben como parámetro la ID del administrador del grupo lo hacen para garantizar que es el propietario de dicho grupo, en caso de que no lo sea no podría realizar cambios. Algunas funciones para finalizar su ejecucción llaman a la función prompt principal, es decir, al menú inicial. 
 
 lowdb, archivos json. para ello extendemos de grupo collection tenemos un constructor que coge todos los elementos y los va guardando en json, en caso de que esté vacío crea uno nuevo...
   
@@ -279,27 +274,11 @@ modifyRuta(ID: number, atributoModificar: string, nuevoAtributo: string): boolea
 }
 ```
 
-- `showUsuario`:  Método para mostrar una serie de atributos de un usuario de la colección
+- `showRuta`:  Método para mostrar una serie de atributos de una ruta de la colección
 ```typescript
-showUsuario(ordenacion: string, orientacion: string): boolean {
-  let muestro: boolean = super.mostrarUsuarios(ordenacion, orientacion);
+showRuta(ordenacion: string, orientacion: string): boolean {
+  let muestro: boolean = super.mostrarRuta(ordenacion, orientacion);
   return muestro;
-}
-```
-
-- `addAmigo`: Método para añadir un amigo a un usuario
-```typescript
-addAmigo(ID_usuario : number, ID_amigo : number) {
-  super.anadirAmigo(ID_usuario, ID_amigo);
-  this.storeTasks();
-}
-```
-
-- `removeAmigo`: Método para eliminar un amigo a un usuario
-```typescript
-removeAmigo(ID_usuario : number, ID_amigo : number) {
-  super.borrarAmigo(ID_usuario, ID_amigo);
-  this.storeTasks();
 }
 ```
 
