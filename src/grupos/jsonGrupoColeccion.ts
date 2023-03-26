@@ -18,6 +18,7 @@ type schemaGrupos = {
     _clasificacion: Usuario[];
     _rutasFavoritas: number[];
     _historicoRutas: HistoricoRuta[];
+    _administrador: number;
   }[];
 };
 
@@ -39,7 +40,7 @@ export class JsonGrupoColeccion extends GrupoColeccion {
     if (this.database.has("grupo").value())  {
       let dbItems = this.database.get("grupo").value();
       dbItems.forEach(item => {
-        this._grupos.push(new Grupo(item._ID, item._nombre, item._participantes, item._estadisticasEntrenamiento, item._clasificacion, item._rutasFavoritas, item._historicoRutas));
+        this._grupos.push(new Grupo(item._ID, item._nombre, item._participantes, item._estadisticasEntrenamiento, item._clasificacion, item._rutasFavoritas, item._historicoRutas, item._administrador));
         this._ultID = item._ID;
       })
     } 
@@ -59,8 +60,8 @@ export class JsonGrupoColeccion extends GrupoColeccion {
    * @param historicoRutas todas las rutas que ha realizado el grupo en conjunto
   */
   addGrupo(nombre : string, participantes : number[], estadisticasEntrenamiento : EstadisticasEntrenamiento,  
-    clasificacion : Usuario[], rutasFavoritas : number[], historicoRutas : HistoricoRuta[]) {
-      super.insertarGrupo(nombre, participantes, estadisticasEntrenamiento, clasificacion, rutasFavoritas, historicoRutas);
+          clasificacion : Usuario[], rutasFavoritas : number[], historicoRutas : HistoricoRuta[], adminID: number = 0) {
+      super.insertarGrupo(nombre, participantes, estadisticasEntrenamiento, clasificacion, rutasFavoritas, historicoRutas, adminID);
       this.storeTasks();
   }
 
@@ -96,9 +97,18 @@ export class JsonGrupoColeccion extends GrupoColeccion {
   */
   showGrupo(ordenacion: string, orientacion: string): boolean {
     let muestro: boolean = super.mostrarGrupos(ordenacion, orientacion);
-    this.storeTasks();
     return muestro;
   }
+
+   /**
+   * Método para añadir un usuario a un grupo
+   * @param ID_usuario ID del usuario a añadir un amigo
+   * @param ID_amigo ID del amigo a insertar
+   */
+   addUsuario(ID_grupo : number, ID_usuario : number) {
+    super.anadirUsuario(ID_grupo, ID_usuario);
+    this.storeTasks();
+  } 
 
   /**
    * Método privado para actualizar los valores del fichero JSON, con los de la colección

@@ -1,78 +1,106 @@
 {
   "grupo": [
     {
-      "_ID": 3,
-      "_nombre": "el grupo",
+      "_ID": 1,
+      "_nombre": "Vengadores",
       "_participantes": [
-        1
-      ],
-      "_estadisticasEntrenamiento": [
-        5,
-        23,
-        "marzo",
-        2020
-      ],
-      "_clasificacion": "1",
-      "_rutasFavoritas": [
+        1,
         2
       ],
-      "_historicoRutas": []
+      "_estadisticasEntrenamiento": [
+        15,
+        258,
+        "Enero",
+        56
+      ],
+      "_clasificacion": "1, 2",
+      "_rutasFavoritas": [
+        1,
+        2
+      ],
+      "_historicoRutas": [
+        [
+          "02-03-22",
+          3
+        ],
+        [
+          "03-05-23",
+          1
+        ]
+      ],
+      "_administrador": 1
     },
     {
       "_ID": 2,
-      "_nombre": "grupazoooo",
+      "_nombre": "grupazo",
       "_participantes": [
-        1,
-        5
-      ],
-      "_estadisticasEntrenamiento": [
-        98,
-        28,
-        "enero",
-        2023
-      ],
-      "_clasificacion": "1",
-      "_rutasFavoritas": [
-        2
-      ],
-      "_historicoRutas": []
-    },
-    {
-      "_ID": 1,
-      "_nombre": "uma",
-      "_participantes": [
-        3,
-        4
-      ],
-      "_estadisticasEntrenamiento": [
-        12,
-        3,
-        "Junio",
-        4054
-      ],
-      "_clasificacion": "1",
-      "_rutasFavoritas": [
         1
       ],
-      "_historicoRutas": []
+      "_estadisticasEntrenamiento": [
+        0,
+        null,
+        null,
+        null
+      ],
+      "_clasificacion": "",
+      "_rutasFavoritas": [
+        0
+      ],
+      "_historicoRutas": [
+        [
+          "02-03-22",
+          3
+        ]
+      ],
+      "_administrador": 1
+    },
+    {
+      "_ID": 3,
+      "_nombre": "grupazo pepe",
+      "_participantes": [
+        0
+      ],
+      "_estadisticasEntrenamiento": [
+        0,
+        null,
+        null,
+        null
+      ],
+      "_clasificacion": "",
+      "_rutasFavoritas": [
+        0
+      ],
+      "_historicoRutas": [
+        [
+          "",
+          null
+        ]
+      ],
+      "_administrador": 2
     },
     {
       "_ID": 4,
-      "_nombre": "z-grupo",
+      "_nombre": "Peponazo",
       "_participantes": [
-        2
+        0
       ],
       "_estadisticasEntrenamiento": [
-        2,
-        3,
-        "enero",
-        2022
+        0,
+        null,
+        null,
+        null
       ],
-      "_clasificacion": "2",
+      "_clasificacion": "",
       "_rutasFavoritas": [
-        3
+        0
       ],
-      "_historicoRutas": []
+      "_historicoRutas": [
+        [
+          "",
+          null
+        ]
+      ],
+      "_administrador": 0
     }
   ]
 }

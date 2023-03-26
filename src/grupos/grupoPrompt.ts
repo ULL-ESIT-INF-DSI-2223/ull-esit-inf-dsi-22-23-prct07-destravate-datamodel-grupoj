@@ -3,7 +3,7 @@ import { JsonUsuarioColeccion } from "../usuarios/jsonUsuarioColeccion";
 import { Usuario, HistoricoRuta, Coleccion } from '../usuarios/usuario';
 import { Actividad, Ruta } from '../rutas/ruta';
 import { EstadisticasEntrenamiento } from './grupo';
-import { promptPrincipal, CommandsEach, jsonGruposColeccion, AtributosOrdenacionOrientacion, AtributosMostrar} from '../index';
+import { promptPrincipal, CommandsEach, jsonGruposColeccion, AtributosOrdenacionOrientacion, AtributosMostrar, pantallaPrincipal} from '../index';
 import { AtributosGrupo } from './grupoColeccion';
 
 /**
@@ -22,7 +22,7 @@ export enum AtributosOrdenacionGrupo {
 /**
  * Prompt para insertar elemento Grupo
  */
-async function insertarGrupoPrompt () {
+export async function insertarGrupoPrompt(opcion: number =  1, adminID: number = 0) {
   console.clear();
   let nombre : string;
   let participantes : number[];
@@ -58,11 +58,11 @@ async function insertarGrupoPrompt () {
     name: "addRutasFavoritas",
     message: "Introducir rutas favoritas (1, 2, 3): ",
   },
-  /*{
+  {
     type: "input",
     name: "addHistoricoRutas",
     message: "Introducir el historico de rutas ([02-03-22, 3], [03-05-23, 1]): ",
-  },*/
+  },
   ]);
   
   nombre = respuestas["addNombre"];
@@ -74,14 +74,18 @@ async function insertarGrupoPrompt () {
   estadisticasEntrenamiento[1] = Number(estadisticasEntrenamiento[1]);
   estadisticasEntrenamiento[3] = Number(estadisticasEntrenamiento[3]);  
 
-  /*let historicoRutasStr: string[] = respuestas["addHistoricoRutas"].replaceAll('[', '').replaceAll(' ', '').replaceAll('],', '|').replaceAll(']', '').split('|');
+  let historicoRutasStr: string[] = respuestas["addHistoricoRutas"].replaceAll('[', '').replaceAll(' ', '').replaceAll('],', '|').replaceAll(']', '').split('|');
   historicoRutasStr.forEach(historico => {
     let aux: string[] = (historico.split(','));
-    // historicoRutas.push([aux[0], Number(aux[1])]);
-  })*/
-  jsonGruposColeccion.addGrupo(nombre, participantes, estadisticasEntrenamiento, clasificacion, rutasFavoritas, historicoRutas);
-  promptPrincipal("Grupo creado"); 
-  promptGrupos();
+    historicoRutas.push([aux[0], Number(aux[1])]);
+  })
+  jsonGruposColeccion.addGrupo(nombre, participantes, estadisticasEntrenamiento, clasificacion, rutasFavoritas, historicoRutas, adminID);
+  
+  if (opcion === 1) {
+    promptPrincipal("Grupo creado"); 
+  } else{
+    pantallaPrincipal("Grupo creado");
+  }
 }
 
 
@@ -145,7 +149,7 @@ async function modificarGrupoPrompt () {
 /**
  * Prompt para mostrar determinado elemento Grupo
  */
-async function mostrarGrupoPrompt () {
+export async function mostrarGrupoPrompt (opcion: number = 1) {
   console.clear();
 
   let respuestaOrdenacion = await inquirer.prompt({
@@ -163,7 +167,12 @@ async function mostrarGrupoPrompt () {
   })
 
   if (!jsonGruposColeccion.showGrupo(respuestaOrdenacion["ordenacion"], respuestaOrdenacionOrientacion["orientacion"])) {
-    promptPrincipal("NO se han podido mostrar los datos");
+    if (opcion === 0) {
+      pantallaPrincipal();
+    }
+    else{
+      promptPrincipal("NO se han podido mostrar los datos");
+    }
   }
   let espera = await inquirer.prompt({
     type: "list",
@@ -171,7 +180,12 @@ async function mostrarGrupoPrompt () {
     message: "",
     choices: Object.values(AtributosMostrar),
   });
-  promptPrincipal();
+  if (opcion === 0) {
+    pantallaPrincipal();
+  }
+  else {
+    promptPrincipal();
+  }
 }
 
 /**

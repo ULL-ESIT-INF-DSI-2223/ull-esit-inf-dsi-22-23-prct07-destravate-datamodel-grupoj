@@ -11,13 +11,15 @@ import { promptUsuarios } from './usuarios/usuarioPrompt';
 import { promptGrupos } from './grupos/grupoPrompt';
 import { promptRutas } from './rutas/rutaPrompt';
 import { promptRetos } from './retos/retoPrompt';
+import { Gestor } from './gestor'
 
 export let jsonUsuariosColeccion = new JsonUsuarioColeccion([]);
 export let jsonRutasColeccion = new JsonRutaColeccion([]);
 export let jsonRetosColeccion = new JsonRetoColeccion([]);
 export let jsonGruposColeccion = new JsonGrupoColeccion([]);
+let myGestor = new Gestor(jsonUsuariosColeccion, jsonGruposColeccion, jsonRutasColeccion, jsonRetosColeccion);
 
-enum Commands {
+export enum Commands { 
   Usuarios = "Usuarios",
   Grupos = "Grupos",
   Rutas = "Rutas", 
@@ -45,7 +47,6 @@ export enum AtributosOrdenacionOrientacion {
 export function promptPrincipal(mensaje = "") {
   console.clear();
   console.log(mensaje);
-  //jsonUsuariosColeccion.mostrarUsuarios()  
 
   inquirer.prompt({
     type: "list",
@@ -70,4 +71,101 @@ export function promptPrincipal(mensaje = "") {
   })
 }
 
-promptPrincipal();
+
+export enum CommandsGestor { 
+  ListadoUsuarios = "Ver listado de usuarios en el sistema",
+  Amigos = "Amigos",
+  Grupos = "Grupos",
+  VerRutas = "Visualizar todas las rutas",
+  Salir = "Salir"
+}
+
+export enum CommandsGrupos { 
+  Unirse = "Unirse al grupo",
+  Visualizar = "Visualizar",
+  Crear = "Crear",
+  Borrar = "Borrar", 
+  Salir = "Salir"
+}
+
+export enum CommandsAmigos { 
+  Anadir = "Añadir amigo",
+  Borrar = "Borrar amigo",
+  Salir = "Salir"
+}
+
+export function pantallaPrincipal(mensaje = "") : void {
+  console.clear();
+  console.log(mensaje);
+ 
+  inquirer.prompt({
+    type: "list",
+    name: "command",
+    message: "¿Qué quieres hacer?: ",
+    choices: Object.values(CommandsGestor),
+  }).then(answers => {
+    switch (answers["command"]) {
+      case CommandsGestor.ListadoUsuarios:
+        myGestor.visualizarUsuarios();
+        break;
+        
+      case CommandsGestor.Amigos:
+        inquirer.prompt({
+          type: "list",
+          name: "command",
+          message: "¿Qué quieres hacer?: ",
+          choices: Object.values(CommandsAmigos),
+        }).then(answers => {
+          switch (answers["command"]) {
+            case CommandsAmigos.Anadir:
+              myGestor.añadirAmigo();
+              break;
+            case CommandsAmigos.Borrar:
+              myGestor.eliminarAmigo();
+              break;
+            case CommandsGrupos.Salir:
+              pantallaPrincipal();
+              break;
+          }
+        })
+        break;
+
+      case CommandsGestor.Grupos:
+        inquirer.prompt({
+          type: "list",
+          name: "command",
+          message: "¿Qué quieres hacer?: ",
+          choices: Object.values(CommandsGrupos),
+        }).then(answers => {
+          switch (answers["command"]) {
+            case CommandsGrupos.Crear:
+              myGestor.crearGrupo()
+              break;
+            case CommandsGrupos.Borrar:
+              //
+              break;
+            case CommandsGrupos.Unirse:
+              myGestor.unirseGrupo();
+              break;
+            case CommandsGrupos.Visualizar:
+              myGestor.visualizarGrupo();
+              break;
+            case CommandsGrupos.Salir:
+              pantallaPrincipal();
+              break;
+          }
+        })
+        break;
+
+      case CommandsGestor.VerRutas:
+        myGestor.visualizarRutas();
+        break;
+      case CommandsGestor.Salir:
+        myGestor.registrarse(); 
+        break;
+    }
+  })
+}
+
+myGestor.registrarse();  
+//promptPrincipal();

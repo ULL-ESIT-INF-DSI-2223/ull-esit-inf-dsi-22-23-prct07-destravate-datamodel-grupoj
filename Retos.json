@@ -1,43 +1,100 @@
 {
   "reto": [
     {
-      "_ID": 1,
-      "_nombre": "Subida al Teide",
+      "_ID": 2,
+      "_nombre": "Vuelta al teide",
       "_rutas": [
         {
           "_ID": 1,
-          "_nombre": "Los volcanes",
+          "_nombre": "Volcanes",
           "_geolocalizacionInicio": [
-            12,
-            15,
-            22,
-            "N"
-          ],
-          "_geolocalizacionFinal": [
-            14,
-            25,
-            65,
+            16,
+            17,
+            18,
             "S"
           ],
-          "_longitud": 15,
-          "_desnivelMedio": 26,
+          "_geolocalizacionFinal": [
+            22,
+            15,
+            45,
+            "E"
+          ],
+          "_longitud": 20,
+          "_desnivelMedio": 256,
           "_usuariosRealizaron": [
-            1
+            1,
+            2
           ],
           "_tipoActividad": "Correr",
-          "_calificacionMedia": 8
+          "_calificacionMedia": 9
         }
       ],
       "_tipoActividad": "Bicicleta",
-      "_kilometrosTotales": null,
+      "_kilometrosTotales": 20,
+      "_usuarios": []
+    },
+    {
+      "_ID": 1,
+      "_nombre": "04",
+      "_rutas": [
+        {
+          "_ID": 1,
+          "_nombre": "Volcanes",
+          "_geolocalizacionInicio": [
+            16,
+            17,
+            18,
+            "S"
+          ],
+          "_geolocalizacionFinal": [
+            22,
+            15,
+            45,
+            "E"
+          ],
+          "_longitud": 20,
+          "_desnivelMedio": 256,
+          "_usuariosRealizaron": [
+            1,
+            2
+          ],
+          "_tipoActividad": "Correr",
+          "_calificacionMedia": 9
+        },
+        {
+          "_ID": 2,
+          "_nombre": "Los valcanes",
+          "_geolocalizacionInicio": [
+            18,
+            16,
+            20,
+            "N"
+          ],
+          "_geolocalizacionFinal": [
+            17,
+            15,
+            26,
+            "S"
+          ],
+          "_longitud": 24,
+          "_desnivelMedio": 125,
+          "_usuariosRealizaron": [
+            2
+          ],
+          "_tipoActividad": "Bicicleta",
+          "_calificacionMedia": 7
+        }
+      ],
+      "_tipoActividad": "Correr",
+      "_kilometrosTotales": 44,
       "_usuarios": [
         {
           "_ID": 1,
           "_nombre": "Ivan",
-          "_actividades": "Bicicleta",
+          "_actividades": "Correr",
           "_amigosApp": [
             1,
-            5
+            2
           ],
           "_grupoAmigos": [
             [
@@ -50,16 +107,16 @@
           ],
           "_entrenamiento": [
             15,
-            256,
+            258,
             "Enero",
-            2021
+            2023
           ],
           "_rutasFavoritas": [
-            5
+            2,
+            4
           ],
           "_retosActivos": [
-            4,
-            5
+            3
           ],
           "_historicoRutas": [
             [
@@ -71,95 +128,8 @@
               1
             ]
           ]
-        },
-        {
-          "_ID": 2,
-          "_nombre": "Pedro",
-          "_actividades": "Bicicleta",
-          "_amigosApp": [
-            5
-          ],
-          "_grupoAmigos": [
-            [
-              1
-            ]
-          ],
-          "_entrenamiento": [
-            15,
-            26,
-            "Febrero",
-            2023
-          ],
-          "_rutasFavoritas": [
-            5
-          ],
-          "_retosActivos": [
-            0
-          ],
-          "_historicoRutas": [
-            [
-              "02-03-22",
-              3
-            ]
-          ]
         }
       ]
-    },
-    {
-      "_ID": 2,
-      "_nombre": "Vueltita al Teidecito",
-      "_rutas": [
-        {
-          "_ID": 1,
-          "_nombre": "Los volcanes",
-          "_geolocalizacionInicio": [
-            12,
-            15,
-            22,
-            "N"
-          ],
-          "_geolocalizacionFinal": [
-            14,
-            25,
-            65,
-            "S"
-          ],
-          "_longitud": 15,
-          "_desnivelMedio": 26,
-          "_usuariosRealizaron": [
-            1
-          ],
-          "_tipoActividad": "Correr",
-          "_calificacionMedia": 8
-        },
-        {
-          "_ID": 2,
-          "_nombre": "La caldereta",
-          "_geolocalizacionInicio": [
-            15,
-            16,
-            20,
-            "E"
-          ],
-          "_geolocalizacionFinal": [
-            18,
-            22,
-            56,
-            "S"
-          ],
-          "_longitud": 25,
-          "_desnivelMedio": 256,
-          "_usuariosRealizaron": [
-            1,
-            2
-          ],
-          "_tipoActividad": "Bicicleta",
-          "_calificacionMedia": 9
-        }
-      ],
-      "_tipoActividad": "Bicicleta",
-      "_kilometrosTotales": null,
-      "_usuarios": []
     }
   ]
 }

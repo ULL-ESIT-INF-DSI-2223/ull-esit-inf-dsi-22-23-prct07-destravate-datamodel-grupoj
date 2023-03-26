@@ -6,6 +6,26 @@ describe('Clase Usuario Tests', () => {
     it('Constructor', () => {
       expect(new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]])).not.to.be.eql(null);
     })
+    it('MostrarUsuario', () => {
+      let usuario: Usuario = new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]])
+      const stdout = require("test-console").stdout;
+      const inspect = stdout.inspect();
+      usuario.mostrarUsuario();
+      inspect.restore();
+      expect(inspect.output).to.be.eql(["ID: 2\n", "Nombre: Sharon\n", "Actividades: Bicicleta\n", 
+                                        "Amigos de la app: 5\n", "Grupo de Amigos: 1\n", "Entrenamiento: 25,9,Junio,2023\n", 
+                                        "Rutas favoritas: 1,3\n", "Retos activos: 1\n", "Histórico rutas: 02-03-22,3,03-05-23,1\n"])
+    })
+    it('incluirAmigo', () => {
+      let usuario: Usuario = new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]])
+      usuario.incluirAmigo(2);
+      expect(usuario.amigosApp).to.be.eql([5, 2]);
+    })
+    it('BorrarAmigo', () => {
+      let usuario: Usuario = new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]])
+      usuario.quitarAmigo(5);
+      expect(usuario.amigosApp).to.be.eql([]);
+    })
     it('get ID', () => {
       expect(new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]).ID).to.be.equal(2);
     })

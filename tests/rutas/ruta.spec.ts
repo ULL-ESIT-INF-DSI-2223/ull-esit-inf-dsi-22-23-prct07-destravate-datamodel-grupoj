@@ -7,6 +7,15 @@ describe('Clase Ruta Tests', () => {
     it('Constructor', () => {
       expect(new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)).not.to.be.eql(null);
     })
+    it('MostrarRuta', () => {
+      let ruta: Ruta = new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4)
+      const stdout = require("test-console").stdout;
+      const inspect = stdout.inspect();
+      ruta.mostrarRuta();
+      inspect.restore();
+      expect(inspect.output).to.be.eql(["ID: 3\n", "Nombre: La Caldera\n", "geolocalizacionInicio: 90,34,21,N\n", "Longitud: 23\n", "Desnivel Medio: 12\n", 
+                                        "Usuarios que la realizaron: 1,2,3,4,5,6,7\n", "Tipo de Actividad: Bicicleta\n", "Calificación Media: 4\n"])
+    })
     it('get ID', () => {
       expect(new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Bicicleta', 4).ID).to.be.equal(3);
     })

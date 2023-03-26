@@ -54,9 +54,36 @@ export class GrupoColeccion {
    * @param historicoRutas todas las rutas que ha realizado el grupo en conjunto
   */
   insertarGrupo(nombre : string, participantes : number[], estadisticasEntrenamiento : EstadisticasEntrenamiento,  
-    clasificacion : Usuario[], rutasFavoritas : number[], historicoRutas : HistoricoRuta[]) {
-    this._grupos.push(new Grupo(++this._ultID, nombre, participantes, estadisticasEntrenamiento, clasificacion, rutasFavoritas, historicoRutas));
+    clasificacion : Usuario[], rutasFavoritas : number[], historicoRutas : HistoricoRuta[], adminID: number = 0) {
+    this._grupos.push(new Grupo(++this._ultID, nombre, participantes, estadisticasEntrenamiento, clasificacion, rutasFavoritas, historicoRutas, adminID));
   }
+
+
+  /**
+   * Obtener la posición en el array _grupos
+   * donde se encuentra el grupo según su ID
+   * @param ID_grupo ID del grupo
+   */
+  devolverIndexGrupo(ID_grupo: number) : number {
+    let grupoIndex: number = 0;
+
+    this._grupos.forEach((grupo, index) => {
+      if(grupo.ID ==  ID_grupo) {
+        grupoIndex = index;
+      }
+    })
+
+    return grupoIndex;
+  }
+  /**
+   * Método para añadir un usuario a un grupo
+   * @param ID_grupo ID del grupo al que añadir al usuario
+   * @param ID_usuario ID del usuario a añadir al grupo
+   */
+  anadirUsuario (ID_grupo : number, ID_usuario : number) {
+    this._grupos[this.devolverIndexGrupo(ID_grupo)].incluirUsuario(ID_usuario);
+    
+  } 
 
   /**
    * Método para eliminar un grupo de la colección
@@ -202,6 +229,17 @@ export class GrupoColeccion {
     });
 
     return true;
+  }
+
+
+  existeGrupo(id: number): boolean {
+    let result: boolean = false;
+    this._grupos.forEach(grupo => {
+      if(grupo.ID === id) {
+        result = true;
+      }
+    });
+    return result;
   }
 
 

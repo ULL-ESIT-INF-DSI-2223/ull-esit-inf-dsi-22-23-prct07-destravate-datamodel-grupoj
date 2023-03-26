@@ -90,7 +90,6 @@ export class JsonRetoColeccion extends RetoColeccion {
   */
   showReto(ordenacion: string, orientacion: string): boolean {
     let muestro: boolean = super.mostrarRetos(ordenacion, orientacion);
-    this.storeTasks();
     return muestro;
   }
 

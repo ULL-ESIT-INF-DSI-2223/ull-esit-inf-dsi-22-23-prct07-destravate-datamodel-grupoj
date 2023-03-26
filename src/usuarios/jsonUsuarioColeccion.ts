@@ -101,9 +101,29 @@ export class JsonUsuarioColeccion extends UsuarioColeccion {
   */
   showUsuario(ordenacion: string, orientacion: string): boolean {
     let muestro: boolean = super.mostrarUsuarios(ordenacion, orientacion);
-    this.storeTasks();
     return muestro;
   }
+
+  /**
+   * Método para añadir un amigo a un usuario
+   * @param ID_usuario ID del usuario a añadir un amigo
+   * @param ID_amigo ID del amigo a insertar
+   */
+  addAmigo(ID_usuario : number, ID_amigo : number) {
+    super.anadirAmigo(ID_usuario, ID_amigo);
+    this.storeTasks();
+  } 
+
+  /**
+   * Método para eliminar un amigo a un usuario
+   * @param ID_usuario ID del usuario a eliminar un amigo
+   * @param ID_amigo ID del amigo a eliminar
+   */
+  removeAmigo(ID_usuario : number, ID_amigo : number) {
+    super.borrarAmigo(ID_usuario, ID_amigo);
+    this.storeTasks();
+  } 
+
   /**
    * Método privado para actualizar los valores del fichero JSON, con los de la colección
    */

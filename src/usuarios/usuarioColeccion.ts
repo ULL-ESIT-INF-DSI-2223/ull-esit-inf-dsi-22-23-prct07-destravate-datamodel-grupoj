@@ -48,13 +48,12 @@ export class UsuarioColeccion {
     }
   }
 
-  /*mostrarUsuarios () : void { 
-    //this._usuarios.sort((a, b) => a.ID - b.ID);    
-    this._usuarios.forEach(usuario => {
-      usuario.mostrarUsuario();
-      console.log('\n');
-    });
-  }*/
+  /** Getter del atributo ultID
+   * @returns El ultimo Id para registrar
+   */
+  get ultID() : number {
+    return this._ultID;
+  }
 
   /**
    * Método para insertar un usuario a la colección
@@ -170,7 +169,6 @@ export class UsuarioColeccion {
   buscarUsuarios(usuariosIds: number[]) : Usuario[] {
     let usuarios: Usuario[] = [];
 
-
     this._usuarios.forEach(usuario => {
       usuariosIds.forEach(usuarioId => {
         if(usuario.ID ==  usuarioId) {
@@ -181,6 +179,41 @@ export class UsuarioColeccion {
 
     return usuarios;
   }
+
+  /**
+   * Obtener la posición en el array _usuarios
+   * donde se encuentra el usuario según su ID
+   * @param ID_usuario ID del usuario
+   */
+  devolverIndexUsuario(ID_usuario: number) : number {
+    let usuarioIndex: number = -1;
+
+    this._usuarios.forEach((usuario, index) => {
+      if(usuario.ID ==  ID_usuario) {
+        usuarioIndex = index;
+      }
+    })
+
+    return usuarioIndex;
+  }
+
+  /**
+   * Método para añadir un amigo a un usuario
+   * @param ID_usuario ID del usuario a añadir un amigo
+   * @param ID_amigo ID del amigo a insertar
+   */
+  anadirAmigo (ID_usuario : number, ID_amigo : number) {
+    this._usuarios[this.devolverIndexUsuario(ID_usuario)].incluirAmigo(ID_amigo);
+  } 
+
+  /**
+   * Método para eliminar un amigo a un usuario
+   * @param ID_usuario ID del usuario a eliminar un amigo
+   * @param ID_amigo ID del amigo a eliminar
+   */
+  borrarAmigo(ID_usuario : number, ID_amigo : number) {
+    this._usuarios[this.devolverIndexUsuario(ID_usuario)].quitarAmigo(ID_amigo);
+  } 
 
   /**
   * Método para mostrar una serie de atributos de un grupo de la colección

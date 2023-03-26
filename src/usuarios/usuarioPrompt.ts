@@ -3,7 +3,8 @@ import { AtributosUsuario } from "./usuarioColeccion";
 import { HistoricoRuta, Coleccion } from './usuario';
 import { Actividad} from '../rutas/ruta';
 import { EstadisticasEntrenamiento } from '../grupos/grupo';
-import { promptPrincipal, CommandsEach, jsonUsuariosColeccion, AtributosOrdenacionOrientacion, AtributosMostrar } from '../index';
+import { promptPrincipal, CommandsEach, jsonUsuariosColeccion, AtributosOrdenacionOrientacion, AtributosMostrar, pantallaPrincipal } from '../index';
+import { Gestor } from '../gestor';
 
 /**
  * Enumerado de los distintos Atributos
@@ -19,7 +20,7 @@ export enum AtributosOrdenacionUsuario {
 /**
  * Prompt para insertar elemento Usuario
  */
-export async function insertarUsuarioPrompt () {
+export async function insertarUsuarioPrompt(opcion: number = 1) {
   console.clear();
   let nombre: string = "";
   let actividades: Actividad;
@@ -96,9 +97,15 @@ export async function insertarUsuarioPrompt () {
 
   if (actividades == "Bicicleta" || actividades == "Correr") {
     jsonUsuariosColeccion.addUsuario(nombre, actividades, amigosapp, grupoAmigos, entrenamiento, rutasFavoritas, retosActivos, historicoRutas);
+    if (opcion == 0) {
+      pantallaPrincipal("Usuario creado");
+    }
     promptPrincipal("Usuario creado"); 
   }
   else {
+    if (opcion == 0) {
+      pantallaPrincipal("Usuario creado");
+    }
     promptPrincipal("Usuario NO creado, datos incorrectos");
   }
 }
@@ -161,7 +168,7 @@ async function modificarUsuarioPrompt () {
 /**
  * Prompt para mostrar determinado elemento Usuario
  */
-async function mostrarUsuarioPrompt () {
+export async function mostrarUsuarioPrompt(opcion: number =  1) {
   console.clear();
 
   let respuestaOrdenacion = await inquirer.prompt({
@@ -179,7 +186,12 @@ async function mostrarUsuarioPrompt () {
   })
 
   if (!jsonUsuariosColeccion.showUsuario(respuestaOrdenacion["ordenacion"], respuestaOrdenacionOrientacion["orientacion"])) {
-    promptPrincipal("NO se han podido mostrar los datos");
+    if(opcion === 0) {
+      pantallaPrincipal("NO se han podido mostrar los datos");
+    } else {
+      promptPrincipal("NO se han podido mostrar los datos");
+    }
+    
   }
   let espera = await inquirer.prompt({
     type: "list",
@@ -187,7 +199,13 @@ async function mostrarUsuarioPrompt () {
     message: "",
     choices: Object.values(AtributosMostrar),
   });
-  promptPrincipal();
+
+  if (opcion === 0) {
+    pantallaPrincipal();
+  }
+  else{
+    promptPrincipal();
+  }
 }
 
 /**

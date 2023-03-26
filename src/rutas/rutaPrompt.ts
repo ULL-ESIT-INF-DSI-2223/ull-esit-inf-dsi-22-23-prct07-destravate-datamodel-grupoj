@@ -4,7 +4,7 @@ import { JsonRutaColeccion } from "./jsonRutaColeccion";
 import { Usuario, HistoricoRuta, Coleccion } from '../usuarios/usuario';
 import { Actividad, Ruta, Coordenada } from '../rutas/ruta';
 import { EstadisticasEntrenamiento } from '../grupos/grupo';
-import { promptPrincipal, CommandsEach, jsonRutasColeccion, AtributosMostrar, AtributosOrdenacionOrientacion } from '../index';
+import { promptPrincipal, CommandsEach, jsonRutasColeccion, AtributosMostrar, AtributosOrdenacionOrientacion, pantallaPrincipal } from '../index';
 
 /**
  * Enumerado de los distintos Atributos
@@ -151,10 +151,10 @@ async function modificarRutaPrompt() {
   ]);
 
   if (jsonRutasColeccion.modifyRuta(Number(respuestaID["modifyID"]), respuestaElemento["element"], respuestaModificar["modifyElement"])) {
-    promptPrincipal("Reto modificado");
+    promptPrincipal("Ruta modificado");
   }
   else {
-    promptPrincipal("Reto NO modificado, datos incorrectos");
+    promptPrincipal("Ruta NO modificado, datos incorrectos");
   }
 }
 
@@ -162,7 +162,7 @@ async function modificarRutaPrompt() {
 /**
  * Prompt para mostrar determinado elemento Usuario
  */
-async function mostrarRutaPrompt () {
+export async function mostrarRutaPrompt(opcion: number = 1) {
   console.clear();
 
   let respuestaOrdenacion = await inquirer.prompt({
@@ -180,7 +180,12 @@ async function mostrarRutaPrompt () {
   })
 
   if (!jsonRutasColeccion.showRuta(respuestaOrdenacion["ordenacion"], respuestaOrdenacionOrientacion["orientacion"])) {
-    promptPrincipal("NO se han podido mostrar los datos");
+    if (opcion === 0) {
+      pantallaPrincipal();
+    }
+    else {
+      promptPrincipal("NO se han podido mostrar los datos");
+    }
   }
   let espera = await inquirer.prompt({
     type: "list",
@@ -188,7 +193,12 @@ async function mostrarRutaPrompt () {
     message: "",
     choices: Object.values(AtributosMostrar),
   });
-  promptPrincipal();
+  if (opcion === 0) {
+    pantallaPrincipal();
+  }
+  else {
+    promptPrincipal();
+  }
 }
 
 /**

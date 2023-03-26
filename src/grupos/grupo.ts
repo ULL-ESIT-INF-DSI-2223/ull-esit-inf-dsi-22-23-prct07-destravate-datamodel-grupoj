@@ -21,6 +21,7 @@ export class Grupo {
   private _clasificacion : Usuario[];
   private _rutasFavoritas : number[];
   private _historicoRutas : HistoricoRuta[];
+  private _administrador: number;
 
   /**
   * Constructor de la clase GRrupo
@@ -33,7 +34,7 @@ export class Grupo {
   * @param historicoRutas todas las rutas que ha realizado el grupo en conjunto
   */
   constructor(ID : number, nombre : string, participantes : number[], estadisticasEntrenamiento : EstadisticasEntrenamiento,  
-              clasificacion : Usuario[], rutasFavoritas : number[], historicoRutas : HistoricoRuta[]) {
+              clasificacion : Usuario[], rutasFavoritas : number[], historicoRutas : HistoricoRuta[], administrador: number = 0) {
     this._ID = ID;
     this._nombre = nombre;
     this._participantes = participantes;
@@ -41,6 +42,7 @@ export class Grupo {
     this._clasificacion = clasificacion;
     this._rutasFavoritas = rutasFavoritas;
     this._historicoRutas = historicoRutas;
+    this._administrador = administrador;
   }
 
   /**
@@ -53,7 +55,17 @@ export class Grupo {
     console.log(`Estadísticas de Entrenamiento: ${this._estadisticasEntrenamiento}`);
     console.log(`Clasificación: ${this._clasificacion}`);
     console.log(`Rutas favoritas: ${this._rutasFavoritas}`);
-    console.log(`Histórico de rutas: ${this.historicoRutas}`);
+    console.log(`Histórico de rutas: ${this._historicoRutas}`);
+    console.log(`Administrador: ${this._administrador}`);
+  }
+
+
+  /**
+   * Función para añadir un usuario al grupo
+   * @param IDUsuario
+   */
+  incluirUsuario (IDUsuario: number) { 
+    this._participantes.push(IDUsuario);
   }
 
   /**
@@ -169,4 +181,13 @@ export class Grupo {
   set historicoRutas (historicoRutas : HistoricoRuta[]) {
     this._historicoRutas = historicoRutas;
   }
+
+  /**
+  * Getter del atributo _administrador
+  * @return atributo _administrador 
+  */
+  get administrador () {
+    return this._administrador;
+  }
+
 }

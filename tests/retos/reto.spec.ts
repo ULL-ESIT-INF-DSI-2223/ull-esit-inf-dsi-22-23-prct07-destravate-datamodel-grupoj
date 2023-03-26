@@ -8,6 +8,15 @@ describe('Clase Reto Tests', () => {
   it('Constructor', () => {
     expect(new Reto(3, 'La Muerte',[new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Correr', 4)], 'Correr', [new Usuario(2, 'Sharon', 'Correr', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]])])).not.to.be.eql(null);
   })
+  it('MostrarReto', () => {
+    let reto: Reto = new Reto(3, 'La Muerte',[new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Correr', 4)], 'Correr', [new Usuario(2, 'Sharon', 'Correr', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]])])
+    const stdout = require("test-console").stdout;
+    const inspect = stdout.inspect();
+    reto.mostrarReto();
+    inspect.restore();
+    expect(inspect.output).to.be.eql(["ID: 3\n", "Nombre: La Muerte\n", "Rutas: [object Object]\n", 
+                                      "Tipo de Actividad: Correr\n", "Kilometros totales: 23\n", "Usuarios: [object Object]\n"])
+  })
   it('get ID', () => {
     expect(new Reto(3, 'La Muerte',[new Ruta(3, 'La Caldera', [90, 34, 21, 'N'], [76, 31, 61, 'S'], 23, 12, [1,2,3,4,5,6,7], 'Correr', 4)], 'Correr', [new Usuario(2, 'Sharon', 'Correr', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]])]).ID).to.be.equal(3);
   })

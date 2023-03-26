@@ -65,6 +65,20 @@ export class Usuario {
     console.log(`Histórico rutas: ${this._historicoRutas}`);
   }
 
+    /**
+   * Función para añadir amigo,
+   * incluyendo su ID en atributo de la clase _AmigosApp
+   * @param ID del amigo que es usuario
+   */
+  incluirAmigo (ID: number) {
+    this._amigosApp.push(ID);
+  }
+
+  quitarAmigo (ID: number) {
+    let index: number = this._amigosApp.findIndex(id => id === ID);
+    this._amigosApp.splice(index, 1);
+  }
+
   /**
    * Getter del atributo _ID
    * @return atributo _ID 

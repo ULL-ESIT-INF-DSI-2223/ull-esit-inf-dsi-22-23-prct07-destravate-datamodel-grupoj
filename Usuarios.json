@@ -1,6 +1,72 @@
 {
   "usuario": [
     {
+      "_ID": 5,
+      "_nombre": "Pepe",
+      "_actividades": "Correr",
+      "_amigosApp": [
+        0
+      ],
+      "_grupoAmigos": [
+        [
+          0
+        ]
+      ],
+      "_entrenamiento": [
+        0,
+        null,
+        null,
+        null
+      ],
+      "_rutasFavoritas": [
+        0
+      ],
+      "_retosActivos": [
+        0
+      ],
+      "_historicoRutas": [
+        [
+          "",
+          null
+        ]
+      ]
+    },
+    {
+      "_ID": 4,
+      "_nombre": "Laura",
+      "_actividades": "Bicicleta",
+      "_amigosApp": [
+        0
+      ],
+      "_grupoAmigos": [
+        [
+          1
+        ]
+      ],
+      "_entrenamiento": [
+        20,
+        247,
+        "Junio",
+        2019
+      ],
+      "_rutasFavoritas": [
+        0
+      ],
+      "_retosActivos": [
+        1
+      ],
+      "_historicoRutas": [
+        [
+          "02-03-22",
+          3
+        ],
+        [
+          "03-05-23",
+          1
+        ]
+      ]
+    },
+    {
       "_ID": 1,
       "_nombre": "Ivan",
       "_actividades": "Correr",
@@ -59,10 +125,10 @@
         ]
       ],
       "_entrenamiento": [
-        15,
-        258,
+        18,
+        257,
         "Enero",
-        2023
+        2021
       ],
       "_rutasFavoritas": [
         2,
@@ -79,6 +145,38 @@
         [
           "03-05-23",
           1
+        ]
+      ]
+    },
+    {
+      "_ID": 3,
+      "_nombre": "Andres",
+      "_actividades": "Correr",
+      "_amigosApp": [
+        2,
+        4
+      ],
+      "_grupoAmigos": [
+        [
+          1
+        ]
+      ],
+      "_entrenamiento": [
+        15,
+        259,
+        "Enero",
+        2021
+      ],
+      "_rutasFavoritas": [
+        0
+      ],
+      "_retosActivos": [
+        0
+      ],
+      "_historicoRutas": [
+        [
+          "02-03-20",
+          4
         ]
       ]
     }

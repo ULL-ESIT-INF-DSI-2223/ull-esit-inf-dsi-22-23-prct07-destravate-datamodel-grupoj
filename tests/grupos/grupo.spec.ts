@@ -8,6 +8,21 @@ describe('Clase Grupo Tests', () => {
   it('Constructor', () => {
     expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [3], [['09-09-22', 5]])).not.to.be.eql(null);
   })
+  it('MostrarGrupo', () => {
+    let grupo: Grupo = new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [3], [['09-09-22', 5]])
+    const stdout = require("test-console").stdout;
+    const inspect = stdout.inspect();
+    grupo.mostrarGrupo();
+    inspect.restore();
+    expect(inspect.output).to.be.eql(["ID: 1\n", "Nombre: Expertos\n", "Participantes: 1,2\n", "Estadísticas de Entrenamiento: 45,23,Junio,2023\n",
+                                      "Clasificación: [object Object],[object Object]\n", "Rutas favoritas: 3\n", "Histórico de rutas: 09-09-22,5\n",
+                                      "Administrador: 0\n"])
+  })
+  it('incluirUsuario', () => {
+    let grupo: Grupo = new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [3], [['09-09-22', 5]])
+    grupo.incluirUsuario(3);
+    expect(grupo.participantes).to.be.eql([1, 2, 3]);
+  })
   it('get ID', () => {
     expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [3], [['09-09-22', 5]]).ID).to.be.equal(1);
   })
@@ -28,6 +43,9 @@ describe('Clase Grupo Tests', () => {
   })
   it('get Histórico de rutas', () => {
     expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [3], [['09-09-22', 5]]).historicoRutas).to.be.eql([['09-09-22', 5]]);
+  })
+  it('get Administrador del grupo', () => {
+    expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [3], [['09-09-22', 5]]).administrador).to.be.eql(0);
   })
   it('set ID', () => {
     expect(new Grupo(1, 'Expertos', [1, 2], [45, 23, 'Junio', 2023], [new Usuario(2, 'Sharon', 'Bicicleta', [5], [[1]], [25,9, 'Junio', 2023], [1, 3], [1], [['02-03-22', 3], ['03-05-23', 1]]), new Usuario(1, 'Juan', 'Bicicleta', [9],[[2]], [20, 14, 'Junio', 2023], [3,5], [3], [['01-02-21', 3], ['09-09-22', 5]])], [3], [['09-09-22', 5]]).ID = 6).to.be.equal(6);
