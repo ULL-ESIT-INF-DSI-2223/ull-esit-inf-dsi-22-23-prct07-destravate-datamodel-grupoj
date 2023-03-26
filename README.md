@@ -557,9 +557,9 @@ Podemos visualizar un menú principal con dos opciones, iniciar sesión o regist
 
 
 Si seleccionamos **Registrarse** podemos proceder a introducir los datos que nos va pidiendo uno a uno:
-![Registrar Usuario](/img/registrar-usuario.png)
-![Menu Registro](/img/menu-registro.png)
-![Menu Opciones](/img/menu-opciones.png)
+![Registrar Usuario](../img/registrar-usuario.png)
+![Menu Registro](../img/menu-registro.png)
+![Menu Opciones](../img/menu-opciones.png)
 Una vez registrado podremos acceder a otro menú de opciones mucho más amplio:
 
 
