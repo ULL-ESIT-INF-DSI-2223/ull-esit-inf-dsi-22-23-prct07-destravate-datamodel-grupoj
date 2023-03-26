@@ -4,8 +4,20 @@ import { JsonRetoColeccion } from "./jsonRetoColeccion";
 import { Usuario, HistoricoRuta, Coleccion } from '../usuarios/usuario';
 import { Actividad, Ruta } from '../rutas/ruta';
 import { EstadisticasEntrenamiento } from '../grupos/grupo';
-import { promptPrincipal, CommandsEach, jsonRetosColeccion } from '../index';
+import { promptPrincipal, CommandsEach, jsonRetosColeccion, AtributosOrdenacionOrientacion, AtributosMostrar} from '../index';
 
+/**
+ * Enumerado de los distintos Atributos
+ * de ordenación de un reto
+ * @param nombre del reto
+ * @param kms del reto
+ * @param miembros del reto
+ */
+export enum AtributosOrdenacionReto {
+  Nombre = 'Alfabéticamente por nombre del grupo',
+  Kms = 'Por cantidad de kms realizados conjuntamente, en función de la semana actual, mes o año',
+  Miembros = 'Por cantidad de miembros que lo componen'
+}
 /**
  * Prompt para insertar elemento Reto
  */ 
@@ -110,6 +122,39 @@ async function modificarRetoPrompt() {
 }
 
 /**
+ * Prompt para mostrar determinado elemento Grupo
+ */
+async function mostrarRetoPrompt () {
+  console.clear();
+
+  let respuestaOrdenacion = await inquirer.prompt({
+    type: "list",
+    name: "ordenacion",
+    message: "¿Cómo deseas que se te muestren los datos?: ",
+    choices: Object.values(AtributosOrdenacionReto),
+  })
+
+  let respuestaOrdenacionOrientacion = await inquirer.prompt({
+    type: "list",
+    name: "orientacion",
+    message: "¿Orden ascendente o descendente?: ",
+    choices: Object.values(AtributosOrdenacionOrientacion),
+  })
+
+  if (!jsonRetosColeccion.showReto(respuestaOrdenacion["ordenacion"], respuestaOrdenacionOrientacion["orientacion"])) {
+    promptPrincipal("NO se han podido mostrar los datos");
+  }
+  let espera = await inquirer.prompt({
+    type: "list",
+    name: "volver",
+    message: "",
+    choices: Object.values(AtributosMostrar),
+  });
+  promptPrincipal();
+}
+
+
+/**
  * Prompt principal de Retos
  */
 export function promptRetos() {
@@ -134,6 +179,10 @@ export function promptRetos() {
       case CommandsEach.Eliminar:
         eliminarRetoPrompt();
         break;
+      
+      case CommandsEach.Mostrar:
+          mostrarRetoPrompt();
+          break;
 
       case CommandsEach.Atras:
         promptPrincipal();

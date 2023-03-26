@@ -1,8 +1,17 @@
 import { Reto } from "./reto";
 import { Actividad, Ruta } from "../rutas/ruta";
 import { Usuario } from "../usuarios/usuario";
-import { jsonRutasColeccion, jsonUsuariosColeccion } from "../index"
+import { jsonRutasColeccion, jsonUsuariosColeccion, AtributosOrdenacionOrientacion } from "../index"
+import { AtributosOrdenacionReto } from "./retoPrompt";
 
+/**
+ * Enumerado de los distintos Atributos de un reto
+ * @param ID ID único del reto
+ * @param nombre Nombre del reto
+ * @param rutas Rutas que forman parte del reto
+ * @param tipoActividad Tipo de actividad del reto: bicicleta o correr
+ * @param usuarios Usuarios que están realizando el reto
+ */
 export enum AtributosReto {
   Nombre = 'Nombre',
   Rutas = 'IDs de las rutas (1, 2, 3)',
@@ -111,5 +120,58 @@ export class RetoColeccion {
     })
 
     return flag;
+  }
+
+  mostrarRetos(ordenacion: string, orientacion : string) : boolean {
+
+    switch (ordenacion) {
+      case AtributosOrdenacionReto.Nombre:
+          switch (orientacion) {
+            case AtributosOrdenacionOrientacion.Ascendente:
+              this._retos.sort((a, b) => {
+                return b.nombre.localeCompare(a.nombre);
+              });
+              break;
+          
+            case AtributosOrdenacionOrientacion.Descendente:
+              this._retos.sort((a, b) => {
+                return a.nombre.localeCompare(b.nombre);
+              });
+              break;
+          }
+        break;
+      
+      case AtributosOrdenacionReto.Kms:
+        switch (orientacion) {
+          case AtributosOrdenacionOrientacion.Ascendente:
+            this._retos.sort((a, b) => b.kilometrosTotales - a.kilometrosTotales); // Orden ascendente
+            break;
+          
+          case AtributosOrdenacionOrientacion.Descendente:
+            this._retos.sort((a, b) => a.kilometrosTotales - b.kilometrosTotales); // Orden descendente
+            break;
+        }
+        break;
+      
+      case AtributosOrdenacionReto.Miembros:
+        switch (orientacion) {
+          case AtributosOrdenacionOrientacion.Ascendente:
+            this._retos.sort((a, b) => b.usuarios.length - a.usuarios.length); // Orden ascendente
+            break;
+          
+          case AtributosOrdenacionOrientacion.Descendente:
+            this._retos.sort((a, b) => a.usuarios.length - b.usuarios.length); // Orden descendente
+            break;
+        }
+        break;
+
+    }
+
+    this._retos.forEach(reto => {
+      reto.mostrarReto();
+      console.log('\n');
+    });
+
+    return true;
   }
 }

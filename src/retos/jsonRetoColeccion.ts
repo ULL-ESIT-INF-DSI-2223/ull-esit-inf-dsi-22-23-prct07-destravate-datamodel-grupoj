@@ -83,6 +83,18 @@ export class JsonRetoColeccion extends RetoColeccion {
   }
 
   /**
+  * Método para mostrar una serie de atributos de un reto de la colección
+  * @param ordenacion opción de ordenación
+  * @param orientacion opción de orientación
+  * @returns un valor logico si se pudo mostrar correctamente la información por pantalla
+  */
+  showReto(ordenacion: string, orientacion: string): boolean {
+    let muestro: boolean = super.mostrarRetos(ordenacion, orientacion);
+    this.storeTasks();
+    return muestro;
+  }
+
+  /**
    * Método privado para actualizar los valores del fichero JSON, con los de la colección
    */
   private storeTasks() {

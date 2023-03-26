@@ -37,7 +37,17 @@ export class Reto {
     })
     this._usuarios = usuarios;
   }
-
+  /**
+   * Muestra los atributos de reto
+   */
+  mostrarReto() : void {
+    console.log(`ID: ${this._ID}`);
+    console.log(`Nombre: ${this._nombre}`);
+    console.log(`Rutas: ${this._rutas}`);
+    console.log(`Tipo de Actividad: ${this._tipoActividad}`);
+    console.log(`Kilometros totales: ${this._kilometrosTotales}`);
+    console.log(`Usuarios: ${this._usuarios}`);
+  }
   /**
    * Getter del atributo _ID
    * @return atributo _ID 
