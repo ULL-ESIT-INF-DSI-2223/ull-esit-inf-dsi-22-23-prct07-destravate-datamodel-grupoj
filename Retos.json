@@ -1,0 +1,165 @@
+{
+  "reto": [
+    {
+      "_ID": 1,
+      "_nombre": "Subida al Teide",
+      "_rutas": [
+        {
+          "_ID": 1,
+          "_nombre": "Los volcanes",
+          "_geolocalizacionInicio": [
+            12,
+            15,
+            22,
+            "N"
+          ],
+          "_geolocalizacionFinal": [
+            14,
+            25,
+            65,
+            "S"
+          ],
+          "_longitud": 15,
+          "_desnivelMedio": 26,
+          "_usuariosRealizaron": [
+            1
+          ],
+          "_tipoActividad": "Correr",
+          "_calificacionMedia": 8
+        }
+      ],
+      "_tipoActividad": "Bicicleta",
+      "_kilometrosTotales": null,
+      "_usuarios": [
+        {
+          "_ID": 1,
+          "_nombre": "Ivan",
+          "_actividades": "Bicicleta",
+          "_amigosApp": [
+            1,
+            5
+          ],
+          "_grupoAmigos": [
+            [
+              1
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "_entrenamiento": [
+            15,
+            256,
+            "Enero",
+            2021
+          ],
+          "_rutasFavoritas": [
+            5
+          ],
+          "_retosActivos": [
+            4,
+            5
+          ],
+          "_historicoRutas": [
+            [
+              "02-03-22",
+              3
+            ],
+            [
+              "03-05-23",
+              1
+            ]
+          ]
+        },
+        {
+          "_ID": 2,
+          "_nombre": "Pedro",
+          "_actividades": "Bicicleta",
+          "_amigosApp": [
+            5
+          ],
+          "_grupoAmigos": [
+            [
+              1
+            ]
+          ],
+          "_entrenamiento": [
+            15,
+            26,
+            "Febrero",
+            2023
+          ],
+          "_rutasFavoritas": [
+            5
+          ],
+          "_retosActivos": [
+            0
+          ],
+          "_historicoRutas": [
+            [
+              "02-03-22",
+              3
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "_ID": 2,
+      "_nombre": "Vueltita al Teidecito",
+      "_rutas": [
+        {
+          "_ID": 1,
+          "_nombre": "Los volcanes",
+          "_geolocalizacionInicio": [
+            12,
+            15,
+            22,
+            "N"
+          ],
+          "_geolocalizacionFinal": [
+            14,
+            25,
+            65,
+            "S"
+          ],
+          "_longitud": 15,
+          "_desnivelMedio": 26,
+          "_usuariosRealizaron": [
+            1
+          ],
+          "_tipoActividad": "Correr",
+          "_calificacionMedia": 8
+        },
+        {
+          "_ID": 2,
+          "_nombre": "La caldereta",
+          "_geolocalizacionInicio": [
+            15,
+            16,
+            20,
+            "E"
+          ],
+          "_geolocalizacionFinal": [
+            18,
+            22,
+            56,
+            "S"
+          ],
+          "_longitud": 25,
+          "_desnivelMedio": 256,
+          "_usuariosRealizaron": [
+            1,
+            2
+          ],
+          "_tipoActividad": "Bicicleta",
+          "_calificacionMedia": 9
+        }
+      ],
+      "_tipoActividad": "Bicicleta",
+      "_kilometrosTotales": null,
+      "_usuarios": []
+    }
+  ]
+}

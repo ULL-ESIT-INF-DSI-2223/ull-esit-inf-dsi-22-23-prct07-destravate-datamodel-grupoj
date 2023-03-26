@@ -1,0 +1,14 @@
+{
+  "entryPoints": [
+    "./src/usuarios/usuario.ts",
+    "./src/usuarios/usuarioColeccion.ts",
+    "./src/usuarios/jsonUsuarioColeccion.ts",
+    "./src/rutas/ruta.ts",
+    "./src/rutas/rutaColeccion.ts",
+    "./src/rutas/jsonRutaColeccion.ts",
+    "./src/retos/reto.ts",
+    "./src/retos/retoColeccion.ts",
+    "./src/retos/jsonRetoColeccion.ts"
+  ],
+  "out": "./docs" 
+}

@@ -1,0 +1,51 @@
+{
+  "ruta": [
+    {
+      "_ID": 2,
+      "_nombre": "Los valcanes",
+      "_geolocalizacionInicio": [
+        18,
+        16,
+        20,
+        "N"
+      ],
+      "_geolocalizacionFinal": [
+        17,
+        15,
+        26,
+        "S"
+      ],
+      "_longitud": 24,
+      "_desnivelMedio": 125,
+      "_usuariosRealizaron": [
+        2
+      ],
+      "_tipoActividad": "Bicicleta",
+      "_calificacionMedia": 7
+    },
+    {
+      "_ID": 1,
+      "_nombre": "Volcanes",
+      "_geolocalizacionInicio": [
+        16,
+        17,
+        18,
+        "S"
+      ],
+      "_geolocalizacionFinal": [
+        22,
+        15,
+        45,
+        "E"
+      ],
+      "_longitud": 20,
+      "_desnivelMedio": 256,
+      "_usuariosRealizaron": [
+        1,
+        2
+      ],
+      "_tipoActividad": "Correr",
+      "_calificacionMedia": 9
+    }
+  ]
+}
