@@ -1,10 +1,9 @@
 import * as inquirer from 'inquirer';
-import { AtributosRuta } from "./rutaColeccion";
-import { JsonRutaColeccion } from "./jsonRutaColeccion";
-import { Usuario, HistoricoRuta, Coleccion } from '../usuarios/usuario';
-import { Actividad, Ruta, Coordenada } from '../rutas/ruta';
-import { EstadisticasEntrenamiento } from '../grupos/grupo';
-import { promptPrincipal, CommandsEach, jsonRutasColeccion, AtributosMostrar, AtributosOrdenacionOrientacion, pantallaPrincipal } from '../index';
+import { AtributosRuta, JsonRutaColeccion } from "../internal";
+import { Usuario, HistoricoRuta, Coleccion } from '../internal';
+import { Actividad, Ruta, Coordenada } from '../internal';
+import { EstadisticasEntrenamiento } from '../internal';
+import { promptPrincipal, CommandsEach, jsonRutasColeccion, AtributosMostrar, AtributosOrdenacionOrientacion, pantallaPrincipal } from '../internal';
 
 /**
  * Enumerado de los distintos Atributos

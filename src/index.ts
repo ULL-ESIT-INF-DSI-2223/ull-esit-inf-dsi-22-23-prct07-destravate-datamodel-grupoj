@@ -1,17 +1,7 @@
 import * as inquirer from 'inquirer';
-import { UsuarioColeccion, AtributosUsuario } from "./usuarios/usuarioColeccion";
-import { JsonUsuarioColeccion } from "./usuarios/jsonUsuarioColeccion";
-import { JsonRetoColeccion } from "./retos/jsonRetoColeccion";
-import { JsonRutaColeccion } from "./rutas/jsonRutaColeccion";
-import { JsonGrupoColeccion } from './grupos/jsonGrupoColeccion';
-import { Usuario, HistoricoRuta, Coleccion } from './usuarios/usuario';
-import { Actividad, Ruta } from './rutas/ruta';
-import { EstadisticasEntrenamiento } from './grupos/grupo';
-import { promptUsuarios } from './usuarios/usuarioPrompt';
-import { promptGrupos } from './grupos/grupoPrompt';
-import { promptRutas } from './rutas/rutaPrompt';
-import { promptRetos } from './retos/retoPrompt';
-import { Gestor } from './gestor'
+import { JsonUsuarioColeccion, JsonRetoColeccion, JsonRutaColeccion, JsonGrupoColeccion } from "./internal";
+import { promptUsuarios, promptGrupos, promptRutas, promptRetos } from './internal';
+import { Gestor } from './internal'
 
 export let jsonUsuariosColeccion = new JsonUsuarioColeccion([]);
 export let jsonRutasColeccion = new JsonRutaColeccion([]);
@@ -167,5 +157,5 @@ export function pantallaPrincipal(mensaje = "") : void {
   })
 }
 
-//myGestor.registrarse();  
-promptPrincipal();
+myGestor.registrarse();  
+//promptPrincipal();

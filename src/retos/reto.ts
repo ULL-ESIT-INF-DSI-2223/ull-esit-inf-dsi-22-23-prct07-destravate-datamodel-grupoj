@@ -1,5 +1,4 @@
-import { Actividad, Ruta } from "../rutas/ruta";
-import { Usuario } from "../usuarios/usuario";
+import { Actividad, Ruta, Usuario } from "../internal";
 
 /**
   * Clase Reto que alberga información de una reto, objetivos de entrenamientos

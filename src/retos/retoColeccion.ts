@@ -1,8 +1,5 @@
-import { Reto } from "./reto";
-import { Actividad, Ruta } from "../rutas/ruta";
-import { Usuario } from "../usuarios/usuario";
-import { jsonRutasColeccion, jsonUsuariosColeccion, AtributosOrdenacionOrientacion } from "../index"
-import { AtributosOrdenacionReto } from "./retoPrompt";
+import { Actividad, Ruta, Usuario, Reto } from "../internal";
+import { jsonRutasColeccion, jsonUsuariosColeccion, AtributosOrdenacionOrientacion, AtributosOrdenacionReto } from "../internal"
 
 /**
  * Enumerado de los distintos Atributos de un reto

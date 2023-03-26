@@ -1,6 +1,5 @@
 export type EstadisticasEntrenamiento = [number, number, string, number];
-import { Usuario, HistoricoRuta } from "../usuarios/usuario";
-import { Ruta } from "../rutas/ruta";
+import { Usuario, HistoricoRuta } from "../internal";
 
 /**
  * Clase Grupo que alberga los distintos

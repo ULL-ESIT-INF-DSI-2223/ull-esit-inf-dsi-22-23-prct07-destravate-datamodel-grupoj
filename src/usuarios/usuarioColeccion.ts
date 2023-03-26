@@ -1,8 +1,6 @@
-import { Usuario, HistoricoRuta, Coleccion } from "./usuario";
-import { EstadisticasEntrenamiento } from "../grupos/grupo";
-import { Actividad } from "../rutas/ruta";
-import { AtributosOrdenacionUsuario } from "./usuarioPrompt";
-import { AtributosOrdenacionOrientacion } from "..";
+import { Usuario, HistoricoRuta, Coleccion } from "../internal";
+import { EstadisticasEntrenamiento, Actividad } from "../internal";
+import { AtributosOrdenacionUsuario, AtributosOrdenacionOrientacion } from "../internal";
 
 /**
  * Enumerado de los distintos Atributos de un usuario

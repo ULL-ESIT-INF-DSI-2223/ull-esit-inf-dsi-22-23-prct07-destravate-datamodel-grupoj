@@ -1,10 +1,7 @@
 import * as inquirer from 'inquirer';
-import { AtributosReto } from "./retoColeccion";
-import { JsonRetoColeccion } from "./jsonRetoColeccion";
-import { Usuario, HistoricoRuta, Coleccion } from '../usuarios/usuario';
-import { Actividad, Ruta } from '../rutas/ruta';
-import { EstadisticasEntrenamiento } from '../grupos/grupo';
-import { promptPrincipal, CommandsEach, jsonRetosColeccion, AtributosOrdenacionOrientacion, AtributosMostrar} from '../index';
+import { AtributosReto} from '../internal';
+import {Actividad} from '../internal';
+import { promptPrincipal, CommandsEach, jsonRetosColeccion, AtributosOrdenacionOrientacion, AtributosMostrar} from '../internal';
 
 /**
  * Enumerado de los distintos Atributos

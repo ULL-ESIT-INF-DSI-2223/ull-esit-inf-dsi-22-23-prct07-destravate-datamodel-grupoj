@@ -1,5 +1,6 @@
 import { RutaColeccion } from "./rutaColeccion";
-import { Actividad, Ruta, Coordenada} from "./ruta";
+import { Actividad, Ruta, Coordenada} from "../internal";
+
 import * as lowdb from "lowdb";
 import * as FileSync from "lowdb/adapters/FileSync";
 

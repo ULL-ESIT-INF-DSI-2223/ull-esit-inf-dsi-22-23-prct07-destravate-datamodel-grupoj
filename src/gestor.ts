@@ -1,14 +1,8 @@
 import * as inquirer from 'inquirer';
-import { JsonUsuarioColeccion } from '../src/usuarios/jsonUsuarioColeccion';
-import { Usuario } from '../src/usuarios/usuario';
-import { JsonGrupoColeccion } from '../src/grupos/jsonGrupoColeccion';
-import { JsonRutaColeccion } from '../src/rutas/jsonRutaColeccion';
-import { JsonRetoColeccion } from '../src/retos/jsonRetoColeccion';
-import { insertarUsuarioPrompt, mostrarUsuarioPrompt } from './usuarios/usuarioPrompt';
-import { promptPrincipal, pantallaPrincipal } from './index';
-import { CommandsEach, Commands } from '.';
-import { mostrarRutaPrompt } from './rutas/rutaPrompt';
-import { mostrarGrupoPrompt, insertarGrupoPrompt, eliminarGrupoPrompt } from './grupos/grupoPrompt';
+import { JsonUsuarioColeccion, JsonGrupoColeccion, JsonRutaColeccion, JsonRetoColeccion } from './internal';
+import { insertarUsuarioPrompt, mostrarUsuarioPrompt, pantallaPrincipal} from './internal';
+import { mostrarGrupoPrompt, insertarGrupoPrompt, eliminarGrupoPrompt, mostrarRutaPrompt } from './internal';
+
 enum LogIn { 
   Login = "Iniciar sesión",
   Registrarse = "Registrarse"

@@ -1,8 +1,5 @@
-import { Actividad, Ruta } from "../rutas/ruta";
-import { Usuario, Coleccion, HistoricoRuta} from "../usuarios/usuario";
-import { Grupo, EstadisticasEntrenamiento } from "./grupo";
-import { AtributosOrdenacionGrupo } from "./grupoPrompt";
-import { AtributosOrdenacionOrientacion } from "..";
+import { Usuario, HistoricoRuta, Grupo, EstadisticasEntrenamiento} from "../internal";
+import { AtributosOrdenacionGrupo, AtributosOrdenacionOrientacion } from "../internal";
 
 /**
  * Enumerado de los distintos Atributos de un grupo

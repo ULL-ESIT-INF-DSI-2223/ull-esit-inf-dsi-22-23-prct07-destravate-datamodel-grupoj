@@ -1,10 +1,6 @@
 import * as inquirer from 'inquirer';
-import { JsonUsuarioColeccion } from "../usuarios/jsonUsuarioColeccion";
-import { Usuario, HistoricoRuta, Coleccion } from '../usuarios/usuario';
-import { Actividad, Ruta } from '../rutas/ruta';
-import { EstadisticasEntrenamiento } from './grupo';
-import { promptPrincipal, CommandsEach, jsonGruposColeccion, AtributosOrdenacionOrientacion, AtributosMostrar, pantallaPrincipal} from '../index';
-import { AtributosGrupo } from './grupoColeccion';
+import { Usuario, HistoricoRuta, EstadisticasEntrenamiento} from "../internal";
+import { promptPrincipal, CommandsEach, jsonGruposColeccion, AtributosOrdenacionOrientacion, AtributosMostrar, pantallaPrincipal, AtributosGrupo } from '../internal';
 
 /**
  * Enumerado de los distintos Atributos

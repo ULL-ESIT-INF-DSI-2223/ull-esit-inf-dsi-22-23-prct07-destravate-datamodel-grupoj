@@ -1,5 +1,5 @@
-import { Actividad } from "../rutas/ruta";
-import { EstadisticasEntrenamiento } from "../grupos/grupo";
+import { Actividad } from "../internal";
+import { EstadisticasEntrenamiento } from "../internal";
 
 export type HistoricoRuta = [string, number];
 export type Coleccion = number[][];

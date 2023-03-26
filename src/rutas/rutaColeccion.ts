@@ -1,6 +1,6 @@
-import { Actividad, Coordenada, Ruta } from "./ruta";
-import { AtributosOrdenacionRuta } from "./rutaPrompt";
-import { AtributosOrdenacionOrientacion } from "..";
+import { Actividad, Coordenada, Ruta } from "../internal";
+import { AtributosOrdenacionRuta, AtributosOrdenacionOrientacion } from "../internal";
+
 
 export enum AtributosRuta {
   Nombre = 'Nombre',

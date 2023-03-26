@@ -1,7 +1,4 @@
-import { RetoColeccion } from "./retoColeccion";
-import {Reto} from "./reto";
-import { Actividad, Ruta } from "../rutas/ruta";
-import { Usuario } from "../usuarios/usuario";
+import { RetoColeccion, Reto, Actividad, Ruta, Usuario } from "../internal";
 import * as lowdb from "lowdb";
 import * as FileSync from "lowdb/adapters/FileSync";
 

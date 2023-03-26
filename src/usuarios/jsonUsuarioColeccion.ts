@@ -1,7 +1,5 @@
-import { UsuarioColeccion } from "./usuarioColeccion";
-import { Actividad } from "../rutas/ruta";
-import { Usuario, Coleccion, HistoricoRuta} from "./usuario";
-import { EstadisticasEntrenamiento } from "../grupos/grupo";
+import { UsuarioColeccion, Usuario, Coleccion, HistoricoRuta } from "../internal";
+import { Actividad, EstadisticasEntrenamiento } from "../internal";
 import * as lowdb from "lowdb";
 import * as FileSync from "lowdb/adapters/FileSync";
 
