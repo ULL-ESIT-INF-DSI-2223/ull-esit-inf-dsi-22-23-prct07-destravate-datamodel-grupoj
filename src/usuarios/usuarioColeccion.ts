@@ -261,7 +261,11 @@ export class UsuarioColeccion {
     return true;
   }
 
-
+  /**
+  * Método para verificar si el usuario pertenece a la colección
+  * @param id ID del usuario
+  * @returns un valor logico si se existe ese usuario
+  */
   existeUsuario(id: number): boolean {
     let result: boolean = false;
     this._usuarios.forEach(usuario => {

@@ -12,10 +12,15 @@
 ## Índice
 1. [Introdución](#introducción)
 2. [Implementación](#implementación)
+
   2.1. [Usuarios](#usuarios)
+
   2.2. [Grupos](#grupos)
+
   2.3. [Rutas](#rutas)
+
   2.4. [Retos](#retos)
+
   2.5. [Gestor](#gestor)
 3. [Conclusiones](#conclusiones)
 4. [Referencias](#referencias)
@@ -52,7 +57,92 @@ Los métodos de la clase son los respectivos getters y setters, una función de 
 
 #### usuarioColeccion.ts
 
-Este fichero posee una clase que almacena varios elementos de la clase usuarios. Otro atributo que posee es el parametro _ultID, que consiste en guarda el ID registrado y sumarle itereadamente 1, para dar a los distintos usuarios un único ID y de manera ordenada. A su vez, en este fichero se encuentran enumerados como AtributosUsuario que muestra como se pondrían los atributos de usuario. También existen clase que ayudan a modificar el array de Usuario como insertarUsuario, añade Usuario a Array; borrarUsuario, se elimina Usuario del array; modificarUsuario, que cambia las entradas a los atributos de la clase; bu
+Este fichero posee una clase que almacena varios elementos de la clase usuarios. Otro atributo que posee es el parametro `_ultID`, que consiste en guarda el ID registrado y sumarle itereadamente 1, para dar a los distintos usuarios un único ID y de manera ordenada. A su vez, en este fichero se encuentran enumerados como `AtributosUsuario` que muestra como se pondrían los atributos de usuario. También existen clase que ayudan a modificar el array de Usuario como `insertarUsuario`, añade Usuario a Array; `borrarUsuario`, se elimina Usuario del array; `modificarUsuario`, que cambia las entradas a los atributos de la clase; `buscarUsuarios`, retorna los usuarios correspondientes a una colección de IDs; `devolverIndexUsuario`, obtiene la posición en el array de la clase; `añadirAmigos`, añade un amigo a un usuario; `borrarAmigo`, elimina un amigo a un usuario; `mostrarUsuario`, muestra una serie de atributos de un grupo de la colección; y, por último, `existeUsuario`, verifica si el usuario pertenece a la colección.
+
+#### jsonUsuarioColeccion.ts
+
+Este fichero posee la clase que interactúa con el fichero JSON, `JsonUsuarioColeccion`. Esta clase sirve para guardar la información de los USuarios. A su vez, también se encuentra el esquema de la Base de Datos para Usuario:
+```typescript
+type schemaUsuarios = {
+  usuario: { 
+    _ID: number; 
+    _nombre: string;
+    _actividades: Actividad; 
+    _amigosApp: number[]; 
+    _grupoAmigos: Coleccion;
+    _entrenamiento: EstadisticasEntrenamiento;
+    _rutasFavoritas: number[];
+    _retosActivos: number[];
+    _historicoRutas: HistoricoRuta[];
+  }[];
+};
+```
+
+Y dentro de la clase JsonUsuarioColeccion se encuentra el constructor, y los siguientes métodos:
+
+- `addUsuario`: Método para insertar un usuario a la colección
+```typescript
+addUsuario(nombre: string, actividades: Actividad, amigosApp: number[],
+             grupoAmigos: Coleccion, entrenamiento: EstadisticasEntrenamiento, rutasFavoritas: number[],
+             retosActivos: number[], historicoRutas: HistoricoRuta[]) {
+
+  super.insertarUsuario(nombre, actividades, amigosApp, grupoAmigos, entrenamiento, rutasFavoritas, retosActivos, historicoRutas);
+  this.storeTasks();
+}
+```
+
+- `removeUsuario`: Método para eliminar un usuario de la colección
+```typescript
+removeUsuario(ID: number): boolean {
+  let borro: boolean = super.borrarUsuario(ID);
+  this.storeTasks();
+  return borro;
+}
+```
+
+- `modifyUsuario`:  Método para modificar un atributo de un usuario de la colección
+```typescript
+modifyUsuario(ID: number, atributoModificar: string, nuevoAtributo: string): boolean {
+  let modifico: boolean = super.modificarUsuario(ID, atributoModificar, nuevoAtributo);
+  this.storeTasks();
+  return modifico;
+}
+```
+
+- `showUsuario`:  Método para mostrar una serie de atributos de un usuario de la colección
+```typescript
+showUsuario(ordenacion: string, orientacion: string): boolean {
+  let muestro: boolean = super.mostrarUsuarios(ordenacion, orientacion);
+  return muestro;
+}
+```
+
+- `addAmigo`: Método para añadir un amigo a un usuario
+```typescript
+addAmigo(ID_usuario : number, ID_amigo : number) {
+  super.anadirAmigo(ID_usuario, ID_amigo);
+  this.storeTasks();
+}
+```
+
+- `removeAmigo`: Método para eliminar un amigo a un usuario
+```typescript
+removeAmigo(ID_usuario : number, ID_amigo : number) {
+  super.borrarAmigo(ID_usuario, ID_amigo);
+  this.storeTasks();
+}
+```
+
+- `storeTasks`: Método privado para actualizar los valores del fichero JSON, con los de la colección
+```typescript
+private storeTasks() {
+  this.database.set("usuario", [...this._usuarios.values()]).write();
+}
+```
+
+#### usuarioPrompt.ts
+
+
 
 ### Grupos
 
@@ -83,11 +173,28 @@ Contiene la clase `GrupoColeccion` y sus atributos:
 
 El atributo `_ultID` se requiere debido a que los IDs de los grupos se asignan de forma automática y correlativa, es decir, se empieza por la ID número cero.
 
-Respecto a las funciones, `insertarGrupo` permite insertar un grupo a la colección de grupos de la clase; `devolverIndexGrupo` permite devolver la posición del vector en la que se encuentra un grupo con la ID introducida (`number`); `anadirUsuario` posibilita que un usuario sea añadido a un grupo concreto, recibiendo, por tanto, tanto la ID del usuario como la del grupo; `borrarGrupo` recibe la ID del grupo y procede a su eliminación en la colecci´
+Respecto a las funciones, `insertarGrupo` permite insertar un grupo a la colección de grupos de la clase; `devolverIndexGrupo` permite devolver la posición del vector en la que se encuentra un grupo con la ID introducida (`number`); `anadirUsuario` posibilita que un usuario sea añadido a un grupo concreto, recibiendo, por tanto, tanto la ID del usuario como la del grupo; `borrarGrupo` recibe la ID del grupo y procede a su eliminación en la colección; `modificarGrupo` permite modificar alguno de los parámetros del grupo, a elección del usuario que introduce cuál es el atributo a modificar y el nuevo atributo que desea establecer en sustitución; `buscarGrupos` es un método para retornar los Grupos correspondientes a una colección de IDs; `mostrarGrupos` muestra una serie de atributos de un grupo de la colección, teniendo en cuenta factores de ordenación, es decir, si se desea ordenar de manera ascendente o descendente; `existeGrupo` verifica a través de una ID si dicho grupo existe o no; y `buscarAdministrador` retornar el ID del administrador de un grupo, recibiendo la ID del mismo y retornando la ID del usuario administrado;
 
+#### grupoPrompt.ts
+
+Contiene una serie de funciones para trabajar con las distintas opciones posibles del prompt (empleando **inquirer**), relacionadas con los grupos.
+
+Dichas funciones son las siguientes: `insertarGrupoPrompt` solicita los datos uno a uno para insertar un grupo, es decir, añadirlo a la clase `GrupoColeccion`; `eliminarGrupoPrompt` solicita el ID del grupo a eliminar y procede a su eliminación
+
+Se hace uso de funciones de la clase `JsonGrupoColeccion` para llevar a cabo las tareas como eliminar, incluir o mostrar usuarios. 
+
+Las funciones que reciben como parámetro la ID del administrador del grupo lo hacen para garantizar que es el propietario de dicho grupo . Algunas funciones para finalizar su ejecucción llaman a la función prompt principal, es decir, al menú inicial. 
 
 lowdb, archivos json. para ello extendemos de grupo collection tenemos un constructor que coge todos los elementos y los va guardando en json, en caso de que esté vacío crea uno nuevo...
   
+#### jsonGrupoColeccion.ts
+
+Este fichero posee la clase que interactúa con el fichero JSON, `JsonUsuarioColeccion`. Esta clase sirve para guardar la información de los USuarios. A su vez, también se encuentra el esquema de la Base de Datos para Usuario:
+
+```typescript
+
+```
+
 
 ### Rutas
 
@@ -109,11 +216,99 @@ private _calificacionMedia: number; // Calificación media de la ruta.
 Los métodos de la clase son los respectivos getters y setters y una función de `mostrarRuta`, que muestra todos los atributos con su valor.
 
 #### rutaColeccion.ts
+Este fichero almacena la clase `RutaColeccion` que almacena un array de varios elementos de la clase `Ruta`. Otro atributo que posee es el parametro `_ultID`, que consiste en guarda el último ID registrado y sumarle itereadamente 1 a la hora de crear una nueva ruta. Como el resto de colecciones, la rutas se deben poder mostrar, crear, modificar y eliminar por ello definimos los siguientes métodos: 
 
-Este fichero almacena la clase `RutaColeccion` que almacena un array de varios elementos de la clase `Ruta`. Otro atributo que posee es el parametro `_ultID`, que consiste en guarda el último ID registrado y sumarle itereadamente 1 a la hora de crear una nueva ruta. Como el resto de colecciones, la rutas se deben poder crear, modificar y eliminar por ello definimos los siguientes métodos: 
+`insertarRuta()`: Este método recibirá todos los atributos necesarios para instanciar un nuevo objeto `Ruta`, menos el *ID*, que lo obtiene del atributo `_ultID`, y con todos los datos crea una nueva `Ruta` y la inserta en la colección.
 
-`insertarRuta()`: Este método recibirá todos los atributos necesarios para instanciar un nuevo objeto `Ruta`, menos el *ID*, que lo 
+`borrarRuta()`: Este método permite borrar una ruta de la colección, a partir del *ID* de la Ruta a eliminar. Para ello recorre la colección de rutas y si el ID introducido por parametro coincide con el de la Ruta, pues entonces guarda la posición en el vector, para despues eliminar el elemento con `splice()`.
 
+`modificarRuta()`: Este método recibe el ID de la ruta a modificar, una *string* con el nombre del atributo a eliminar, y otra *string* con el nuevo valor del atributo. Para modificar el atributo, primero busca la ruta que es con el ID, y a continuación, en un `switch-case` segun el atributo que sea, lo modifica con el nuevo valor. 
+
+`mostrarRuta()`: Este método permite mostrar todas las rutas del sistema ordenadas según ciertos atributos. Para ello recibe dos cadenas con el atributo por el que ordenar y el orden de ordenación, ascendente o descendente, y con un `switch-case`, según el atributo y la ordenación introducidas, ordena la colección con el método `sort()`.
+
+En esta clase tambien definimos un método para retornar las Rutas correspondientes a una colección de IDs, `buscarRutas(rutasIds: number[]) : Ruta[]`. Para ello vamos recorriendo la colección y los Ids introducidos y cuando haya un coincidencia, añadimos la ruta en un array para devolver.
+
+
+#### jsonRutaColeccion.ts
+Este fichero posee la clase que interactúa con el fichero JSON, `JsonRutaColeccion`. Esta clase sirve para guardar la información de las Rutas. A su vez, también se encuentra el esquema de la Base de Datos para Ruta:
+```typescript
+type schemaRutas = {
+  ruta: {
+    _ID: number;
+    _nombre: string;
+    _geolocalizacionInicio: Coordenada;
+    _geolocalizacionFinal: Coordenada;
+    _longitud: number;
+    _desnivelMedio: number;
+    _usuariosRealizaron: number[];
+    _tipoActividad: Actividad;
+    _calificacionMedia: number;
+  }[];
+}
+```
+
+Esta clase hereda de la clase `RutaColeccion`, y en esta definimos los métodos que invocan a otros de la heredada y que despues llaman a un método interno que sirve para guardar la información en el Json.
+
+Dentro de la clase `JsonRutaColeccion` se encuentra el constructor que lee las Rutas por fichero, y los siguientes métodos:
+
+- `addRuta`: Método para insertar una Ruta a la colección
+```typescript
+addRuta(nombre: string, geolocalizacionInicio: Coordenada, geolocalizacionFinal: Coordenada, longitud: number, 
+        desnivelMedio: number, usuariosRealizaron: number[], tipoActividad: Actividad, calificacionMedia: number) {
+    
+  super.insertarRuta(nombre, geolocalizacionInicio, geolocalizacionFinal, longitud, desnivelMedio, usuariosRealizaron, tipoActividad, calificacionMedia);
+  this.storeTasks();
+}
+```
+
+- `removeRuta`: Método para eliminar una Ruta de la colección
+```typescript
+removeRuta(ID: number): boolean {
+  let borro: boolean = super.borrarRuta(ID);
+  this.storeTasks();
+  return borro;
+}
+```
+
+- `modifyRuta`:  Método para modificar un atributo de una ruta de la colección
+```typescript
+modifyRuta(ID: number, atributoModificar: string, nuevoAtributo: string): boolean {
+  let modifico: boolean = super.modificarRuta(ID, atributoModificar, nuevoAtributo);
+  this.storeTasks();
+  return modifico;
+}
+```
+
+- `showUsuario`:  Método para mostrar una serie de atributos de un usuario de la colección
+```typescript
+showUsuario(ordenacion: string, orientacion: string): boolean {
+  let muestro: boolean = super.mostrarUsuarios(ordenacion, orientacion);
+  return muestro;
+}
+```
+
+- `addAmigo`: Método para añadir un amigo a un usuario
+```typescript
+addAmigo(ID_usuario : number, ID_amigo : number) {
+  super.anadirAmigo(ID_usuario, ID_amigo);
+  this.storeTasks();
+}
+```
+
+- `removeAmigo`: Método para eliminar un amigo a un usuario
+```typescript
+removeAmigo(ID_usuario : number, ID_amigo : number) {
+  super.borrarAmigo(ID_usuario, ID_amigo);
+  this.storeTasks();
+}
+```
+
+- `storeTasks`: Método privado para actualizar los valores del fichero JSON, con los de la colección
+```typescript
+private storeTasks() {
+  this.database.set("usuario", [...this._usuarios.values()]).write();
+}
+```
 
 ### Retos
 ### Gestor
