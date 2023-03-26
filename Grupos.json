@@ -2,75 +2,145 @@
   "grupo": [
     {
       "_ID": 1,
-      "_nombre": "grupo1",
+      "_nombre": "Laguna Bulls",
       "_participantes": [
-        0
+        1,
+        2,
+        5,
+        6,
+        12,
+        15
       ],
       "_estadisticasEntrenamiento": [
-        0,
-        null,
-        null,
-        null
+        1200,
+        23,
+        "enero",
+        2023
       ],
-      "_clasificacion": "",
+      "_clasificacion": "13, 45",
       "_rutasFavoritas": [
-        0
+        1,
+        5,
+        7
       ],
       "_historicoRutas": [
         [
-          "",
-          null
+          "02-03-22",
+          3
+        ],
+        [
+          "03-05-23",
+          1
         ]
       ],
-      "_administrador": 1
+      "_administrador": 0
     },
     {
       "_ID": 2,
-      "_nombre": "grupo22",
+      "_nombre": "Grupo RectULL",
       "_participantes": [
-        0
+        4,
+        6,
+        8,
+        9
       ],
       "_estadisticasEntrenamiento": [
-        0,
-        null,
-        null,
-        null
+        45,
+        4,
+        "agosto",
+        203
       ],
-      "_clasificacion": "",
+      "_clasificacion": "2, 5, 6",
       "_rutasFavoritas": [
-        0
+        1,
+        6
       ],
       "_historicoRutas": [
         [
-          "",
-          null
+          "26-12-2023",
+          6
         ]
       ],
-      "_administrador": 1
+      "_administrador": 0
     },
     {
       "_ID": 3,
-      "_nombre": "grupito3",
+      "_nombre": "grupo estudiantes",
       "_participantes": [
-        0
+        3,
+        6,
+        7
       ],
       "_estadisticasEntrenamiento": [
-        0,
-        null,
-        null,
-        null
+        2342,
+        34,
+        "febrero",
+        2019
       ],
-      "_clasificacion": "",
+      "_clasificacion": "3, 5",
       "_rutasFavoritas": [
-        0
+        6,
+        9
       ],
       "_historicoRutas": [
         [
-          "",
-          null
+          "14-04-21",
+          5
         ]
       ],
-      "_administrador": 1
+      "_administrador": 0
+    },
+    {
+      "_ID": 4,
+      "_nombre": "Taco grupo",
+      "_participantes": [
+        3
+      ],
+      "_estadisticasEntrenamiento": [
+        4,
+        5,
+        "marzo",
+        2019
+      ],
+      "_clasificacion": "4",
+      "_rutasFavoritas": [
+        5,
+        6
+      ],
+      "_historicoRutas": [
+        [
+          "03-11-19",
+          5
+        ]
+      ],
+      "_administrador": 0
+    },
+    {
+      "_ID": 5,
+      "_nombre": "Grupo Iván",
+      "_participantes": [
+        4,
+        7,
+        19
+      ],
+      "_estadisticasEntrenamiento": [
+        0,
+        45,
+        "junio",
+        2017
+      ],
+      "_clasificacion": "5, 7",
+      "_rutasFavoritas": [
+        4,
+        6
+      ],
+      "_historicoRutas": [
+        [
+          "07-08-17",
+          5
+        ]
+      ],
+      "_administrador": 0
     }
   ]
 }

@@ -167,5 +167,5 @@ export function pantallaPrincipal(mensaje = "") : void {
   })
 }
 
-myGestor.registrarse();  
-//promptPrincipal();
+//myGestor.registrarse();  
+promptPrincipal();

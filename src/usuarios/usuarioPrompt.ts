@@ -100,13 +100,17 @@ export async function insertarUsuarioPrompt(opcion: number = 1) {
     if (opcion == 0) {
       pantallaPrincipal("Usuario creado");
     }
-    promptPrincipal("Usuario creado"); 
+    else {
+      promptPrincipal("Usuario creado"); 
+    }
   }
   else {
     if (opcion == 0) {
       pantallaPrincipal("Usuario creado");
     }
-    promptPrincipal("Usuario NO creado, datos incorrectos");
+    else {
+      promptPrincipal("Usuario NO creado, datos incorrectos");
+    }
   }
 }
 

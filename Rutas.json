@@ -1,51 +1,265 @@
 {
   "ruta": [
     {
-      "_ID": 2,
-      "_nombre": "Los valcanes",
+      "_ID": 1,
+      "_nombre": "Ruta del Bacalao",
       "_geolocalizacionInicio": [
-        18,
-        16,
-        20,
-        "N"
-      ],
-      "_geolocalizacionFinal": [
-        17,
-        15,
-        26,
+        12,
+        24,
+        66,
         "S"
       ],
-      "_longitud": 24,
-      "_desnivelMedio": 125,
+      "_geolocalizacionFinal": [
+        13,
+        45,
+        36,
+        "O"
+      ],
+      "_longitud": 1200,
+      "_desnivelMedio": 400,
       "_usuariosRealizaron": [
-        2
+        1,
+        2,
+        6
+      ],
+      "_tipoActividad": "Correr",
+      "_calificacionMedia": 5
+    },
+    {
+      "_ID": 2,
+      "_nombre": "Ruta del Perejil",
+      "_geolocalizacionInicio": [
+        60,
+        2,
+        34,
+        "E"
+      ],
+      "_geolocalizacionFinal": [
+        3,
+        44,
+        3,
+        "O"
+      ],
+      "_longitud": 33,
+      "_desnivelMedio": 2,
+      "_usuariosRealizaron": [
+        7,
+        5,
+        9
+      ],
+      "_tipoActividad": "Bicicleta",
+      "_calificacionMedia": 9
+    },
+    {
+      "_ID": 3,
+      "_nombre": "Ruta ULL",
+      "_geolocalizacionInicio": [
+        3,
+        5,
+        6,
+        "O"
+      ],
+      "_geolocalizacionFinal": [
+        6,
+        4,
+        6,
+        "E"
+      ],
+      "_longitud": 34,
+      "_desnivelMedio": 3,
+      "_usuariosRealizaron": [
+        3,
+        10,
+        13,
+        16,
+        17,
+        19
+      ],
+      "_tipoActividad": "Correr",
+      "_calificacionMedia": 4
+    },
+    {
+      "_ID": 4,
+      "_nombre": "Ruta DSI",
+      "_geolocalizacionInicio": [
+        4,
+        5,
+        6,
+        "E"
+      ],
+      "_geolocalizacionFinal": [
+        4,
+        88,
+        4,
+        "O"
+      ],
+      "_longitud": 234,
+      "_desnivelMedio": 2333,
+      "_usuariosRealizaron": [
+        3,
+        4,
+        19,
+        14
       ],
       "_tipoActividad": "Bicicleta",
       "_calificacionMedia": 7
     },
     {
-      "_ID": 1,
-      "_nombre": "Volcanes",
+      "_ID": 5,
+      "_nombre": "Rutada",
       "_geolocalizacionInicio": [
-        16,
-        17,
-        18,
-        "S"
+        2,
+        4,
+        5,
+        "O"
       ],
       "_geolocalizacionFinal": [
-        22,
-        15,
-        45,
+        2,
+        4,
+        5,
+        "O"
+      ],
+      "_longitud": 555,
+      "_desnivelMedio": 33,
+      "_usuariosRealizaron": [
+        5,
+        6,
+        8,
+        9
+      ],
+      "_tipoActividad": "Bicicleta",
+      "_calificacionMedia": 6
+    },
+    {
+      "_ID": 6,
+      "_nombre": "La Ruta",
+      "_geolocalizacionInicio": [
+        3,
+        6,
+        7,
+        "O"
+      ],
+      "_geolocalizacionFinal": [
+        3,
+        6,
+        7,
         "E"
       ],
-      "_longitud": 20,
-      "_desnivelMedio": 256,
+      "_longitud": 232432,
+      "_desnivelMedio": 23,
       "_usuariosRealizaron": [
-        1,
-        2
+        5,
+        7,
+        8
       ],
       "_tipoActividad": "Correr",
-      "_calificacionMedia": 9
+      "_calificacionMedia": 5
+    },
+    {
+      "_ID": 7,
+      "_nombre": "Ruta Candelaria",
+      "_geolocalizacionInicio": [
+        2,
+        5,
+        6,
+        "O"
+      ],
+      "_geolocalizacionFinal": [
+        4,
+        6,
+        8,
+        "E"
+      ],
+      "_longitud": 338,
+      "_desnivelMedio": 39,
+      "_usuariosRealizaron": [
+        6,
+        7,
+        12,
+        15,
+        17
+      ],
+      "_tipoActividad": "Bicicleta",
+      "_calificacionMedia": 8
+    },
+    {
+      "_ID": 8,
+      "_nombre": "Ruta Tacoronte",
+      "_geolocalizacionInicio": [
+        2,
+        5,
+        6,
+        "E"
+      ],
+      "_geolocalizacionFinal": [
+        76,
+        4,
+        9,
+        "O"
+      ],
+      "_longitud": 6474,
+      "_desnivelMedio": 34,
+      "_usuariosRealizaron": [
+        5,
+        6,
+        7,
+        9,
+        12
+      ],
+      "_tipoActividad": "Correr",
+      "_calificacionMedia": 8
+    },
+    {
+      "_ID": 9,
+      "_nombre": "SC-RUTA",
+      "_geolocalizacionInicio": [
+        4,
+        5,
+        6,
+        "E"
+      ],
+      "_geolocalizacionFinal": [
+        34,
+        34,
+        6,
+        "O"
+      ],
+      "_longitud": 73737,
+      "_desnivelMedio": 84,
+      "_usuariosRealizaron": [
+        1,
+        7,
+        18,
+        13
+      ],
+      "_tipoActividad": "Correr",
+      "_calificacionMedia": 6
+    },
+    {
+      "_ID": 10,
+      "_nombre": "El Rosario Rutaza",
+      "_geolocalizacionInicio": [
+        12,
+        3,
+        4,
+        "E"
+      ],
+      "_geolocalizacionFinal": [
+        3,
+        55,
+        4,
+        "O"
+      ],
+      "_longitud": 234243,
+      "_desnivelMedio": 234,
+      "_usuariosRealizaron": [
+        5,
+        6,
+        9,
+        10
+      ],
+      "_tipoActividad": "Correr",
+      "_calificacionMedia": 3
     }
   ]
 }
