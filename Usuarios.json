@@ -899,6 +899,42 @@
           8
         ]
       ]
+    },
+    {
+      "_ID": 21,
+      "_nombre": "Pepe",
+      "_actividades": "Correr",
+      "_amigosApp": [
+        2,
+        4,
+        6
+      ],
+      "_grupoAmigos": [
+        [
+          2,
+          3
+        ]
+      ],
+      "_entrenamiento": [
+        123,
+        23,
+        "enero",
+        2023
+      ],
+      "_rutasFavoritas": [
+        5,
+        8
+      ],
+      "_retosActivos": [
+        3,
+        6
+      ],
+      "_historicoRutas": [
+        [
+          "05-08-23",
+          5
+        ]
+      ]
     }
   ]
 }

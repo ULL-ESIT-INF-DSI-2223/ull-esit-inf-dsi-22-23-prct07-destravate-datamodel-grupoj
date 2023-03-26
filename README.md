@@ -7,6 +7,9 @@
   <a href="https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-grupoj/actions/workflows/node.js.yml">
     <img alt="Tests" src="https://github.com/ULL-ESIT-INF-DSI-2223/ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-grupoj/actions/workflows/node.js.yml/badge.svg">
   </a>
+  <a href="https://sonarcloud.io/summary/new_code?id=ULL-ESIT-INF-DSI-2223_ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-grupoj">
+    <img alt="Quality Gate Status" src="https://sonarcloud.io/api/project_badges/measure?project=ULL-ESIT-INF-DSI-2223_ull-esit-inf-dsi-22-23-prct07-destravate-datamodel-grupoj&metric=alert_status">
+  </a>
 </p>
 
 ## Índice
@@ -549,6 +552,14 @@ Con el fin de verificar el correcto funcionamiento del programa se llevan a cabo
 - 20 usuarios
 - 5 grupos
 - 3 retos
+
+Podemos visualizar un menú principal con dos opciones, iniciar sesión o registrarse:
+
+
+Si seleccionamos **Registrarse** podemos proceder a introducir los datos que nos va pidiendo uno a uno:
+
+Una vez registrado podremos acceder a otro menú de opciones mucho más amplio:
+
 
 
 
