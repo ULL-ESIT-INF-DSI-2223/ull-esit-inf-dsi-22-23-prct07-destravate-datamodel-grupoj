@@ -468,21 +468,96 @@ Los método que descriibimos en esta clase, para que un usuario pueda interactua
 
 - `visualizarGrupo()`: Este método permite visualizar todos los grupos existentes dentro del sistema, entonces llama al metodo encargado de mostrar los grupos, `mostrarGrupoPrompt()`.
 
+- `crearGrupo()`: Este método permite al usuario que inicio sesión crear un grupo, para ello se llama al metodo encargado de insertar un nuevo grupo, y se le pasa como administrador del grupo, el ID del usuario que inicio sesión `insertarGrupoPrompt()`.
+
+- `borrarGrupo()`: Este método permite al usuario que inicio sesión borrar un grupo que el haya creado, para ello se llama al metodo encargado de eliminar un nuevo grupo, y se le pasa como administrador del grupo, el ID del usuario que inicio sesión `eliminarGrupoPrompt()`.
 
 ### Index
 
-Esta es el conjunto de elementos que se encargada de la interación con el usuario. DOnde el usuario puede ser tanto los administradores de la Base de Datos, como un usuario cualquiera.
+Esta es el conjunto de elementos que se encargada de la interación con el usuario. Donde el usuario puede ser tanto los administradores de la Base de Datos, como un usuario cualquiera. 
+
+En este conjunto de elementos se pueden observar los distintos enumerados que se utilizan en el `Prompt Principal` si se fuera el administrador:
+
+```typescript
+export enum Commands { 
+  Usuarios = "Usuarios",
+  Grupos = "Grupos",
+  Rutas = "Rutas", 
+  Retos = "Retos",
+  Salir = "Salir"
+}
+```
+
+```typescript
+export enum CommandsEach {
+  Mostrar = "Mostrar",
+  Insertar = "Insertar",
+  Modificar = "Modificar",
+  Eliminar = "Eliminar", 
+  Atras = "Atras"
+}
+```
+
+Y estos son los que se visualizan si se fuera cualquier otro usuario:
+
+```typescript
+export enum CommandsGestor { 
+  ListadoUsuarios = "Ver listado de usuarios en el sistema",
+  Amigos = "Amigos",
+  Grupos = "Grupos",
+  VerRutas = "Visualizar todas las rutas",
+  Salir = "Salir"
+}
+```
+```typescript
+export enum CommandsGrupos { 
+  Unirse = "Unirse al grupo",
+  Visualizar = "Visualizar",
+  Crear = "Crear",
+  Borrar = "Borrar", 
+  Salir = "Salir"
+}
+```
+```typescript
+export enum CommandsAmigos { 
+  Anadir = "Añadir amigo",
+  Borrar = "Borrar amigo",
+  Salir = "Salir"
+}
+```
+
+Los últimos enumerados son:
+```typescript
+export enum AtributosMostrar {
+  Volver = 'Volver al menú'
+}
+
+export enum AtributosOrdenacionOrientacion {
+  Ascendente = 'Ordenación ascendente',
+  Descendente = 'Ordenación descendente'
+}
+```
+
+Dentro de este fichero hay una función llamada `Pantalla Principal` que desarrolla el prompt con el que interactuarán los usuarios y es el encargado de gestionar el menú principal con las opciones pertinentes para llamar a las distintas funcionalidades. 
+
+Y para finalizar, hay una función llamada `Prompt Principal` que desarrolla el prompt principal y encargado de gestionar el menú principal para llamar a las distintas funcionalidades.
 
 ## Pruebas 
+Con el fin de verificar el correcto funcionamiento del programa se llevan a cabo una serie de pruebas sobre la funcionalidad del mismo, las pruebas se han realizado con los siguientes elementos:
+
+- 10 rutas
+- 20 usuarios
+- 5 grupos
+- 3 retos
+
 
 
 ## Conclusiones
-
-
+Con la realización de este proyecto hemos podido continuar con conceptos y herramientas de programación como Coveralls, pruebas de testeo de mocha y chai y typedoc. Además, de introducir nuevas como GitHub Actions para la integración continua; y SonarCloud, para la calidad y seguridad del código fuente. A su vez, para la programación hemos descubierto las posibilidades que ofrecen **lowbd** para almacenar información en archivos **JSON**, e **inquirer** para ofrecer una mejor experiencia al usuario que interactúa con el programa mostrando una interfaz en la que posibilitar las distintas opciones.
 
 ## Referencias
-
 Para la correcta realización del proyecto se ha requerido de la consulta de los siguientes recursos:
 
-- https://ull-esit-inf-dsi-2223.github.io/prct07-destravate-dataModel/ 
-- 
+- [Práctica referenciada](https://ull-esit-inf-dsi-2223.github.io/prct07-destravate-dataModel/).
+- [Apuntes de TypeScript](https://ull-esit-inf-dsi-2223.github.io/typescript-theory/).
+- [GitHub Pages](https://pages.github.com/).

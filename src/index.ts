@@ -94,7 +94,6 @@ export enum CommandsAmigos {
 /**
  * Función que desarrolla el prompt con el que interactuarán los usuarios,
  * encargado de gestionar el menú principal con las opciones pertinentes
- * para llamar a las distintas funcionalidades
  * @param mensaje en caso de que una función desee retornar un mensaje de éxito o error, al final su ejecucción
  */
 export function pantallaPrincipal(mensaje = "") : void {

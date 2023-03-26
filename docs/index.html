@@ -336,28 +336,58 @@
 </li>
 <li><p><code>visualizarGrupo()</code>: Este método permite visualizar todos los grupos existentes dentro del sistema, entonces llama al metodo encargado de mostrar los grupos, <code>mostrarGrupoPrompt()</code>.</p>
 </li>
+<li><p><code>crearGrupo()</code>: Este método permite al usuario que inicio sesión crear un grupo, para ello se llama al metodo encargado de insertar un nuevo grupo, y se le pasa como administrador del grupo, el ID del usuario que inicio sesión <code>insertarGrupoPrompt()</code>.</p>
+</li>
+<li><p><code>borrarGrupo()</code>: Este método permite al usuario que inicio sesión borrar un grupo que el haya creado, para ello se llama al metodo encargado de eliminar un nuevo grupo, y se le pasa como administrador del grupo, el ID del usuario que inicio sesión <code>eliminarGrupoPrompt()</code>.</p>
+</li>
 </ul>
 
 <a href="#index" id="index" style="color: inherit; text-decoration: none;">
   <h3>Index</h3>
 </a>
-<p>Esta es el conjunto de elementos que se encargada de la interación con el usuario. DOnde el usuario puede ser tanto los administradores de la Base de Datos, como un usuario cualquiera.</p>
+<p>Esta es el conjunto de elementos que se encargada de la interación con el usuario. Donde el usuario puede ser tanto los administradores de la Base de Datos, como un usuario cualquiera. </p>
+<p>En este conjunto de elementos se pueden observar los distintos enumerados que se utilizan en el <code>Prompt Principal</code> si se fuera el administrador:</p>
+<pre><code class="language-typescript"><span class="hl-8">export</span><span class="hl-1"> </span><span class="hl-4">enum</span><span class="hl-1"> </span><span class="hl-5">Commands</span><span class="hl-1"> { </span><br/><span class="hl-1">  </span><span class="hl-7">Usuarios</span><span class="hl-1"> = </span><span class="hl-9">&quot;Usuarios&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">Grupos</span><span class="hl-1"> = </span><span class="hl-9">&quot;Grupos&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">Rutas</span><span class="hl-1"> = </span><span class="hl-9">&quot;Rutas&quot;</span><span class="hl-1">, </span><br/><span class="hl-1">  </span><span class="hl-7">Retos</span><span class="hl-1"> = </span><span class="hl-9">&quot;Retos&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">Salir</span><span class="hl-1"> = </span><span class="hl-9">&quot;Salir&quot;</span><br/><span class="hl-1">}</span>
+</code></pre>
+<pre><code class="language-typescript"><span class="hl-8">export</span><span class="hl-1"> </span><span class="hl-4">enum</span><span class="hl-1"> </span><span class="hl-5">CommandsEach</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-7">Mostrar</span><span class="hl-1"> = </span><span class="hl-9">&quot;Mostrar&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">Insertar</span><span class="hl-1"> = </span><span class="hl-9">&quot;Insertar&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">Modificar</span><span class="hl-1"> = </span><span class="hl-9">&quot;Modificar&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">Eliminar</span><span class="hl-1"> = </span><span class="hl-9">&quot;Eliminar&quot;</span><span class="hl-1">, </span><br/><span class="hl-1">  </span><span class="hl-7">Atras</span><span class="hl-1"> = </span><span class="hl-9">&quot;Atras&quot;</span><br/><span class="hl-1">}</span>
+</code></pre>
+<p>Y estos son los que se visualizan si se fuera cualquier otro usuario:</p>
+<pre><code class="language-typescript"><span class="hl-8">export</span><span class="hl-1"> </span><span class="hl-4">enum</span><span class="hl-1"> </span><span class="hl-5">CommandsGestor</span><span class="hl-1"> { </span><br/><span class="hl-1">  </span><span class="hl-7">ListadoUsuarios</span><span class="hl-1"> = </span><span class="hl-9">&quot;Ver listado de usuarios en el sistema&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">Amigos</span><span class="hl-1"> = </span><span class="hl-9">&quot;Amigos&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">Grupos</span><span class="hl-1"> = </span><span class="hl-9">&quot;Grupos&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">VerRutas</span><span class="hl-1"> = </span><span class="hl-9">&quot;Visualizar todas las rutas&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">Salir</span><span class="hl-1"> = </span><span class="hl-9">&quot;Salir&quot;</span><br/><span class="hl-1">}</span>
+</code></pre>
+<pre><code class="language-typescript"><span class="hl-8">export</span><span class="hl-1"> </span><span class="hl-4">enum</span><span class="hl-1"> </span><span class="hl-5">CommandsGrupos</span><span class="hl-1"> { </span><br/><span class="hl-1">  </span><span class="hl-7">Unirse</span><span class="hl-1"> = </span><span class="hl-9">&quot;Unirse al grupo&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">Visualizar</span><span class="hl-1"> = </span><span class="hl-9">&quot;Visualizar&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">Crear</span><span class="hl-1"> = </span><span class="hl-9">&quot;Crear&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">Borrar</span><span class="hl-1"> = </span><span class="hl-9">&quot;Borrar&quot;</span><span class="hl-1">, </span><br/><span class="hl-1">  </span><span class="hl-7">Salir</span><span class="hl-1"> = </span><span class="hl-9">&quot;Salir&quot;</span><br/><span class="hl-1">}</span>
+</code></pre>
+<pre><code class="language-typescript"><span class="hl-8">export</span><span class="hl-1"> </span><span class="hl-4">enum</span><span class="hl-1"> </span><span class="hl-5">CommandsAmigos</span><span class="hl-1"> { </span><br/><span class="hl-1">  </span><span class="hl-7">Anadir</span><span class="hl-1"> = </span><span class="hl-9">&quot;Añadir amigo&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">Borrar</span><span class="hl-1"> = </span><span class="hl-9">&quot;Borrar amigo&quot;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">Salir</span><span class="hl-1"> = </span><span class="hl-9">&quot;Salir&quot;</span><br/><span class="hl-1">}</span>
+</code></pre>
+<p>Los últimos enumerados son:</p>
+<pre><code class="language-typescript"><span class="hl-8">export</span><span class="hl-1"> </span><span class="hl-4">enum</span><span class="hl-1"> </span><span class="hl-5">AtributosMostrar</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-7">Volver</span><span class="hl-1"> = </span><span class="hl-9">&#39;Volver al menú&#39;</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-8">export</span><span class="hl-1"> </span><span class="hl-4">enum</span><span class="hl-1"> </span><span class="hl-5">AtributosOrdenacionOrientacion</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-7">Ascendente</span><span class="hl-1"> = </span><span class="hl-9">&#39;Ordenación ascendente&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-7">Descendente</span><span class="hl-1"> = </span><span class="hl-9">&#39;Ordenación descendente&#39;</span><br/><span class="hl-1">}</span>
+</code></pre>
+<p>Dentro de este fichero hay una función llamada <code>Pantalla Principal</code> que desarrolla el prompt con el que interactuarán los usuarios y es el encargado de gestionar el menú principal con las opciones pertinentes para llamar a las distintas funcionalidades. </p>
+<p>Y para finalizar, hay una función llamada <code>Prompt Principal</code> que desarrolla el prompt principal y encargado de gestionar el menú principal para llamar a las distintas funcionalidades.</p>
 
 <a href="#pruebas" id="pruebas" style="color: inherit; text-decoration: none;">
   <h2>Pruebas</h2>
 </a>
+<p>Con el fin de verificar el correcto funcionamiento del programa se llevan a cabo una serie de pruebas sobre la funcionalidad del mismo, las pruebas se han realizado con los siguientes elementos:</p>
+<ul>
+<li>10 rutas</li>
+<li>20 usuarios</li>
+<li>5 grupos</li>
+<li>3 retos</li>
+</ul>
 
 <a href="#conclusiones" id="conclusiones" style="color: inherit; text-decoration: none;">
   <h2>Conclusiones</h2>
 </a>
+<p>Con la realización de este proyecto hemos podido continuar con conceptos y herramientas de programación como Coveralls, pruebas de testeo de mocha y chai y typedoc. Además, de introducir nuevas como GitHub Actions para la integración continua; y SonarCloud, para la calidad y seguridad del código fuente. A su vez, para la programación hemos descubierto las posibilidades que ofrecen <strong>lowbd</strong> para almacenar información en archivos <strong>JSON</strong>, e <strong>inquirer</strong> para ofrecer una mejor experiencia al usuario que interactúa con el programa mostrando una interfaz en la que posibilitar las distintas opciones.</p>
 
 <a href="#referencias" id="referencias" style="color: inherit; text-decoration: none;">
   <h2>Referencias</h2>
 </a>
 <p>Para la correcta realización del proyecto se ha requerido de la consulta de los siguientes recursos:</p>
 <ul>
-<li><a href="https://ull-esit-inf-dsi-2223.github.io/prct07-destravate-dataModel/">https://ull-esit-inf-dsi-2223.github.io/prct07-destravate-dataModel/</a> </li>
-<li></li>
+<li><a href="https://ull-esit-inf-dsi-2223.github.io/prct07-destravate-dataModel/">Práctica referenciada</a>.</li>
+<li><a href="https://ull-esit-inf-dsi-2223.github.io/typescript-theory/">Apuntes de TypeScript</a>.</li>
+<li><a href="https://pages.github.com/">GitHub Pages</a>.</li>
 </ul>
 </div></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
