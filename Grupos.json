@@ -1,3 +1,76 @@
 {
-  "grupo": []
+  "grupo": [
+    {
+      "_ID": 1,
+      "_nombre": "grupo1",
+      "_participantes": [
+        0
+      ],
+      "_estadisticasEntrenamiento": [
+        0,
+        null,
+        null,
+        null
+      ],
+      "_clasificacion": "",
+      "_rutasFavoritas": [
+        0
+      ],
+      "_historicoRutas": [
+        [
+          "",
+          null
+        ]
+      ],
+      "_administrador": 1
+    },
+    {
+      "_ID": 2,
+      "_nombre": "grupo22",
+      "_participantes": [
+        0
+      ],
+      "_estadisticasEntrenamiento": [
+        0,
+        null,
+        null,
+        null
+      ],
+      "_clasificacion": "",
+      "_rutasFavoritas": [
+        0
+      ],
+      "_historicoRutas": [
+        [
+          "",
+          null
+        ]
+      ],
+      "_administrador": 1
+    },
+    {
+      "_ID": 3,
+      "_nombre": "grupito3",
+      "_participantes": [
+        0
+      ],
+      "_estadisticasEntrenamiento": [
+        0,
+        null,
+        null,
+        null
+      ],
+      "_clasificacion": "",
+      "_rutasFavoritas": [
+        0
+      ],
+      "_historicoRutas": [
+        [
+          "",
+          null
+        ]
+      ],
+      "_administrador": 1
+    }
+  ]
 }

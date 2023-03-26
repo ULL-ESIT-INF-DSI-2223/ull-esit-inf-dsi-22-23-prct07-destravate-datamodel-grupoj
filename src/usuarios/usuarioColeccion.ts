@@ -222,7 +222,6 @@ export class UsuarioColeccion {
   * @returns un valor logico si se pudo mostrar correctamente la información por pantalla
   */
   mostrarUsuarios(ordenacion: string, orientacion : string) : boolean {
-
     switch (ordenacion) {
       case AtributosOrdenacionUsuario.Nombre:
         switch (orientacion) {
@@ -258,6 +257,8 @@ export class UsuarioColeccion {
       usuario.mostrarUsuario();
       console.log('\n');
     });
+    
+    this._usuarios.sort((a, b) => a.ID - b.ID); // Orden descendente
 
     return true;
   }

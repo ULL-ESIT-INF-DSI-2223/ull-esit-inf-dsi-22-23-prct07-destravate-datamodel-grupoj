@@ -248,6 +248,8 @@ export class RutaColeccion {
       ruta.mostrarRuta();
       console.log('\n');
     });
+
+    this._rutas.sort((a, b) => a.ID - b.ID); // Orden descendente
   
     return true;
   }

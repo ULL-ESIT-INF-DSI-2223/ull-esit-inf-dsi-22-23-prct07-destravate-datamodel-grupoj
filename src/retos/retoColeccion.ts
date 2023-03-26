@@ -172,6 +172,8 @@ export class RetoColeccion {
       console.log('\n');
     });
 
+    this._retos.sort((a, b) => a.ID - b.ID); // Orden descendente
+
     return true;
   }
 }

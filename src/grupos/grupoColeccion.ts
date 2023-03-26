@@ -228,6 +228,8 @@ export class GrupoColeccion {
       console.log('\n');
     });
 
+    this._grupos.sort((a, b) => a.ID - b.ID); // Orden descendente
+
     return true;
   }
 

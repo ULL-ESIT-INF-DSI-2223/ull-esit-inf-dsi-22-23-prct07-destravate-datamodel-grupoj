@@ -191,7 +191,6 @@ export async function mostrarUsuarioPrompt(opcion: number =  1) {
     } else {
       promptPrincipal("NO se han podido mostrar los datos");
     }
-    
   }
   let espera = await inquirer.prompt({
     type: "list",
