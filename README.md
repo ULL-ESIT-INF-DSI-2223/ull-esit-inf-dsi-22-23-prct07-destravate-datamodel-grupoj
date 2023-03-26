@@ -36,7 +36,7 @@ Hemos estructurado el proyecto en una serie de carpetas de trabajo que nos permi
 En el directorio **Usuarios** se encuentran cuatro ficheros:
 
 #### usuario.ts
-Para esta práctica se crea una clase llamada usuario que se encuentra en el fichero usuario.ts. Esta clase contiene los siguientes atributos:
+Para esta práctica se crea una clase llamada `Usuario` que se encuentra en el fichero `usuario.ts`. Esta clase contiene los siguientes atributos:
 ```typescript
 private _ID: number; // ID único del usuario
 private _nombre: string; // Nombre propio de usuario
@@ -138,7 +138,7 @@ private storeTasks() {
 #### usuarioPrompt.ts
 Contiene una serie de funciones para trabajar con las distintas opciones posibles del prompt (empleando **inquirer**), relacionadas con los usuarios.
 
-En este fichero se encuentra el enumerado `AtributosOrdenacionUsuario` que consiste en las distintas opciones por las que se puede ordenar usuarios, por el nombre del Usuario o por los kilometros totales en función de la semana actual, mes o año; la función asíncrona `insertarUsuarioPrompt` que sirve para insertar un elemento Usuario; la función asíncrona `eliminarUsuarioPrompt` que sirve para eliminar un elemento Usuario; la función asíncrona `modificarUsuarioPrompt` que sirve para modificar un determinado elemento Usuario; la función asíncrona `insertarUsuarioPrompt` que sirve para insertar un elemento Usuario
+En este fichero se encuentra el enumerado `AtributosOrdenacionUsuario` que consiste en las distintas opciones por las que se puede ordenar usuarios, por el nombre del Usuario o por los kilometros totales en función de la semana actual, mes o año; la función asíncrona `insertarUsuarioPrompt` que sirve para insertar un elemento Usuario; la función asíncrona `eliminarUsuarioPrompt` que sirve para eliminar un elemento Usuario; la función asíncrona `modificarUsuarioPrompt` que sirve para modificar un determinado elemento Usuario; la función asíncrona `mostrarUsuarioPrompt` que sirve para enseñar un elemento Usuario; y por último, `promptUsuarios` que es el prompt principal de Usuarios.
 
 ### Grupos
 
@@ -176,16 +176,78 @@ Respecto a las funciones, `insertarGrupo` permite insertar un grupo a la colecci
 Este fichero posee la clase que interactúa con el fichero JSON, `JsonGrupoColeccion`. Esta clase sirve para guardar la información de los grupos. A su vez, también se encuentra el esquema de la Base de Datos para Grupo (`lowdb`):
 
 ```typescript
-
+type schemaGrupos = {
+  grupo: { 
+    _ID: number; 
+    _nombre: string;
+    _participantes: number[]; 
+    _estadisticasEntrenamiento: EstadisticasEntrenamiento; 
+    _clasificacion: Usuario[];
+    _rutasFavoritas: number[];
+    _historicoRutas: HistoricoRuta[];
+    _administrador: number;
+  }[];
+};
 ```
 
+Y dentro de la clase JsonGrupoColeccion se encuentra el constructor, y los siguientes métodos:
+
+- `addGrupo`: Método para insertar un grupo a la colección
+```typescript
+addGrupo(nombre : string, participantes : number[], estadisticasEntrenamiento : EstadisticasEntrenamiento,  
+    clasificacion : Usuario[], rutasFavoritas : number[], historicoRutas : HistoricoRuta[], adminID: number = 0) {
+  super.insertarGrupo(nombre, participantes, estadisticasEntrenamiento, clasificacion, rutasFavoritas, historicoRutas, adminID);
+  this.storeTasks();
+}
+```
+
+- `removeGrupo`: Método para elimnar un grupo a la colección
+```typescript
+removeGrupo(ID: number): boolean {
+  let borro: boolean = super.borrarGrupo(ID);
+  this.storeTasks();
+  return borro;
+}
+```
+
+- `modifyGrupo`: Método para modificar un grupo a la colección
+```typescript
+modifyGrupo(ID: number, atributoModificar: string, nuevoAtributo: string): boolean {
+  let modifico: boolean = super.modificarGrupo(ID, atributoModificar, nuevoAtributo);
+  this.storeTasks();
+  return modifico;
+}
+```
+
+- `showGrupo`: Método para mostrar un grupo a la colección
+```typescript
+showGrupo(ordenacion: string, orientacion: string): boolean {
+  let muestro: boolean = super.mostrarGrupos(ordenacion, orientacion);
+  return muestro;
+}
+```
+
+- `addUsuario`: Método para añadir un usuario a la colección
+```typescript
+addUsuario(ID_grupo : number, ID_usuario : number) {
+  super.anadirUsuario(ID_grupo, ID_usuario);
+  this.storeTasks();
+} 
+```
+
+- `storeTasks`: Método privado para actualizar los valores del fichero JSON, con los de la colección
+```typescript
+private storeTasks() {
+  this.database.set("usuario", [...this._usuarios.values()]).write();
+}
+```
 
 
 #### grupoPrompt.ts
 
 Contiene una serie de funciones para trabajar con las distintas opciones posibles del prompt (empleando **inquirer**), relacionadas con los grupos.
 
-Dichas funciones son las siguientes: `insertarGrupoPrompt` solicita los datos uno a uno para insertar un grupo, es decir, añadirlo a la clase `GrupoColeccion`; `eliminarGrupoPrompt` solicita el ID del grupo a eliminar y procede a su eliminación; `modificarGrupoPrompt` para modificar un determinado elemento, que es indicado por el usuario; `mostrarGrupoPrompt` para mostrar los grupos según unos criterios de ordenación introducido en las opciones; Por último, `promptGrupos`, que se encarga de gestionar todas las posibilidades dentro de grupos, es decir, las funciones anteriomente comentadas que permiten modificar, 
+Dichas funciones son las siguientes: `insertarGrupoPrompt` solicita los datos uno a uno para insertar un grupo, es decir, añadirlo a la clase `GrupoColeccion`; `eliminarGrupoPrompt` solicita el ID del grupo a eliminar y procede a su eliminación; `modificarGrupoPrompt` para modificar un determinado elemento, que es indicado por el usuario; `mostrarGrupoPrompt` para mostrar los grupos según unos criterios de ordenación introducido en las opciones; Por último, `promptGrupos`, que se encarga de gestionar todas las posibilidades dentro de grupos, es decir, las funciones anteriomente comentadas que permiten modificar, visualizar, añadir y eliminar grupos. 
 
 Se hace uso de funciones de la clase `JsonGrupoColeccion` para llevar a cabo las tareas como eliminar, incluir o mostrar usuarios. 
 
@@ -286,25 +348,38 @@ showRuta(ordenacion: string, orientacion: string): boolean {
 - `storeTasks`: Método privado para actualizar los valores del fichero JSON, con los de la colección
 ```typescript
 private storeTasks() {
-  this.database.set("usuario", [...this._usuarios.values()]).write();
+  this.database.set("ruta", [...this._rutas.values()]).write();
 }
 ```
 
-#### jsonRutaColeccion.ts
+#### rutaPrompt.ts
 Contiene una serie de funciones para trabajar con las distintas opciones posibles del prompt (empleando **inquirer**), relacionadas con las Rutas.
 
 Dichas funciones son las siguientes: 
-- `insertarRutaPrompt()` solicita los datos uno a uno para insertar una ruta, es decir, añadirla a la clase `RutaColeccion`.
-- `eliminarRutaPrompt()` solicita el ID de la Ruta a eliminar y procede a su eliminación llamando al método de la clase.
-- `modificarRutaPrompt()` solicita el ID de la Ruta a modificar, el atributo a modificar y el nuevo valor, y procede a modificarlo llamando al método de la clase.
-- `mostrarRutaPrompt()` muestra una lista de opciones de atributos para la ordenación y vizualización, y tras el usuario elegir una, junto a la opcion de ascendente o descendente, llama a la método de la clase encargado de mostrar las Rutas.
+- `insertarRutaPrompt()`: solicita los datos uno a uno para insertar una ruta, es decir, añadirla a la clase `RutaColeccion`.
+- `eliminarRutaPrompt()`: solicita el ID de la Ruta a eliminar y procede a su eliminación llamando al método de la clase.
+- `modificarRutaPrompt()`: solicita el ID de la Ruta a modificar, el atributo a modificar y el nuevo valor, y procede a modificarlo llamando al método de la clase.
+- `mostrarRutaPrompt()`: muestra una lista de opciones de atributos para la ordenación y vizualización, y tras el usuario elegir una, junto a la opcion de ascendente o descendente, llama a la método de la clase encargado de mostrar las Rutas.
 
-Se hace uso de funciones de la clase `JsonRutaColeccion` para llevar a cabo las tareas como eliminar, incluir o mostrar usuarios. 
+- `promptRutas()`: este sirve como una interfaz media para que el usuario pueda elegir la siguiente opción a ejecutar dentro de las rutas, `insertarRutaPrompt()`, `eliminarRutaPrompt()`, `modificarRutaPrompt()`, `mostrarRutaPrompt()`.
 
-Las funciones que reciben como parámetro la ID del administrador del grupo lo hacen para garantizar que es el propietario de dicho grupo, en caso de que no lo sea no podría realizar cambios. Algunas funciones para finalizar su ejecucción llaman a la función prompt principal, es decir, al menú inicial. 
+Como hemos visto, se hace uso de funciones de la clase `JsonRutaColeccion` para llevar a cabo las tareas como eliminar, incluir o mostrar rutas. Algunas funciones para finalizar su ejecucción llaman a la función prompt principal, es decir, al menú inicial. 
 
 
 ### Retos
+En el directorio **Retos** se encuentran cuatro ficheros:
+
+#### reto.ts
+Para esta práctica se crea una clase llamada `Reto` que se encuentra en el fichero `reto.ts`. Esta clase contiene los siguientes atributos:
+```typescript
+- private _ID  //ID único del reto
+- private _nombre  //Nombre del reto
+- private _rutas Rutas  //que forman parte del reto
+- private _tipoActividad  //Tipo de actividad del reto: bicicleta o correr
+- private _kilometrosTotales  //Km totales a realizar (como la suma de los kms de las rutas que lo engloban)
+- private _usuarios  //Usuarios que están realizando el reto
+```
+Los métodos de la clase son los respectivos getters y setters, una función mostrarReto (muestra todos los atributos con su valor), añadir amigo
 ### Gestor
 
 - Atributos

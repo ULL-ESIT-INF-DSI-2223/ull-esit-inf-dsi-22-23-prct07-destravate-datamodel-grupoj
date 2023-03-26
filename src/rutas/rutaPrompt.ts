@@ -205,7 +205,6 @@ export async function mostrarRutaPrompt(opcion: number = 1) {
  */
 export function promptRutas() {
   console.clear();
-  //jsonUsuariosColeccion.mostrarUsuarios()  
 
   inquirer.prompt({
     type: "list",

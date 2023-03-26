@@ -213,7 +213,6 @@ export async function mostrarUsuarioPrompt(opcion: number =  1) {
  */
 export function promptUsuarios() {
   console.clear();
-  //jsonUsuariosColeccion.mostrarUsuarios()  
 
   inquirer.prompt({
     type: "list",

@@ -156,7 +156,6 @@ async function mostrarRetoPrompt () {
  */
 export function promptRetos() {
   console.clear();
-  //jsonUsuariosColeccion.mostrarUsuarios()  
 
   inquirer.prompt({
     type: "list",
