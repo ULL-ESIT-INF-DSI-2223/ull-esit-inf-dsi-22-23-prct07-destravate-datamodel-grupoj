@@ -62,13 +62,13 @@ export class GrupoColeccion {
   /**
    * Obtener la posición en el array _grupos
    * donde se encuentra el grupo según su ID
-   * @param ID_grupo ID del grupo
+   * @param IDGrupo ID del grupo
    */
-  devolverIndexGrupo(ID_grupo: number) : number {
+  devolverIndexGrupo(IDGrupo: number) : number {
     let grupoIndex: number = 0;
 
     this._grupos.forEach((grupo, index) => {
-      if(grupo.ID ==  ID_grupo) {
+      if(grupo.ID ==  IDGrupo) {
         grupoIndex = index;
       }
     })
@@ -77,11 +77,11 @@ export class GrupoColeccion {
   }
   /**
    * Método para añadir un usuario a un grupo
-   * @param ID_grupo ID del grupo al que añadir al usuario
-   * @param ID_usuario ID del usuario a añadir al grupo
+   * @param IDGrupo ID del grupo al que añadir al usuario
+   * @param IDUsuario ID del usuario a añadir al grupo
    */
-  anadirUsuario (ID_grupo : number, ID_usuario : number) {
-    this._grupos[this.devolverIndexGrupo(ID_grupo)].incluirUsuario(ID_usuario);
+  anadirUsuario (IDGrupo : number, IDUsuario : number) {
+    this._grupos[this.devolverIndexGrupo(IDGrupo)].incluirUsuario(IDUsuario);
     
   } 
 
@@ -157,12 +157,12 @@ export class GrupoColeccion {
    * @param gruposIds Ids de los grupos a buscar
    * @returns un array de Grupos que coinciden con los IDs introducidos
    */
-  buscarGrupos(gruposIds: number[]) : Grupo[] {
+  buscarGrupos(gruposIDs: number[]) : Grupo[] {
     let grupos: Grupo[] = [];
 
     this._grupos.forEach(grupo => {
-      gruposIds.forEach(grupoId => {
-        if(grupo.ID ==  grupoId) {
+      gruposIDs.forEach(grupoID => {
+        if(grupo.ID ==  grupoID) {
           grupos.push(grupo);
         }
       })
@@ -231,15 +231,30 @@ export class GrupoColeccion {
     return true;
   }
 
-
-  existeGrupo(id: number): boolean {
+  /**
+   * Verifica a través de una ID si dicho grupo
+   * existe o no, retornando un valor lógico
+   * @param ID
+   * @return boolean
+   */
+  existeGrupo(ID: number): boolean {
     let result: boolean = false;
     this._grupos.forEach(grupo => {
-      if(grupo.ID === id) {
+      if(grupo.ID === ID) {
         result = true;
       }
     });
     return result;
+  }
+
+  /** 
+   * Busca cuál es el administrador de un grupo,
+   * recibiendo la ID del mismo y retornando la ID del usuario administrador
+   * @param IDGrupo
+   * @retum number
+   */
+  buscarAdministrador(IDGrupo : number) : number {
+    return this._grupos[this.devolverIndexGrupo(IDGrupo)].administrador;
   }
 
 

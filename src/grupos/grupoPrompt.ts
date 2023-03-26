@@ -92,7 +92,7 @@ export async function insertarGrupoPrompt(opcion: number =  1, adminID: number =
 /**
  * Prompt para eliminar determinado elemento Grupo
  */
-async function eliminarGrupoPrompt () {
+export async function eliminarGrupoPrompt(opcion: number = 1, adminID: number = 0) {
   console.clear();
   let respuestas = await inquirer.prompt([  
   {
@@ -101,12 +101,26 @@ async function eliminarGrupoPrompt () {
     message: "Introducir ID del grupo a eliminar: ",
   }
   ]);
-
-  if (jsonGruposColeccion.removeGrupo(Number(respuestas["removeID"]))) {
-    promptPrincipal("Grupo eliminado");
+  if (adminID == jsonGruposColeccion.buscarAdministrador(respuestas["removeID"]) || adminID == 0) { 
+    if (jsonGruposColeccion.removeGrupo(Number(respuestas["removeID"]))) {
+      if (opcion === 0) {
+        pantallaPrincipal("Grupo eliminado");
+      }
+      else{
+        promptPrincipal("Grupo eliminado");
+      }
+    }
+    else {
+      if (opcion === 0 ) {
+        pantallaPrincipal("Grupo NO eliminado, datos incorrectos");
+      }
+      else {
+        promptPrincipal("Grupo NO eliminado, datos incorrectos");
+      }
+    }
   }
   else {
-    promptPrincipal("Grupo NO eliminado, datos incorrectos");
+    pantallaPrincipal("Grupo NO eliminado, administrador erroneo");
   }
 }
 

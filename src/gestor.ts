@@ -8,7 +8,7 @@ import { insertarUsuarioPrompt, mostrarUsuarioPrompt } from './usuarios/usuarioP
 import { promptPrincipal, pantallaPrincipal } from './index';
 import { CommandsEach, Commands } from '.';
 import { mostrarRutaPrompt } from './rutas/rutaPrompt';
-import { mostrarGrupoPrompt, insertarGrupoPrompt } from './grupos/grupoPrompt';
+import { mostrarGrupoPrompt, insertarGrupoPrompt, eliminarGrupoPrompt } from './grupos/grupoPrompt';
 enum LogIn { 
   Login = "Iniciar sesión",
   Registrarse = "Registrarse"
@@ -123,6 +123,6 @@ export class Gestor {
   }
 
   borrarGrupo () : void {
-    
+    eliminarGrupoPrompt(0, this.UsuarioRegistradoID);
   }
 }

@@ -139,10 +139,10 @@ export function pantallaPrincipal(mensaje = "") : void {
         }).then(answers => {
           switch (answers["command"]) {
             case CommandsGrupos.Crear:
-              myGestor.crearGrupo()
+              myGestor.crearGrupo();
               break;
             case CommandsGrupos.Borrar:
-              //
+              myGestor.borrarGrupo();
               break;
             case CommandsGrupos.Unirse:
               myGestor.unirseGrupo();
